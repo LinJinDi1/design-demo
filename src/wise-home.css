@@ -1,0 +1,499 @@
+.wise-theme .wise-home-page {
+  min-height: 100%;
+  padding: 46px 0 84px;
+  background: var(--wise-soft);
+  color: var(--wise-ink);
+}
+
+.wise-home-topbar {
+  height: 64px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wise-home-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+  color: var(--wise-ink);
+  text-align: left;
+}
+
+.wise-home-brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+}
+
+.wise-home-brand > span {
+  font-size: 15px;
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.wise-home-brand small {
+  display: block;
+  margin-top: 4px;
+  color: var(--wise-mute);
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.wise-home-topbar > div {
+  display: flex;
+  gap: 7px;
+}
+
+.wise-home-topbar > div button {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wise-ink);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.wise-home-hero {
+  padding: 16px 16px 0;
+}
+
+.wise-home-hero-copy > small,
+.wise-home-glance header small {
+  display: block;
+  color: var(--wise-ink-deep);
+  font-size: 7px;
+  line-height: 1.4;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.wise-home-hero-copy h1 {
+  max-width: 340px;
+  margin: 9px 0 11px;
+  font-family: "Arial Black", "PingFang SC", sans-serif;
+  font-size: 46px;
+  line-height: .94;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.wise-home-hero-copy p {
+  margin: 0;
+  color: var(--wise-body);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.wise-home-hero figure {
+  height: 152px;
+  margin: 18px 0 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+  background: var(--wise-primary-pale);
+  cursor: pointer;
+}
+
+.wise-home-hero figure::after {
+  content: none;
+}
+
+.wise-home-hero figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.wise-home-quick {
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--wise-canvas);
+  border-bottom: 1px solid #d9ddd6;
+}
+
+.wise-home-quick button {
+  min-width: 0;
+  min-height: 72px;
+  padding: 10px 2px 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-right: 1px solid #e4e7e1;
+  border-bottom: 1px solid #e4e7e1;
+  background: transparent;
+  color: var(--wise-ink);
+}
+
+.wise-home-quick button:nth-child(4n) {
+  border-right: 0;
+}
+
+.wise-home-quick button:nth-child(n+5) {
+  border-bottom: 0;
+}
+
+.wise-home-quick img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.wise-home-quick span {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 9px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wise-home-glance {
+  padding: 30px 18px 28px;
+  background: var(--wise-canvas);
+}
+
+.wise-home-glance > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.wise-home-glance h2 {
+  margin: 6px 0 0;
+  font-size: 31px;
+  line-height: .95;
+  font-weight: 900;
+}
+
+.wise-home-glance time {
+  color: var(--wise-mute);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-home-glance-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow: hidden;
+  border: 1px solid #d9ddd6;
+}
+
+.wise-home-glance-grid button {
+  min-height: 130px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-right: 1px solid #d9ddd6;
+  border-bottom: 1px solid #d9ddd6;
+  color: var(--wise-ink);
+  text-align: left;
+}
+
+.wise-home-glance-grid button:nth-child(2n) {
+  border-right: 0;
+}
+
+.wise-home-glance-grid button:nth-child(n+3) {
+  border-bottom: 0;
+}
+
+.wise-home-glance-grid .library,
+.wise-home-glance-grid .ranking { background: var(--wise-canvas); }
+.wise-home-glance-grid .canteen,
+.wise-home-glance-grid .friends { background: var(--wise-soft); }
+
+.wise-home-glance-grid span {
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-home-glance-grid strong {
+  margin-top: 10px;
+  color: var(--wise-ink-deep);
+  font-size: 38px;
+  line-height: .82;
+  font-weight: 900;
+}
+
+.wise-home-glance-grid small {
+  margin-top: 7px;
+  color: currentColor;
+  font-size: 9px;
+  opacity: .72;
+}
+
+.wise-home-glance-grid b {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+}
+
+.wise-home-notice {
+  min-height: 44px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid #80ca59;
+  border-bottom: 1px solid #80ca59;
+  background: var(--wise-primary);
+}
+
+.wise-home-notice b {
+  color: var(--wise-ink);
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.wise-home-notice p {
+  margin: 0;
+  color: var(--wise-ink-deep);
+  font-size: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-home-hero-copy > *,
+  .wise-home-hero figure {
+    animation: wise-home-enter .5s both;
+  }
+
+  .wise-home-hero-copy h1 { animation-delay: .05s; }
+  .wise-home-hero-copy p { animation-delay: .1s; }
+  .wise-home-hero figure { animation-delay: .12s; }
+}
+
+@keyframes wise-home-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 首页夜间态：保留 Wise 的高反差品牌感，用表面层级代替纯黑色反转。 */
+.wise-theme.home-dark-theme {
+  background: #070907;
+}
+
+.wise-theme.home-dark-theme .stage {
+  background: #10130f;
+}
+
+.wise-theme.home-dark-theme .stage-header h2 {
+  color: #f1f4ed;
+}
+
+.wise-theme.home-dark-theme .viewport-chip {
+  border-color: #394037;
+  background: #171a15;
+  color: #bcc3b8;
+}
+
+.wise-theme.home-dark-theme .phone {
+  border-color: #050605;
+  background: #0b0d0a;
+  box-shadow: 0 28px 70px #0009, 0 0 0 1px #353b32;
+}
+
+.wise-theme.home-dark-theme .phone-content,
+.wise-theme.home-dark-theme .wise-home-page {
+  background: #0b0d0a;
+  color: #f1f4ed;
+}
+
+.wise-theme.home-dark-theme .status-bar {
+  color: #f1f4ed;
+}
+
+.wise-home-page.is-dark .wise-home-topbar {
+  background: #0b0d0a;
+}
+
+.wise-home-page.is-dark .wise-home-brand {
+  color: #f1f4ed;
+}
+
+.wise-home-page.is-dark .wise-home-brand img {
+  box-shadow: 0 0 0 1px #3d4539;
+}
+
+.wise-home-page.is-dark .wise-home-brand small {
+  color: #8f988b;
+}
+
+.wise-home-page.is-dark .wise-home-topbar > div button {
+  border-color: #343a31;
+  background: #171a15;
+  color: #d9ded5;
+}
+
+.wise-home-page.is-dark .wise-home-topbar > div button:active {
+  border-color: var(--wise-primary);
+  color: var(--wise-primary);
+}
+
+.wise-home-page.is-dark .wise-home-topbar > div .wise-home-theme-toggle {
+  border-color: var(--wise-primary);
+  background: var(--wise-primary);
+  color: #0e0f0c;
+}
+
+.wise-home-page.is-dark .wise-home-notice {
+  border-color: #86cf5d;
+  background: var(--wise-primary);
+}
+
+.wise-home-page.is-dark .wise-home-hero {
+  padding-top: 25px;
+  background: #0b0d0a;
+}
+
+.wise-home-page.is-dark .wise-home-hero-copy > small,
+.wise-home-page.is-dark .wise-home-glance header small {
+  color: var(--wise-primary);
+}
+
+.wise-home-page.is-dark .wise-home-hero-copy h1 {
+  color: #f1f4ed;
+}
+
+.wise-home-page.is-dark .wise-home-hero-copy p {
+  max-width: 300px;
+  color: #aeb6aa;
+}
+
+.wise-home-page.is-dark .wise-home-hero figure {
+  border: 1px solid #35402f;
+  background: #172016;
+}
+
+.wise-home-page.is-dark .wise-home-hero figure > img {
+  filter: brightness(.74) saturate(.72) contrast(1.08);
+}
+
+.wise-home-page.is-dark .wise-home-hero figure::after {
+  content: "CAMPUS / 01";
+  position: absolute;
+  right: 11px;
+  bottom: 10px;
+  display: block;
+  padding: 6px 9px;
+  border: 1px solid #9fe87080;
+  border-radius: 999px;
+  background: #0b0d0adb;
+  color: var(--wise-primary);
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.wise-home-page.is-dark .wise-home-quick {
+  border-color: #2b3028;
+  background: #121510;
+}
+
+.wise-home-page.is-dark .wise-home-quick button {
+  border-color: #2b3028;
+  color: #e5e9e1;
+}
+
+.wise-home-page.is-dark .wise-home-quick button:active {
+  background: #1c2119;
+  color: var(--wise-primary);
+}
+
+.wise-home-page.is-dark .wise-home-quick img {
+  filter: saturate(.72) brightness(.92);
+}
+
+.wise-home-page.is-dark .wise-home-glance {
+  background: #0b0d0a;
+}
+
+.wise-home-page.is-dark .wise-home-glance h2 {
+  color: #f1f4ed;
+}
+
+.wise-home-page.is-dark .wise-home-glance time {
+  color: #828b7e;
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid {
+  border-color: #343a31;
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid button {
+  border-color: #343a31;
+  color: #e7ebe3;
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid .library,
+.wise-home-page.is-dark .wise-home-glance-grid .ranking {
+  background: #121510;
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid .canteen,
+.wise-home-page.is-dark .wise-home-glance-grid .friends {
+  background: #191d17;
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid strong {
+  color: var(--wise-primary);
+}
+
+.wise-home-page.is-dark .wise-home-glance-grid small {
+  color: #9da699;
+  opacity: 1;
+}
+
+.wise-theme.home-dark-theme .bottom-nav {
+  border-color: #2c3129;
+  background: #0b0d0af2;
+}
+
+.wise-theme.home-dark-theme .bottom-nav .nav-item {
+  color: #8f988b;
+}
+
+.wise-theme.home-dark-theme .bottom-nav .nav-item img {
+  filter: grayscale(1) brightness(1.45);
+  opacity: .72;
+}
+
+.wise-theme.home-dark-theme .bottom-nav .nav-item.active {
+  color: var(--wise-primary);
+}
+
+.wise-theme.home-dark-theme .bottom-nav .nav-item.active img {
+  filter: brightness(0) saturate(100%) invert(91%) sepia(23%) saturate(1167%) hue-rotate(44deg) brightness(97%) contrast(88%);
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .wise-home-page.is-dark .wise-home-topbar > div button:hover {
+    border-color: #596252;
+  }
+
+  .wise-home-page.is-dark .wise-home-topbar > div .wise-home-theme-toggle:hover {
+    border-color: var(--wise-primary-active);
+    background: var(--wise-primary-active);
+  }
+
+  .wise-home-page.is-dark .wise-home-quick button:hover,
+  .wise-home-page.is-dark .wise-home-glance-grid button:hover {
+    background: #20251d;
+  }
+}

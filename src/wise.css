@@ -1,0 +1,609 @@
+/* Wise 版只通过父级命名空间覆盖，原版样式与结构保持不变。 */
+.design-switcher { margin: 18px 0 8px; }
+.design-switcher > span { display: block; margin-bottom: 8px; }
+.design-switcher > div { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: #f1eff5; border-radius: 14px; }
+.design-switcher button { min-height: 36px; border-radius: 11px; background: transparent; color: #777281; font-size: 11px; font-weight: 700; }
+.design-switcher button.active { background: #fff; color: #332b45; box-shadow: 0 2px 9px #332b4514; }
+.design-switcher > small { display: block; margin-top: 7px; color: #9c98a6; font-size: 9px; line-height: 1.45; }
+.stage-meta { display: flex; align-items: center; gap: 10px; }
+.mobile-design-toggle { min-height: 34px; padding: 0 14px; border-radius: 17px; background: #332b45; color: #fff; font-size: 10px; font-weight: 700; }
+
+.wise-theme {
+  --wise-primary: #9fe870;
+  --wise-primary-active: #cdffad;
+  --wise-primary-pale: #e2f6d5;
+  --wise-ink: #0e0f0c;
+  --wise-ink-deep: #163300;
+  --wise-body: #454745;
+  --wise-mute: #868685;
+  --wise-canvas: #fff;
+  --wise-soft: #e8ebe6;
+  --wise-positive: #2ead4b;
+  --wise-warning: #ffd11a;
+  --wise-negative: #d03238;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #dfe4dc;
+}
+.wise-theme .sidebar { background: var(--wise-ink); color: var(--wise-canvas); border-color: #272a25; }
+.wise-theme .brand small,
+.wise-theme .sidebar-intro p,
+.wise-theme .group-label,
+.wise-theme .scene-button small,
+.wise-theme .scope-note small,
+.wise-theme .design-switcher > small { color: #abb0a8; }
+.wise-theme .eyebrow { color: var(--wise-primary); }
+.wise-theme .sidebar-intro h1 { color: var(--wise-primary); font-weight: 900; letter-spacing: -.04em; }
+.wise-theme .scene-button { color: #e8ebe6; border-radius: 12px; }
+.wise-theme .scene-button:hover { background: #242622; }
+.wise-theme .scene-button.active { background: var(--wise-primary); color: var(--wise-ink); }
+.wise-theme .scene-button.active small { color: #31531d; }
+.wise-theme .design-switcher > div { background: #252824; border-radius: 24px; }
+.wise-theme .design-switcher button { color: #aeb3ab; border-radius: 20px; }
+.wise-theme .design-switcher button.active { background: var(--wise-primary); color: var(--wise-ink); box-shadow: none; }
+.wise-theme .pulse { background: var(--wise-primary); box-shadow: 0 0 0 4px #9fe87022; }
+.wise-theme .stage { background: var(--wise-soft); }
+.wise-theme .stage-header h2 { color: var(--wise-ink); font-weight: 900; letter-spacing: -.04em; }
+.wise-theme .viewport-chip { background: var(--wise-canvas); color: var(--wise-body); border: 1px solid var(--wise-ink); }
+.wise-theme .viewport-chip span { background: var(--wise-primary); }
+.wise-theme .mobile-design-toggle { background: var(--wise-primary); color: var(--wise-ink); border-radius: 24px; }
+.wise-theme .stage-footer { color: var(--wise-body); }
+.wise-theme .phone { border-color: var(--wise-ink); background: var(--wise-soft); box-shadow: 0 28px 70px #16330026; }
+.wise-theme .phone-content { background: var(--wise-soft); color: var(--wise-ink); }
+.wise-theme .screen { background: var(--wise-soft); color: var(--wise-ink); }
+
+/* 全局组件：24px 卡片、药丸操作、单一青柠绿主操作。 */
+.wise-theme .screen button,
+.wise-theme .screen input,
+.wise-theme .screen label { font-family: inherit; }
+.wise-theme .home-real h1, .wise-theme .home-real h2, .wise-theme .home-real h3,
+.wise-theme .pickup-header h1, .wise-theme .campus-real h1, .wise-theme .campus-real h2,
+.wise-theme .lib-hero h1, .wise-theme .friends-real h1, .wise-theme .friends-real h2,
+.wise-theme .profile-real h1, .wise-theme .profile-real h2, .wise-theme .store-detail-real h1,
+.wise-theme .store-detail-real h2, .wise-theme .store-detail-real h3 { color: var(--wise-ink); font-weight: 900; letter-spacing: -.035em; }
+.wise-theme .real-search { min-height: 46px; border: 1px solid var(--wise-ink); border-radius: 12px; background: var(--wise-canvas); color: var(--wise-mute); }
+.wise-theme .floating-gift { background: var(--wise-primary) !important; color: var(--wise-ink) !important; border-radius: 50%; box-shadow: 0 8px 24px #16330028; }
+.wise-theme .floating-gift::before { color: var(--wise-ink); }
+.wise-theme .bottom-nav { background: #0e0f0cf2; border-color: #272a25; backdrop-filter: blur(12px); }
+.wise-theme .bottom-nav .nav-item { color: #abb0a8; }
+.wise-theme .bottom-nav .nav-item.active { color: var(--wise-primary); }
+.wise-theme .bottom-nav .nav-item.active::before { background: var(--wise-primary); }
+
+/* 首页：sage hero + white content cards + dark promotional card。 */
+.wise-theme .home-real { background: var(--wise-soft); }
+.wise-theme .home-brand { background: var(--wise-soft); }
+.wise-theme .home-brand strong { color: var(--wise-ink); font-size: 20px; font-weight: 900; letter-spacing: -.04em; }
+.wise-theme .home-brand img { border-radius: 14px; }
+.wise-theme .home-banner-carousel { margin: 0 12px; height: 118px; border-radius: 24px; background: var(--wise-ink); }
+.wise-theme .home-banner-carousel > img { filter: saturate(.85) contrast(1.05); border-radius: 20px; }
+.wise-theme .home-shortcuts { height: auto; padding: 14px 12px; }
+.wise-theme .home-shortcut-group { height: 82px; gap: 7px; }
+.wise-theme .home-shortcut-group button { background: var(--wise-canvas); border-radius: 18px; color: var(--wise-ink); font-weight: 600; }
+.wise-theme .home-shortcut-group img { width: 38px; height: 38px; }
+.wise-theme .ranking-card { margin: 0 12px 12px; height: 118px; border-radius: 24px; background: var(--wise-ink); color: var(--wise-primary); box-shadow: none; }
+.wise-theme .ranking-card h2, .wise-theme .ranking-card p, .wise-theme .ranking-card footer { color: inherit; }
+.wise-theme .ranking-card h2 { font-size: 22px; }
+.wise-theme .ranking-card footer span { color: var(--wise-primary); font-weight: 700; }
+.wise-theme .home-notice { margin: 0 12px 12px; border-radius: 18px; background: var(--wise-primary-pale); color: var(--wise-ink-deep); }
+.wise-theme .home-recommend { padding: 18px 12px 90px; background: var(--wise-canvas); border-radius: 24px 24px 0 0; }
+.wise-theme .home-recommend nav b { background: var(--wise-primary); color: var(--wise-ink); border-radius: 999px; }
+.wise-theme .home-recommend article { border-radius: 20px; background: var(--wise-soft); overflow: hidden; }
+
+/* 觅食三页。 */
+.wise-theme .food-screen { background: var(--wise-soft); }
+.wise-theme .pickup-header { margin: 0 10px 12px; padding: 18px 14px 0; border-radius: 0 0 24px 24px; background: var(--wise-canvas); }
+.wise-theme .pickup-header h1 { font-size: 29px; line-height: 1; }
+.wise-theme .pickup-header > p { color: var(--wise-body); }
+.wise-theme .pickup-tabs button { background: transparent; color: var(--wise-mute); }
+.wise-theme .pickup-tabs button.active { color: var(--wise-ink); font-weight: 800; }
+.wise-theme .pickup-tabs button.active::after { height: 4px; background: var(--wise-primary); }
+.wise-theme .filter-panel, .wise-theme .venue-line, .wise-theme .category-line,
+.wise-theme .canteen-filter, .wise-theme .weekdays { margin: 0 12px 10px; border: 0; border-radius: 20px; background: var(--wise-canvas); }
+.wise-theme .filter-panel span.selected, .wise-theme .category-line .active,
+.wise-theme .canteen-filter p span.active, .wise-theme .weekdays span.active { background: var(--wise-primary); color: var(--wise-ink); }
+.wise-theme .real-store { margin: 0 12px 12px; padding: 12px; border-radius: 24px; background: var(--wise-canvas); }
+.wise-theme .real-store h3 em, .wise-theme .tag { background: var(--wise-primary-pale); color: var(--wise-ink-deep); border-radius: 999px; }
+.wise-theme .score-line, .wise-theme .dining-store section > b { color: var(--wise-positive); }
+.wise-theme .split-list { grid-template-columns: 94px 1fr; gap: 8px; padding: 0 10px; }
+.wise-theme .split-list > aside { border-radius: 20px; background: #d8dcd6; overflow: hidden; }
+.wise-theme .split-list aside button.active { border-left-color: var(--wise-primary); background: var(--wise-canvas); color: var(--wise-ink); }
+.wise-theme .split-list > main { border-radius: 20px; background: var(--wise-canvas); }
+.wise-theme .dining-store { border-color: var(--wise-soft); }
+.wise-theme .dining-store-photo, .wise-theme .store-list-photo { border-radius: 16px; }
+.wise-theme .plain-menu { margin: 0 12px; padding: 5px 14px; border-radius: 24px; background: var(--wise-canvas); }
+.wise-theme .plain-menu p { border-color: var(--wise-soft); }
+.wise-theme .plain-menu b { color: var(--wise-ink-deep); }
+
+/* 校园与图书馆。 */
+.wise-theme .campus-real { padding-left: 12px; padding-right: 12px; }
+.wise-theme .campus-photo { height: 232px; border-radius: 24px; }
+.wise-theme .campus-photo::after { content: "在校园里，找到你的节奏。"; position: absolute; inset: auto 18px 18px; padding: 12px 14px; border-radius: 16px; background: var(--wise-primary); color: var(--wise-ink); font-size: 18px; font-weight: 900; line-height: 1.1; }
+.wise-theme .service-card { border-radius: 24px; padding: 16px; background: var(--wise-canvas); }
+.wise-theme .service-card span { background: var(--wise-primary-pale); color: var(--wise-ink-deep); border-radius: 999px; }
+.wise-theme .library-real { background: var(--wise-soft); }
+.wise-theme .native-head, .wise-theme .lib-hero { background: var(--wise-ink); color: var(--wise-primary); }
+.wise-theme .native-head h1, .wise-theme .lib-hero h1 { color: var(--wise-primary); }
+.wise-theme .lib-hero { margin: 0 10px; padding: 22px 18px 0; border-radius: 0 0 24px 24px; }
+.wise-theme .lib-hero > small, .wise-theme .lib-hero p { color: #cdd2ca; }
+.wise-theme .lib-hero nav button { background: transparent; color: #aeb3ab; }
+.wise-theme .lib-hero nav button.active { color: var(--wise-primary); border-color: var(--wise-primary); }
+.wise-theme .library-filter-card, .wise-theme .space-card { border-radius: 24px; background: var(--wise-canvas); overflow: hidden; }
+.wise-theme .library-filter-card { padding: 12px; }
+.wise-theme .selects span, .wise-theme .capacity span { border-color: var(--wise-ink); border-radius: 12px; }
+.wise-theme .capacity span.active { border-color: transparent; background: var(--wise-primary); color: var(--wise-ink); }
+.wise-theme .space-card section footer b { color: var(--wise-ink-deep); }
+
+/* 好友与个人中心。 */
+.wise-theme .friends-real { padding-left: 12px; padding-right: 12px; }
+.wise-theme .friend-profile { margin: 0 -12px 14px; padding: 18px 18px 22px; border-radius: 0 0 24px 24px; background: var(--wise-ink); }
+.wise-theme .friend-profile h1 { color: var(--wise-primary); }
+.wise-theme .friend-card { border-radius: 24px; background: var(--wise-canvas); }
+.wise-theme .friend-card button { border-radius: 999px; }
+.wise-theme .recommend article > button { background: var(--wise-primary); color: var(--wise-ink); }
+.wise-theme .message-grid button { background: var(--wise-soft); border-radius: 16px; }
+.wise-theme .message-grid i { background: var(--wise-negative); }
+.wise-theme .profile-real { background: var(--wise-soft); }
+.wise-theme .profile-bg { margin: 0 10px 12px; border-radius: 0 0 24px 24px; background: var(--wise-ink); color: var(--wise-primary); }
+.wise-theme .profile-user h1, .wise-theme .profile-numbers b { color: var(--wise-primary); }
+.wise-theme .profile-meta, .wise-theme .profile-user p { color: #cdd2ca; }
+.wise-theme .collection-card, .wise-theme .my-card, .wise-theme .profile-panel { margin-left: 12px; margin-right: 12px; border-radius: 24px; background: var(--wise-canvas); }
+.wise-theme .collection-card { background: var(--wise-primary); color: var(--wise-ink); }
+.wise-theme .profile-grid button { border-radius: 16px; background: var(--wise-soft); }
+
+/* 店铺详情：图片 hero 保留信息价值，内容层全部换成 Wise 组件语言。 */
+.wise-theme .store-detail-real { background: var(--wise-soft); }
+.wise-theme .store-hero { margin: 0 10px; height: 270px; border-radius: 0 0 24px 24px; overflow: hidden; }
+.wise-theme .store-hero > button { background: var(--wise-canvas); color: var(--wise-ink); }
+.wise-theme .store-hero > span { padding: 8px 14px; border-radius: 999px; background: var(--wise-primary); color: var(--wise-ink); font-weight: 700; }
+.wise-theme .store-title, .wise-theme .detail-information, .wise-theme .live-status,
+.wise-theme .store-tabs, .wise-theme .store-blocks { margin: 10px 12px 0; border-radius: 24px; background: var(--wise-canvas); }
+.wise-theme .store-title { padding: 16px; }
+.wise-theme .store-avatar { border-color: var(--wise-primary); }
+.wise-theme .store-name-line em, .wise-theme .detail-information span { background: var(--wise-primary-pale); color: var(--wise-ink-deep); border-radius: 999px; }
+.wise-theme .stat-row b { color: var(--wise-ink); }
+.wise-theme .detail-information, .wise-theme .live-status { padding: 15px; }
+.wise-theme .live-status strong i { background: var(--wise-positive); }
+.wise-theme .live-status button { background: var(--wise-primary); color: var(--wise-ink); border-radius: 999px; }
+.wise-theme .store-tabs { overflow: hidden; }
+.wise-theme .store-tabs button { background: transparent; color: var(--wise-mute); }
+.wise-theme .store-tabs button.active { color: var(--wise-ink); }
+.wise-theme .store-tabs button.active::after { background: var(--wise-primary); }
+.wise-theme .store-blocks { padding: 14px; }
+.wise-theme .rating-card, .wise-theme .comments article, .wise-theme .say-something,
+.wise-theme .text-menu { border-radius: 18px; background: var(--wise-soft); }
+.wise-theme .rating-card > b { color: var(--wise-ink-deep); }
+.wise-theme .say-something { border: 1px solid var(--wise-ink); }
+.wise-theme .detail-action-bar { background: var(--wise-ink); color: var(--wise-canvas); }
+.wise-theme .detail-action-bar button { color: #e8ebe6; }
+.wise-theme .detail-action-bar button b { color: var(--wise-primary); }
+.wise-theme .detail-action-bar .go-now { margin: 7px; border-radius: 999px; background: var(--wise-primary); color: var(--wise-ink); }
+
+@media (max-width: 820px) {
+  .design-switcher { display: none; }
+  .wise-theme .stage { background: var(--wise-soft); }
+  .wise-theme .phone { box-shadow: none; }
+}
+
+/* 第二轮版式：不同业务页面使用不同构图，避免所有内容只是纵向白卡堆叠。 */
+.wise-theme .phone-content {
+  --page-gutter: 12px;
+}
+.wise-theme .phone-content::-webkit-scrollbar { width: 0; }
+.wise-theme .screen { min-height: 100%; }
+
+/* 首页做成 bento 编辑布局：功能入口紧凑，推荐内容更像内容卡而非表单。 */
+.wise-theme .home-real .home-shortcuts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.wise-theme .home-real .home-shortcut-group {
+  grid-template-columns: 1fr 1fr;
+  height: auto;
+  gap: 6px;
+}
+.wise-theme .home-real .home-shortcut-group button {
+  min-height: 76px;
+  padding: 7px 3px;
+}
+.wise-theme .home-real .home-shortcut-group:first-child button:first-child {
+  background: var(--wise-primary);
+}
+.wise-theme .home-real .home-shortcut-group:last-child button:last-child {
+  background: var(--wise-primary-pale);
+}
+.wise-theme .home-real .home-recommend > header {
+  align-items: flex-end;
+}
+.wise-theme .home-real .home-recommend > header h2 {
+  max-width: 170px;
+  font-size: 29px;
+  line-height: .95;
+}
+.wise-theme .home-real .home-recommend > div {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 9px;
+}
+.wise-theme .home-real .home-recommend article {
+  width: auto;
+  margin: 0;
+  padding-bottom: 10px;
+}
+.wise-theme .home-real .home-recommend article:first-child {
+  grid-row: span 2;
+}
+.wise-theme .home-real .home-recommend article:first-child img { height: 190px; }
+.wise-theme .home-real .home-recommend article:not(:first-child) img { height: 90px; }
+
+/* 商户列表：首张卡作为编辑精选，其余保持高密度横排。 */
+.wise-theme[data-scene="stalls"] .sort-line::before {
+  content: "NEAR CAMPUS";
+  display: block;
+  color: var(--wise-ink-deep);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+.wise-theme[data-scene="stalls"] .sort-line { display: grid; grid-template-columns: 1fr auto; row-gap: 3px; }
+.wise-theme[data-scene="stalls"] .sort-line strong { grid-column: 1; }
+.wise-theme[data-scene="stalls"] .sort-line > span { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+.wise-theme[data-scene="stalls"] .real-store:first-of-type {
+  grid-template-columns: 1fr;
+  padding: 0 0 14px;
+  overflow: hidden;
+}
+.wise-theme[data-scene="stalls"] .real-store:first-of-type > img {
+  width: 100%;
+  max-width: none;
+  height: 168px;
+  border-radius: 0;
+}
+.wise-theme[data-scene="stalls"] .real-store:first-of-type > div { padding: 0 15px; }
+.wise-theme[data-scene="stalls"] .real-store:first-of-type h3 { font-size: 22px; }
+.wise-theme[data-scene="stalls"] .real-store:not(:first-of-type) { grid-template-columns: 106px 1fr; }
+
+/* 商业中心强调分区导航；饭堂把每道菜变成可扫读的价格卡。 */
+.wise-theme[data-scene="mall"] .split-list { grid-template-columns: 106px 1fr; }
+.wise-theme[data-scene="mall"] .split-list > aside { padding: 8px; }
+.wise-theme[data-scene="mall"] .split-list aside > b { padding: 8px 6px 12px; color: var(--wise-ink); }
+.wise-theme[data-scene="mall"] .split-list aside button { height: 43px; border-radius: 12px; text-align: left; padding-left: 10px; }
+.wise-theme[data-scene="mall"] .split-list aside button.active { border: 0; background: var(--wise-primary); }
+.wise-theme[data-scene="canteen"] .plain-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+  background: transparent;
+}
+.wise-theme[data-scene="canteen"] .plain-menu p {
+  min-height: 72px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 0;
+  border-radius: 18px;
+  padding: 12px;
+  background: var(--wise-canvas);
+}
+.wise-theme[data-scene="canteen"] .plain-menu p:nth-child(4n + 1),
+.wise-theme[data-scene="canteen"] .plain-menu p:nth-child(4n + 4) { background: var(--wise-primary-pale); }
+.wise-theme[data-scene="canteen"] .plain-menu b { font-size: 15px; }
+
+/* 校园页改为一张主服务卡 + 一张紧凑次服务卡。 */
+.wise-theme[data-scene="campus"] .campus-real {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-content: start;
+  gap: 10px;
+}
+.wise-theme[data-scene="campus"] .campus-real > header,
+.wise-theme[data-scene="campus"] .campus-photo,
+.wise-theme[data-scene="campus"] .campus-real > h2 { grid-column: 1 / -1; }
+.wise-theme[data-scene="campus"] .campus-real > h2 { margin-bottom: 0; }
+.wise-theme[data-scene="campus"] .service-card {
+  display: flex;
+  min-width: 0;
+  min-height: 180px;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+.wise-theme[data-scene="campus"] .service-card:first-of-type { background: var(--wise-primary); }
+.wise-theme[data-scene="campus"] .service-card img { width: 56px; height: 56px; }
+.wise-theme[data-scene="campus"] .service-card strong { margin-top: auto; font-size: 19px; font-weight: 900; }
+.wise-theme[data-scene="campus"] .service-card p { margin: 0; }
+.wise-theme[data-scene="campus"] .service-card.disabled { background: var(--wise-ink); color: var(--wise-primary); }
+.wise-theme[data-scene="campus"] .service-card.disabled strong { color: var(--wise-primary); }
+
+/* 图书馆将筛选作为工具条，把结果卡改成上下分区的内容组件。 */
+.wise-theme[data-scene="library"] .library-filter-card { background: var(--wise-primary-pale); }
+.wise-theme[data-scene="library"] .selects { display: grid; grid-template-columns: .9fr 1.4fr; }
+.wise-theme[data-scene="library"] .selects span { background: var(--wise-canvas); }
+.wise-theme[data-scene="library"] .capacity { overflow-x: auto; padding-bottom: 2px; }
+.wise-theme[data-scene="library"] .capacity span { flex: 0 0 auto; background: var(--wise-canvas); }
+.wise-theme[data-scene="library"] .space-card { display: grid; grid-template-columns: 42% 58%; min-height: 190px; }
+.wise-theme[data-scene="library"] .space-card > .photo-placeholder { height: 100%; background: var(--wise-ink); color: var(--wise-primary); }
+
+/* 好友页用人卡网格，消息区保留独立信息架构。 */
+.wise-theme[data-scene="friends"] .friend-card.recommend > header button { background: var(--wise-soft); color: var(--wise-ink); }
+.wise-theme[data-scene="friends"] .friend-card.recommend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 14px;
+}
+.wise-theme[data-scene="friends"] .friend-card.recommend > header { grid-column: 1 / -1; }
+.wise-theme[data-scene="friends"] .friend-card.recommend article {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border: 0;
+  border-radius: 18px;
+  padding: 12px;
+  background: var(--wise-soft);
+}
+.wise-theme[data-scene="friends"] .friend-card.recommend article .avatar-placeholder { width: 44px; height: 44px; }
+.wise-theme[data-scene="friends"] .friend-card.recommend article > button { width: 100%; margin-top: auto; }
+.wise-theme[data-scene="friends"] .friend-card.message-box { margin-top: 10px; padding: 14px; }
+.wise-theme[data-scene="friends"] .friend-row { border-radius: 16px; }
+
+/* 个人页改成 bento：身份头图全宽，收藏与名片并排，工具按功能成组。 */
+.wise-theme[data-scene="profile"] .profile-real {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+  gap: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.wise-theme[data-scene="profile"] .profile-bg {
+  grid-column: 1 / -1;
+  margin: 0 -2px;
+  min-height: 280px;
+}
+.wise-theme[data-scene="profile"] .collection-card,
+.wise-theme[data-scene="profile"] .my-card { margin: 0; min-height: 145px; }
+.wise-theme[data-scene="profile"] .collection-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px;
+}
+.wise-theme[data-scene="profile"] .collection-card strong { font-size: 20px; font-weight: 900; }
+.wise-theme[data-scene="profile"] .my-card { background: var(--wise-canvas); }
+.wise-theme[data-scene="profile"] .my-card h2 { font-size: 20px; }
+.wise-theme[data-scene="profile"] .profile-panel { grid-column: 1 / -1; margin: 0; }
+.wise-theme[data-scene="profile"] .profile-grid { gap: 8px; }
+.wise-theme[data-scene="profile"] .profile-grid button { min-height: 88px; }
+
+/* 详情页让标题卡压住 hero，信息与状态用非对称双栏，内容区再回到全宽。 */
+.wise-theme .store-detail-real .store-title {
+  position: relative;
+  z-index: 2;
+  margin-top: -42px;
+  box-shadow: 0 12px 30px #16330018;
+}
+.wise-theme .store-detail-real .store-name-line h1 { font-size: 28px; line-height: 1; }
+.wise-theme .store-detail-real .detail-information,
+.wise-theme .store-detail-real .live-status {
+  display: inline-flex;
+  width: calc(58% - 18px);
+  min-height: 146px;
+  vertical-align: top;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.wise-theme .store-detail-real .live-status {
+  width: calc(42% - 10px);
+  margin-left: 4px;
+  background: var(--wise-primary-pale);
+}
+.wise-theme .store-detail-real .live-status button { align-self: flex-start; margin-top: 8px; }
+.wise-theme .store-detail-real .store-tabs { clear: both; }
+.wise-theme .store-detail-real .comments article:nth-of-type(odd) { background: var(--wise-primary-pale); }
+.wise-theme .store-detail-real .text-menu { padding: 14px; }
+
+@media (max-width: 430px) {
+  .wise-theme .home-real .home-recommend > div { grid-template-columns: 1fr 1fr; }
+}
+
+/* 第三轮质感与可读性校准：白色只留给输入控件，内容卡统一使用有色表面。 */
+.wise-theme {
+  --wise-surface: #d9ded6;
+  --wise-surface-deep: #cbd3c7;
+  --wise-surface-warm: #eef0e7;
+  --wise-green-soft: #d7f4c4;
+}
+.wise-theme .phone-content *,
+.wise-theme .phone-content *::before,
+.wise-theme .phone-content *::after { box-sizing: border-box; }
+.wise-theme .phone-content :is(h1, h2, h3, strong, b, p, span, small, button) {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.wise-theme .phone-content :is(h1, h2, h3) { line-height: 1.12; }
+.wise-theme .pickup-header h1,
+.wise-theme .home-real .home-recommend > header h2,
+.wise-theme .store-detail-real .store-name-line h1 { line-height: 1.12; }
+.wise-theme .store-hero { height: 274px; }
+
+/* 首页：上部是一整块内容带，功能入口通过色块分组，不使用白瓷砖。 */
+.wise-theme .home-real .home-shortcut-group button { background: var(--wise-surface); }
+.wise-theme .home-real .home-shortcut-group button:nth-child(2n) { background: var(--wise-surface-warm); }
+.wise-theme .home-real .home-shortcut-group:first-child button:first-child { background: var(--wise-primary); }
+.wise-theme .home-real .home-shortcut-group:last-child button:last-child { background: var(--wise-green-soft); }
+.wise-theme .home-recommend { background: var(--wise-soft); border-radius: 0; }
+.wise-theme .home-recommend article { background: var(--wise-surface); }
+.wise-theme .home-recommend article:first-child { background: var(--wise-primary-pale); }
+.wise-theme .home-recommend article:nth-child(3) { background: var(--wise-ink); color: var(--wise-soft); }
+.wise-theme .home-recommend article:nth-child(3) :is(h3, p, b, small) { color: inherit; }
+.wise-theme .home-notice { background: var(--wise-green-soft); }
+
+/* 觅食页：深色栏目头连接搜索和 Tab，筛选区作为一整块工具面。 */
+.wise-theme .pickup-header {
+  background: var(--wise-ink);
+  color: var(--wise-soft);
+}
+.wise-theme .pickup-header h1 { color: var(--wise-primary); }
+.wise-theme .pickup-header > p { color: #c8cdc5; }
+.wise-theme .pickup-tabs button { color: #9fa59c; }
+.wise-theme .pickup-tabs button.active { color: var(--wise-primary); }
+.wise-theme .pickup-header .real-search { border: 0; background: var(--wise-soft); }
+.wise-theme .filter-panel,
+.wise-theme .venue-line,
+.wise-theme .category-line,
+.wise-theme .canteen-filter,
+.wise-theme .weekdays { background: var(--wise-surface); }
+.wise-theme .filter-panel span:not(.selected),
+.wise-theme .category-line span:not(.active),
+.wise-theme .canteen-filter p span:not(.active) { background: var(--wise-surface-warm); }
+.wise-theme .real-store { background: var(--wise-surface); }
+.wise-theme[data-scene="stalls"] .real-store:first-of-type { background: var(--wise-green-soft); }
+.wise-theme[data-scene="stalls"] .real-store:not(:first-of-type):nth-of-type(odd) { background: var(--wise-surface-warm); }
+.wise-theme .split-list > main { background: var(--wise-surface); }
+.wise-theme .dining-store { padding: 10px; border: 0; border-radius: 16px; }
+.wise-theme .dining-store:nth-child(odd) { background: var(--wise-surface-warm); }
+.wise-theme[data-scene="canteen"] .plain-menu p { background: var(--wise-surface); }
+.wise-theme[data-scene="canteen"] .plain-menu p:nth-child(4n + 1),
+.wise-theme[data-scene="canteen"] .plain-menu p:nth-child(4n + 4) { background: var(--wise-green-soft); }
+.wise-theme .menu-source { margin: 0 12px; border-radius: 12px; color: var(--wise-body); }
+
+/* 校园与图书馆：避免白卡，把功能和资料分别放在绿、灰、黑三种语义表面。 */
+.wise-theme .service-card { background: var(--wise-surface); }
+.wise-theme[data-scene="campus"] .service-card:first-of-type { background: var(--wise-primary); }
+.wise-theme[data-scene="campus"] .service-card.disabled { background: var(--wise-ink); }
+.wise-theme .library-filter-card { background: var(--wise-green-soft); }
+.wise-theme[data-scene="library"] .selects span,
+.wise-theme[data-scene="library"] .capacity span { background: var(--wise-surface-warm); }
+.wise-theme[data-scene="library"] .space-card { background: var(--wise-surface); }
+.wise-theme[data-scene="library"] .space-card section { display: flex; flex-direction: column; justify-content: center; }
+.wise-theme[data-scene="library"] .space-card section header { gap: 6px; flex-wrap: wrap; }
+.wise-theme[data-scene="library"] .space-card section footer { gap: 6px; flex-wrap: wrap; }
+
+/* 好友：人物推荐与消息不再套一层白色大卡，直接用有色模块形成区块。 */
+.wise-theme .friend-card { background: var(--wise-surface); }
+.wise-theme[data-scene="friends"] .friend-card.recommend { background: var(--wise-green-soft); }
+.wise-theme[data-scene="friends"] .friend-card.recommend article { background: var(--wise-surface-warm); }
+.wise-theme[data-scene="friends"] .friend-card.recommend article:nth-of-type(2) { background: var(--wise-surface-deep); }
+.wise-theme[data-scene="friends"] .friend-card.recommend article strong,
+.wise-theme[data-scene="friends"] .friend-card.recommend article small { max-width: 100%; overflow-wrap: anywhere; }
+.wise-theme[data-scene="friends"] .friend-card.message-box { background: var(--wise-surface); }
+.wise-theme .message-grid button { background: var(--wise-surface-warm); }
+.wise-theme .friend-row:nth-of-type(odd) { background: var(--wise-surface-warm); }
+
+/* 个人中心：保留深色身份区，其余 Bento 使用灰、暖灰、青柠三种表面。 */
+.wise-theme .my-card,
+.wise-theme .profile-panel { background: var(--wise-surface); }
+.wise-theme[data-scene="profile"] .my-card { background: var(--wise-surface-warm); }
+.wise-theme .profile-grid button { background: var(--wise-surface-warm); }
+.wise-theme .profile-grid button:nth-child(2n) { background: var(--wise-green-soft); }
+.wise-theme .profile-meta { gap: 8px; }
+.wise-theme .profile-meta span:first-child { max-width: 72%; overflow-wrap: anywhere; }
+
+/* 详情：标题卡本身就是浅绿品牌面；资料、状态、正文各用不同色阶。 */
+.wise-theme .store-title { background: var(--wise-green-soft); }
+.wise-theme .detail-information { background: var(--wise-surface); }
+.wise-theme .live-status { background: var(--wise-primary-pale); }
+.wise-theme .store-tabs { background: var(--wise-surface-deep); }
+.wise-theme .store-blocks { background: var(--wise-surface-warm); }
+.wise-theme .rating-card,
+.wise-theme .say-something,
+.wise-theme .text-menu { background: var(--wise-surface); }
+.wise-theme .comments article { background: var(--wise-surface); }
+.wise-theme .comments article:nth-of-type(odd) { background: var(--wise-green-soft); }
+.wise-theme .detail-information p,
+.wise-theme .live-status p { max-width: 100%; line-height: 1.45; overflow-wrap: anywhere; }
+.wise-theme .live-status strong { line-height: 1.25; }
+.wise-theme .store-name-line { flex-wrap: wrap; gap: 8px; }
+
+/* 390px 画布内的长文本边界。 */
+.wise-theme .real-store > div,
+.wise-theme .dining-store > section,
+.wise-theme .space-card > section,
+.wise-theme .friend-card article > div { min-width: 0; }
+.wise-theme .real-store footer,
+.wise-theme .space-card footer { gap: 6px; flex-wrap: wrap; }
+.wise-theme .dining-store h3,
+.wise-theme .real-store h3,
+.wise-theme .friend-row strong { overflow-wrap: anywhere; }
+
+/* 第二次视觉回看后的定点修正。 */
+.wise-theme .home-real .home-recommend article:nth-child(4) {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  grid-template-rows: auto auto auto auto;
+  min-height: 116px;
+  padding: 0 12px 0 0;
+}
+.wise-theme .home-real .home-recommend article:nth-child(4) img {
+  grid-row: 1 / -1;
+  width: 100%;
+  height: 116px;
+  margin-right: 12px;
+  border-radius: 18px 0 0 18px;
+}
+.wise-theme .home-real .home-recommend article:nth-child(4) :is(small, h3, p, b) { margin-left: 12px; }
+.wise-theme .home-real .home-recommend article:nth-child(4) small { align-self: end; }
+.wise-theme .home-real .home-recommend article:nth-child(4) h3 { margin-top: 2px; margin-bottom: 2px; }
+
+.wise-theme[data-scene="mall"] .dining-store { background: var(--wise-green-soft); }
+.wise-theme[data-scene="mall"] .dining-store:nth-child(2n) { background: var(--wise-surface-deep); }
+.wise-theme[data-scene="mall"] .dining-store:nth-child(3n) { background: var(--wise-surface-warm); }
+.wise-theme[data-scene="mall"] .dining-store section > b {
+  display: block;
+  max-width: 100%;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.wise-theme[data-scene="mall"] .dining-store p,
+.wise-theme[data-scene="mall"] .dining-store small { line-height: 1.35; }
+
+.wise-theme .store-detail-real .detail-information,
+.wise-theme .store-detail-real .live-status {
+  display: grid;
+  width: calc(100% - 24px);
+  min-height: 0;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.wise-theme .store-detail-real .detail-information {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.wise-theme .store-detail-real .detail-information p {
+  margin: 0;
+  min-height: 42px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--wise-surface-warm);
+}
+.wise-theme .store-detail-real .detail-information p:last-child { grid-column: 1 / -1; }
+.wise-theme .store-detail-real .live-status {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto;
+  column-gap: 12px;
+  min-height: 112px;
+  padding: 14px 16px;
+}
+.wise-theme .store-detail-real .live-status small { grid-column: 1; }
+.wise-theme .store-detail-real .live-status strong { grid-column: 1; font-size: 14px; }
+.wise-theme .store-detail-real .live-status p { grid-column: 1; margin: 3px 0 0; }
+.wise-theme .store-detail-real .live-status button {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  margin: 0;
+  white-space: nowrap;
+}
+.wise-theme .floating-gift {
+  width: 44px;
+  height: 44px;
+  right: 14px;
+}
+.wise-theme .floating-gift::before { font-size: 20px; }

@@ -1,0 +1,507 @@
+.wise-theme .wise-store-detail {
+  min-height: 1250px;
+  padding: 46px 0 78px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-store-cover {
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+  background: var(--wise-ink);
+}
+
+.wise-store-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0e0f0c40 0, transparent 45%, #0e0f0c90 100%);
+}
+
+.wise-store-cover > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wise-store-cover > button {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  left: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-store-cover > span {
+  position: absolute;
+  z-index: 2;
+  right: 14px;
+  bottom: 13px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-store-heading {
+  min-height: 92px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  gap: 12px;
+  align-items: center;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-store-heading small,
+.wise-store-content > header > small,
+.wise-review-title small {
+  color: var(--wise-primary);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-store-heading h1 {
+  margin: 5px 0;
+  color: var(--wise-primary);
+  font-size: 28px;
+  line-height: .95;
+  font-weight: 900;
+}
+
+.wise-store-heading p {
+  margin: 0;
+  color: #b8beb5;
+  font-size: 10px;
+}
+
+.wise-store-heading > img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border: 3px solid var(--wise-primary);
+  border-radius: 50%;
+}
+
+.wise-store-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-primary);
+}
+
+.wise-store-metrics > div {
+  height: 56px;
+  padding: 8px 14px;
+  border-right: 1px solid var(--wise-ink);
+}
+
+.wise-store-metrics > div:last-child { border-right: 0; }
+
+.wise-store-metrics small,
+.wise-store-metrics b {
+  display: block;
+}
+
+.wise-store-metrics small {
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-store-metrics b {
+  margin-top: 4px;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.wise-store-facts {
+  padding: 0 17px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--wise-soft);
+}
+
+.wise-store-facts > p {
+  min-width: 0;
+  min-height: 49px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid #c8cdc5;
+}
+
+.wise-store-facts > p:first-child {
+  padding-right: 8px;
+  border-right: 1px solid #c8cdc5;
+}
+
+.wise-store-facts > p:nth-child(2) { padding-left: 8px; }
+
+.wise-store-facts span small,
+.wise-store-facts span b {
+  display: block;
+}
+
+.wise-store-facts span small {
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-store-facts span b {
+  margin-top: 3px;
+  font-size: 10px;
+}
+
+.wise-store-facts .live {
+  min-height: 49px;
+  grid-column: 1 / -1;
+  grid-template-columns: 8px 1fr auto;
+  border-bottom: 0;
+}
+
+.wise-store-facts .live > i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--wise-positive);
+}
+
+.wise-store-facts .live > button {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-theme .wise-store-tabs {
+  height: 50px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: visible;
+  border-radius: 0;
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-canvas);
+}
+
+.wise-theme .wise-store-tabs button {
+  position: relative;
+  background: transparent;
+  color: var(--wise-mute);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.wise-theme .wise-store-tabs button.active {
+  color: var(--wise-ink);
+  font-weight: 800;
+}
+
+.wise-theme .wise-store-tabs button.active::after {
+  content: "";
+  position: absolute;
+  right: 32%;
+  bottom: 0;
+  left: 32%;
+  height: 4px;
+  background: var(--wise-primary);
+}
+
+.wise-store-content {
+  min-height: 470px;
+  padding: 27px 17px 96px;
+  background: var(--wise-canvas);
+}
+
+.wise-store-content > header h2,
+.wise-review-title h2 {
+  margin: 6px 0 0;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-store-about > p {
+  margin: 18px 0 22px;
+  max-width: 315px;
+  color: var(--wise-body);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.wise-store-about dl {
+  margin: 0;
+  border-top: 1px solid var(--wise-ink);
+}
+
+.wise-store-about dl > div {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  border-bottom: 1px solid #d3d7d0;
+}
+
+.wise-store-about dt {
+  color: var(--wise-mute);
+  font-size: 9px;
+}
+
+.wise-store-about dd {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.wise-store-menu > header {
+  position: relative;
+}
+
+.wise-store-menu > header > span {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-menu-list {
+  margin-top: 18px;
+  border-top: 1px solid var(--wise-ink);
+}
+
+.wise-menu-list p {
+  min-height: 56px;
+  margin: 0;
+  padding: 9px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #d3d7d0;
+  font-size: 11px;
+}
+
+.wise-menu-list p span {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-weight: 700;
+}
+
+.wise-menu-list p i {
+  color: var(--wise-mute);
+  font-size: 8px;
+  font-style: normal;
+}
+
+.wise-menu-list p b {
+  color: var(--wise-ink-deep);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.wise-store-reviews {
+  background: var(--wise-soft);
+}
+
+.wise-rating-summary {
+  min-height: 74px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 64px 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  border-top: 1px solid var(--wise-ink);
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-primary);
+}
+
+.wise-rating-summary > b {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.wise-rating-summary span small,
+.wise-rating-summary span strong {
+  display: block;
+}
+
+.wise-rating-summary span small { font-size: 8px; }
+
+.wise-rating-summary span strong {
+  margin-top: 4px;
+  font-size: 10px;
+}
+
+.wise-order-banner {
+  width: 100%;
+  height: 128px;
+  margin-top: 14px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.wise-order-banner.large {
+  height: 180px;
+  margin-top: 20px;
+}
+
+.wise-order-note {
+  margin: 14px 0 0;
+  color: var(--wise-body);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.wise-review-title {
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.wise-review-title small { color: var(--wise-ink-deep); }
+
+.wise-review-title > button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-store-reviews > article {
+  padding: 17px 0;
+  border-bottom: 1px solid #c8cdc5;
+}
+
+.wise-store-reviews > article > header {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.wise-store-reviews > article > header > div {
+  color: var(--wise-mute);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-store-reviews > article header span b,
+.wise-store-reviews > article header span small {
+  display: block;
+}
+
+.wise-store-reviews > article header span b { font-size: 11px; }
+
+.wise-store-reviews > article header span small {
+  margin-top: 3px;
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-store-reviews > article header > strong {
+  color: var(--wise-mute);
+  font-size: 11px;
+}
+
+.wise-store-reviews > article > p {
+  margin: 13px 0 0 34px;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.wise-store-reviews > article > aside {
+  margin: 10px 0 0 34px;
+  padding: 9px 10px;
+  border-left: 3px solid var(--wise-primary);
+  background: var(--wise-canvas);
+  font-size: 9px;
+}
+
+.wise-store-reviews > article > footer {
+  margin: 11px 0 0 34px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-detail-actions {
+  position: absolute;
+  z-index: 25;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 72px;
+  padding: 5px 18px 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #30342f;
+  background: #0e0f0cf5;
+}
+
+.wise-detail-actions button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: transparent;
+  color: var(--wise-primary);
+}
+
+.wise-detail-actions button span {
+  color: var(--wise-canvas);
+  font-size: 9px;
+}
+
+.wise-detail-actions.tongguan {
+  grid-template-columns: 48px 48px 48px 48px 1fr;
+  gap: 3px;
+  padding-right: 9px;
+  padding-left: 9px;
+}
+
+.wise-detail-actions .primary {
+  height: 50px;
+  margin: 6px 0;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-store-heading,
+  .wise-store-metrics,
+  .wise-store-facts {
+    animation: wise-store-enter .45s both;
+  }
+
+  .wise-store-metrics { animation-delay: .06s; }
+  .wise-store-facts { animation-delay: .12s; }
+}
+
+@keyframes wise-store-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

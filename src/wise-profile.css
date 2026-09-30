@@ -1,0 +1,265 @@
+.wise-theme .wise-profile-page {
+  min-height: 100%;
+  padding: 46px 0 82px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-profile-identity {
+  padding: 15px 18px 21px;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-profile-topline,
+.wise-profile-person,
+.wise-profile-collection > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wise-profile-topline > span,
+.wise-profile-collection header small,
+.wise-profile-tools header small,
+.wise-profile-services header small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-profile-topline > span { color: var(--wise-primary); }
+
+.wise-profile-topline button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #596057;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--wise-canvas);
+}
+
+.wise-profile-person {
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 14px 0 18px;
+}
+
+.wise-profile-avatar {
+  flex: 0 0 auto;
+  width: 78px;
+  height: 78px;
+  border: 4px solid var(--wise-primary);
+  background-image: url("/assets/reference-screens/ref-profile.jpg");
+}
+
+.wise-profile-person small {
+  color: var(--wise-primary);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-profile-person h1 {
+  margin: 5px 0 7px;
+  color: var(--wise-canvas);
+  font-size: 29px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-profile-person p {
+  margin: 0;
+  color: #b8beb5;
+  font-size: 9px;
+}
+
+.wise-profile-id {
+  width: 100%;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #4a5048;
+  border-bottom: 1px solid #4a5048;
+  background: transparent;
+  color: #c8cdc5;
+  font-size: 9px;
+}
+
+.wise-profile-id b { color: var(--wise-primary); }
+
+.wise-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-primary);
+}
+
+.wise-profile-stats div {
+  height: 72px;
+  padding: 13px 16px;
+  border-right: 1px solid var(--wise-ink);
+}
+
+.wise-profile-stats div:last-child { border-right: 0; }
+
+.wise-profile-stats small,
+.wise-profile-stats b {
+  display: block;
+}
+
+.wise-profile-stats small {
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-profile-stats b {
+  margin-top: 6px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.wise-profile-collection {
+  padding: 26px 16px 22px;
+  background: var(--wise-canvas);
+}
+
+.wise-profile-collection h2,
+.wise-profile-tools h2,
+.wise-profile-services h2 {
+  margin: 6px 0 0;
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-profile-collection > header > b {
+  color: var(--wise-ink-deep);
+  font-size: 42px;
+  line-height: 1;
+}
+
+.wise-profile-collection > button {
+  width: 100%;
+  min-height: 70px;
+  margin-top: 15px;
+  padding: 10px 13px;
+  display: grid;
+  grid-template-columns: 42px 1fr 24px;
+  gap: 10px;
+  align-items: center;
+  border-top: 1px solid var(--wise-ink);
+  border-bottom: 1px solid var(--wise-ink);
+  background: transparent;
+  text-align: left;
+}
+
+.wise-profile-collection > button > .product-symbol {
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--wise-primary-pale);
+}
+
+.wise-profile-collection strong,
+.wise-profile-collection small,
+.wise-profile-tools strong,
+.wise-profile-tools small {
+  display: block;
+}
+
+.wise-profile-collection strong { font-size: 12px; }
+
+.wise-profile-collection small,
+.wise-profile-tools small {
+  margin-top: 5px;
+  color: var(--wise-mute);
+  font-size: 9px;
+}
+
+.wise-profile-tools {
+  padding: 25px 16px 20px;
+  background: var(--wise-soft);
+}
+
+.wise-profile-tools > div {
+  margin-top: 14px;
+  border-top: 1px solid var(--wise-ink);
+}
+
+.wise-profile-tools > div > button {
+  width: 100%;
+  min-height: 67px;
+  padding: 9px 4px;
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #c2c7bf;
+  background: transparent;
+  text-align: left;
+}
+
+.wise-profile-tools > div > button > span {
+  min-width: 0;
+}
+
+.wise-profile-tools strong { font-size: 12px; }
+
+.wise-profile-tools button > b {
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  font-size: 9px;
+}
+
+.wise-profile-services {
+  padding: 26px 16px 28px;
+  background: var(--wise-canvas);
+}
+
+.wise-profile-services > div {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--wise-ink);
+  border-left: 1px solid var(--wise-ink);
+}
+
+.wise-profile-services button {
+  min-width: 0;
+  height: 66px;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: 32px 1fr 18px;
+  gap: 7px;
+  align-items: center;
+  border-right: 1px solid var(--wise-ink);
+  border-bottom: 1px solid var(--wise-ink);
+  background: transparent;
+  font-size: 10px;
+  text-align: left;
+}
+
+.wise-profile-services button:nth-child(2),
+.wise-profile-services button:nth-child(3) {
+  background: var(--wise-primary-pale);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-profile-person,
+  .wise-profile-id,
+  .wise-profile-stats {
+    animation: wise-profile-enter .45s both;
+  }
+
+  .wise-profile-id { animation-delay: .06s; }
+  .wise-profile-stats { animation-delay: .12s; }
+}
+
+@keyframes wise-profile-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

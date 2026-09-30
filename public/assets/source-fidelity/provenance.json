@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-09-14T19:11:03+08:00",
+  "policy": "Assets are copied from quick-pick-main/static or downloaded from source-code fallback and current public API image URLs. No reference screenshot is embedded or cropped.",
+  "assets": [
+    {"target":"shortcuts/canteen.png","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/饭堂.png"},
+    {"target":"shortcuts/stalls.png","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/位置.png"},
+    {"target":"shortcuts/favorites.png","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/收藏.png"},
+    {"target":"shortcuts/random.png","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/随机.png"},
+    {"target":"shortcuts/points.svg","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/礼盒.svg"},
+    {"target":"shortcuts/following.svg","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/关注收藏.svg"},
+    {"target":"shortcuts/friend-favorites.svg","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/好友收藏.svg"},
+    {"target":"shortcuts/friend-recommend.svg","source_kind":"source_file","source":"/Users/bytedance/quick-pick-main/static/好友推荐.svg"},
+    {"target":"banners/home-1.png","source_kind":"homepage_fallback_url","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/8ada74ef-f082-40e4-bc1c-a21c84b82c75.png"},
+    {"target":"banners/home-2.jpeg","source_kind":"homepage_fallback_url","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/5f37ed8b-196a-4444-a25f-93d99d0c4bef.jpeg"},
+    {"target":"banners/home-3.png","source_kind":"homepage_fallback_url","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/ae4d612a-0592-4f38-9131-1ede480fcff4.png"},
+    {"target":"featured/huang-shifu.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/store/search?storeName=黄师傅","record_id":"25","record_name":"黄师傅","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/63086659-88d6-44a0-be2e-c28d4e4d1f0a.jpg"},
+    {"target":"stalls/xudoudou.jpeg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/stall/list?campusId=1&sortType=hot","record_id":"194","record_name":"徐豆豆","source":"https://quick-pick-prod-1319400004.cos.ap-guangzhou.myqcloud.com/files/default058a879e-af86-415c-a2d1-8d704969e040.jpeg"},
+    {"target":"stalls/quanji.jpeg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/stall/list?campusId=1&sortType=hot","record_id":"196","record_name":"全记","source":"https://quick-pick-prod-1319400004.cos.ap-guangzhou.myqcloud.com/files/default3d873d2c-bdf8-444c-9545-d45b91382adb.jpeg"},
+    {"target":"stalls/linhuzi.jpeg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/stall/list?campusId=1&sortType=hot","record_id":"220","record_name":"林胡子猪脚饭","source":"https://quick-pick-prod-1319400004.cos.ap-guangzhou.myqcloud.com/files/default488d8af9-af4e-4402-a116-0a9ebf638c6b.jpeg"},
+    {"target":"commercial/01-laotongguan.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/dining/stores?campusId=1&centerId=1&offset=0&size=5","record_id":"1","record_name":"老潼关肉夹馍","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/5f61ce5e-3188-4841-8ce0-1730252e6693.jpg"},
+    {"target":"commercial/02-laoshanghai.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/dining/stores?campusId=1&centerId=1&offset=0&size=5","record_id":"2","record_name":"老上海馄饨铺","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/69e347fd-4a32-4885-a459-cd3758320bc4.jpg"},
+    {"target":"commercial/03-gongfuxiaoming.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/dining/stores?campusId=1&centerId=1&offset=0&size=5","record_id":"10","record_name":"功夫小茗","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/405a6b73-c793-459f-b3a6-c76b26ed1ff0.jpg"},
+    {"target":"commercial/04-korean-flavor.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/dining/stores?campusId=1&centerId=1&offset=0&size=5","record_id":"12","record_name":"韩国风味","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/850de074-8c9b-45ab-9a6a-354fc8ea7dc7.jpg"},
+    {"target":"commercial/05-come-on.jpg","source_kind":"public_api","api":"GET https://bluefox-quick.online:8080/user/dining/stores?campusId=1&centerId=1&offset=0&size=5","record_id":"14","record_name":"Come On潮味","source":"https://bluefox-web-cos-1319400004.cos.ap-guangzhou.myqcloud.com/images/ac87fd4c-60c7-4479-baa9-2d982bdb9c32.jpg"}
+  ]
+}

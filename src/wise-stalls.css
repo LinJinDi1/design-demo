@@ -1,0 +1,432 @@
+/* 桥苑小摊 Wise 专页：独立结构，不继承旧列表的卡片布局。 */
+.wise-theme .wise-stalls-page {
+  padding: 46px 0 78px;
+  background: #e8ebe6;
+  color: #0e0f0c;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.wise-stalls-hero {
+  margin: 0 10px;
+  padding: 22px 18px 0;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  background: #0e0f0c;
+  color: #e8ebe6;
+}
+
+.wise-stalls-kicker {
+  display: flex;
+  justify-content: space-between;
+  color: #9fe870;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-stalls-hero h1 {
+  margin: 24px 0 12px;
+  color: #9fe870 !important;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: .82 !important;
+  letter-spacing: -.065em;
+}
+
+.wise-stalls-hero h1 span { color: #e8ebe6; }
+
+.wise-stalls-hero > p {
+  max-width: 286px;
+  margin: 0 0 20px;
+  color: #bdc3ba;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.wise-stalls-search {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 28px;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 8px 0 14px;
+  border: 0;
+  border-radius: 14px;
+  background: #e8ebe6;
+  color: #5f625e;
+  font-size: 12px;
+}
+
+.wise-stalls-search img { width: 15px; height: 15px; opacity: .62; }
+.wise-stalls-search b {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #9fe870;
+  color: #0e0f0c;
+  font-size: 15px;
+}
+
+.wise-stalls-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 18px -4px 0;
+}
+
+.wise-stalls-nav button {
+  position: relative;
+  height: 48px;
+  background: transparent;
+  color: #8f958c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wise-stalls-nav button.active { color: #9fe870; }
+.wise-stalls-nav button.active::after {
+  content: "";
+  position: absolute;
+  right: 28%;
+  bottom: 0;
+  left: 28%;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: #9fe870;
+}
+
+/* 三个觅食页面共享同一首屏基线，切换时 Hero、搜索框和 Tab 不发生纵向跳动。 */
+.wise-theme[data-scene="mall"] .food-screen,
+.wise-theme[data-scene="canteen"] .food-screen { padding-top: 46px; }
+
+.wise-theme[data-scene="mall"] .pickup-header,
+.wise-theme[data-scene="canteen"] .pickup-header {
+  display: flex;
+  height: 330px;
+  margin: 0 10px;
+  padding: 22px 18px 0;
+  flex-direction: column;
+  border-radius: 0 0 24px 24px;
+}
+
+.wise-theme[data-scene="mall"] .pickup-header::before,
+.wise-theme[data-scene="canteen"] .pickup-header::before {
+  color: #9fe870;
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 11px;
+  letter-spacing: .14em;
+}
+.wise-theme[data-scene="mall"] .pickup-header::before { content: "QINGKUAI　　　　　　　　 FOOD GUIDE · 02"; }
+.wise-theme[data-scene="canteen"] .pickup-header::before { content: "QINGKUAI　　　　　　　　 FOOD GUIDE · 03"; }
+
+.wise-theme[data-scene="mall"] .pickup-header h1,
+.wise-theme[data-scene="canteen"] .pickup-header h1 {
+  margin: 24px 0 12px;
+  color: #9fe870;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: .82;
+  letter-spacing: -.065em;
+}
+.wise-theme[data-scene="mall"] .pickup-header h1 span,
+.wise-theme[data-scene="canteen"] .pickup-header h1 span { color: #e8ebe6; }
+
+.wise-theme[data-scene="mall"] .pickup-header > p,
+.wise-theme[data-scene="canteen"] .pickup-header > p {
+  min-height: 19px;
+  margin: 0 0 20px;
+  color: #bdc3ba;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+.wise-theme[data-scene="mall"] .pickup-header .real-search,
+.wise-theme[data-scene="canteen"] .pickup-header .real-search {
+  height: 52px;
+  min-height: 52px;
+  padding: 0 14px;
+  border-radius: 14px;
+}
+
+.wise-theme[data-scene="mall"] .pickup-tabs,
+.wise-theme[data-scene="canteen"] .pickup-tabs {
+  height: 48px;
+  min-height: 48px;
+  margin: auto -4px 0;
+  flex: 0 0 48px;
+}
+.wise-theme[data-scene="mall"] .pickup-tabs button,
+.wise-theme[data-scene="canteen"] .pickup-tabs button { height: 48px; }
+.wise-theme[data-scene="mall"] .pickup-tabs button.active::after,
+.wise-theme[data-scene="canteen"] .pickup-tabs button.active::after { height: 4px; }
+
+.wise-theme[data-scene="mall"] .venue-line,
+.wise-theme[data-scene="canteen"] .canteen-filter { margin-top: 18px; }
+
+.wise-stalls-filters {
+  margin: 18px 18px 0;
+  border-top: 1px solid #bbc2b8;
+  border-bottom: 1px solid #bbc2b8;
+}
+
+.wise-stalls-filters > div {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  gap: 4px;
+}
+
+.wise-stalls-filters > div + div { border-top: 1px solid #ced4cb; }
+.wise-stalls-filters strong {
+  width: 55px;
+  flex: 0 0 55px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wise-stalls-filters button {
+  min-height: 30px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: transparent;
+  color: #5d605c;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.wise-stalls-filters button.active { background: #9fe870; color: #0e0f0c; font-weight: 700; }
+
+.wise-stalls-directory { padding: 30px 18px 12px; }
+.wise-stalls-directory > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+}
+
+.wise-stalls-directory > header small {
+  color: #27610b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.wise-stalls-directory > header h2 {
+  margin: 6px 0 5px;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.05em;
+}
+
+.wise-stalls-directory > header p { margin: 0; color: #656864; font-size: 10px; }
+.wise-stalls-sort { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.wise-stalls-sort button {
+  padding: 3px 0;
+  background: transparent;
+  color: #898d87;
+  font-size: 10px;
+}
+.wise-stalls-sort button.active { color: #0e0f0c; font-weight: 800; text-decoration: underline 3px #9fe870; text-underline-offset: 4px; }
+
+.wise-stall-entry {
+  display: grid;
+  grid-template-columns: 43% minmax(0, 1fr);
+  gap: 15px;
+  padding: 20px 0;
+  border-top: 1px solid #9da59a;
+  cursor: default;
+}
+
+.wise-stall-entry:first-of-type { border-top: 3px solid #0e0f0c; }
+.wise-stall-entry:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) 43%; }
+.wise-stall-entry:nth-of-type(even) figure { grid-column: 2; grid-row: 1; }
+.wise-stall-entry:nth-of-type(even) .wise-stall-copy { grid-column: 1; grid-row: 1; }
+
+.wise-stall-entry figure {
+  position: relative;
+  min-height: 210px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #cbd3c7;
+}
+
+.wise-stall-entry figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.wise-stall-entry figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, #0e0f0c99); }
+.wise-stall-entry figure span {
+  position: absolute;
+  right: 11px;
+  bottom: 8px;
+  z-index: 1;
+  color: #9fe870;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -.05em;
+}
+
+.wise-stall-copy { display: flex; min-width: 0; flex-direction: column; }
+.wise-stall-category { display: flex; align-items: center; gap: 7px; }
+.wise-stall-category span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #0e0f0c;
+  color: #9fe870;
+  font-size: 9px;
+  font-weight: 700;
+}
+.wise-stall-category i { color: #656864; font-size: 9px; font-style: normal; }
+
+.wise-stall-copy h3 {
+  margin: 12px 0 7px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+
+.wise-stall-rating { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0 0 15px; font-size: 10px; }
+.wise-stall-rating b { color: #27610b; font-size: 13px; }
+.wise-stall-rating span { color: #656864; }
+
+.wise-stall-copy dl { margin: 0; }
+.wise-stall-copy dl > div { margin-bottom: 9px; }
+.wise-stall-copy dt { color: #787c76; font-size: 8px; letter-spacing: .1em; }
+.wise-stall-copy dd { margin: 2px 0 0; color: #262824; font-size: 9px; line-height: 1.45; overflow-wrap: anywhere; }
+
+.wise-stall-copy footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #c5cbc2;
+}
+.wise-stall-copy footer span { color: #747873; font-size: 8px; line-height: 1.35; }
+.wise-stall-copy footer span i { display: inline-block; width: 6px; height: 6px; margin-right: 4px; border-radius: 50%; background: #2ead4b; }
+.wise-stall-copy footer b { flex: 0 0 auto; color: #0e0f0c; font-size: 9px; white-space: nowrap; }
+
+@media (max-width: 360px) {
+  .wise-stalls-hero h1 { font-size: 46px; }
+  .wise-stalls-filters { margin-right: 12px; margin-left: 12px; }
+  .wise-stalls-directory { padding-right: 12px; padding-left: 12px; }
+  .wise-stall-entry { gap: 10px; }
+}
+
+/* 紧凑首屏：保留品牌层级，但让目录内容在首屏露出更多。 */
+.wise-theme .wise-stalls-hero,
+.wise-theme[data-scene="mall"] .pickup-header,
+.wise-theme[data-scene="canteen"] .pickup-header {
+  display: flex;
+  height: 264px;
+  padding: 16px 18px 0;
+  flex-direction: column;
+}
+
+.wise-theme .wise-stalls-hero h1,
+.wise-theme[data-scene="mall"] .pickup-header h1,
+.wise-theme[data-scene="canteen"] .pickup-header h1 {
+  margin: 14px 0 8px;
+  font-size: 42px;
+  line-height: .82;
+}
+
+.wise-theme .wise-stalls-hero > p,
+.wise-theme[data-scene="mall"] .pickup-header > p,
+.wise-theme[data-scene="canteen"] .pickup-header > p {
+  min-height: 17px;
+  margin: 0 0 12px;
+  font-size: 11px;
+  line-height: 17px;
+}
+
+.wise-theme .wise-stalls-search,
+.wise-theme[data-scene="mall"] .pickup-header .real-search,
+.wise-theme[data-scene="canteen"] .pickup-header .real-search {
+  height: 46px;
+  min-height: 46px;
+}
+
+.wise-theme .wise-stalls-nav,
+.wise-theme[data-scene="mall"] .pickup-tabs,
+.wise-theme[data-scene="canteen"] .pickup-tabs {
+  height: 44px;
+  min-height: 44px;
+  margin: auto -4px 0;
+  flex: 0 0 44px;
+}
+
+.wise-theme .wise-stalls-nav button,
+.wise-theme[data-scene="mall"] .pickup-tabs button,
+.wise-theme[data-scene="canteen"] .pickup-tabs button { height: 44px; }
+
+/* 头部严格使用 888px 设计画布的八分之一：111px。 */
+.wise-theme .wise-stalls-hero,
+.wise-theme[data-scene="mall"] .pickup-header,
+.wise-theme[data-scene="canteen"] .pickup-header {
+  position: relative;
+  height: 111px;
+  padding: 10px 18px 0;
+}
+
+.wise-theme .wise-stalls-hero h1,
+.wise-theme[data-scene="mall"] .pickup-header h1,
+.wise-theme[data-scene="canteen"] .pickup-header h1 {
+  margin: 7px 0 0;
+  font-size: 30px;
+  line-height: 32px !important;
+  white-space: nowrap;
+}
+.wise-theme .wise-stalls-hero h1 br { display: none; }
+.wise-theme[data-scene="mall"] .pickup-header > p,
+.wise-theme[data-scene="canteen"] .pickup-header > p { display: none; }
+
+.wise-theme .wise-stalls-nav,
+.wise-theme[data-scene="mall"] .pickup-tabs,
+.wise-theme[data-scene="canteen"] .pickup-tabs {
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  left: 14px;
+  height: 44px;
+  min-height: 44px;
+  margin: 0;
+}
+.wise-theme .wise-stalls-nav button,
+.wise-theme[data-scene="mall"] .pickup-tabs button,
+.wise-theme[data-scene="canteen"] .pickup-tabs button {
+  height: 44px;
+  white-space: nowrap;
+}
+
+.wise-theme .wise-food-compact-search {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 28px;
+  align-items: center;
+  height: 44px;
+  margin: 12px 18px 0;
+  padding: 0 8px 0 12px;
+  border-bottom: 1px solid #9da59a;
+  background: transparent;
+  color: #656864;
+  font-size: 11px;
+}
+.wise-theme .wise-food-compact-search img { width: 14px; height: 14px; opacity: .6; }
+.wise-theme .wise-food-compact-search b {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 50%;
+  background: #9fe870;
+  color: #0e0f0c;
+  font-size: 14px;
+}
+
+.wise-theme .wise-stalls-filters { margin-top: 8px; }
+.wise-theme[data-scene="mall"] .venue-line,
+.wise-theme[data-scene="canteen"] .canteen-filter { margin-top: 8px; }

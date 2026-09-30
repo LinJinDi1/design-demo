@@ -1,0 +1,100 @@
+/* Long-list navigation stays reachable below the 46px system status bar. */
+.wise-theme .wise-sticky-food-tabs,
+.wise-theme .wise-library-tabs,
+.wise-theme .store-tabs {
+  position: sticky;
+  top: 46px;
+  z-index: 14;
+}
+
+.wise-theme .wise-sticky-food-tabs,
+.wise-theme[data-scene="mall"] .pickup-tabs.wise-sticky-food-tabs,
+.wise-theme[data-scene="canteen"] .pickup-tabs.wise-sticky-food-tabs {
+  position: sticky;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  top: 46px;
+  height: 48px;
+  min-height: 48px;
+  margin: 0 10px;
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--wise-ink);
+}
+
+.wise-theme .wise-sticky-food-tabs button,
+.wise-theme[data-scene="mall"] .pickup-tabs.wise-sticky-food-tabs button,
+.wise-theme[data-scene="canteen"] .pickup-tabs.wise-sticky-food-tabs button {
+  height: 48px;
+  position: relative;
+  background: transparent;
+  color: #939991;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.wise-theme .wise-sticky-food-tabs button.active {
+  color: var(--wise-primary);
+  font-weight: 800;
+}
+
+.wise-theme .wise-sticky-food-tabs button.active::after {
+  content: "";
+  position: absolute;
+  right: 32%;
+  bottom: 0;
+  left: 32%;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: var(--wise-primary);
+}
+
+.wise-theme[data-scene="mall"] .pickup-header,
+.wise-theme[data-scene="canteen"] .pickup-header {
+  height: 282px;
+}
+
+.wise-theme[data-scene="mall"] .category-line,
+.wise-theme[data-scene="canteen"] .weekdays {
+  position: sticky;
+  top: 94px;
+  z-index: 13;
+  box-shadow: 0 1px 0 #0e0f0c1f;
+}
+
+.wise-theme .wise-library-tabs {
+  height: 46px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--wise-ink);
+}
+
+.wise-theme .wise-library-tabs button {
+  position: relative;
+  background: transparent;
+  color: #aeb3ab;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.wise-theme .wise-library-tabs button.active {
+  color: var(--wise-primary);
+}
+
+.wise-theme .wise-library-tabs button.active::after {
+  content: "";
+  position: absolute;
+  right: 30%;
+  bottom: 0;
+  left: 30%;
+  height: 3px;
+  background: var(--wise-primary);
+}
+
+.wise-theme .store-tabs {
+  top: 46px;
+  z-index: 14;
+  box-shadow: 0 1px 0 #0e0f0c1f;
+}

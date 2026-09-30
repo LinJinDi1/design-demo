@@ -1,0 +1,26 @@
+import { createApp } from 'vue';
+import App from './App.vue';
+import './styles.css';
+import './round2.css';
+import './round3.css';
+import './acceptance-fix.css';
+import './round2-nav.css';
+import './source-fidelity.css';
+import './wise.css';
+import './wise-home.css';
+import './wise-random-store.css';
+import './wise-golden-board.css';
+import './wise-campus.css';
+import './wise-library.css';
+import './wise-favorites.css';
+import './wise-friends.css';
+import './wise-profile.css';
+import './wise-stalls.css';
+import './wise-store-detail.css';
+import './sticky-tabs.css';
+import './original-pages.css';
+import './reference-redesign.css';
+import './linhuzi-reviews-refine.css';
+import './public-profile-refine.css';
+
+createApp(App).mount('#app');

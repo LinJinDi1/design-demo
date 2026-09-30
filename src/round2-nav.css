@@ -1,0 +1,6 @@
+.bottom-nav .nav-item img {
+  display: block;
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}

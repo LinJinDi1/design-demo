@@ -1,0 +1,324 @@
+.wise-theme .wise-friends-page {
+  min-height: 100%;
+  padding: 46px 0 82px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-friends-hero {
+  padding: 15px 18px 20px;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-friends-topline,
+.wise-friends-title,
+.wise-friend-recommendations > header,
+.wise-friend-directory > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wise-friends-topline > span,
+.wise-friend-recommendations header small,
+.wise-friend-directory header small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-friends-topline > span { color: var(--wise-primary); }
+
+.wise-friends-topline button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #596057;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--wise-canvas);
+}
+
+.wise-friends-title {
+  padding: 9px 2px 18px;
+}
+
+.wise-friends-title h1 {
+  margin: 0;
+  color: var(--wise-primary);
+  font-size: 50px;
+  line-height: .95;
+  font-weight: 900;
+}
+
+.wise-friends-title p {
+  margin: 8px 0 0;
+  color: #b8beb5;
+  font-size: 10px;
+}
+
+.wise-friends-title .friend-avatar {
+  width: 58px;
+  height: 58px;
+  border: 3px solid var(--wise-primary);
+}
+
+.wise-friend-search {
+  height: 44px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-friend-search input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--wise-ink);
+  font-size: 12px;
+}
+
+.wise-friend-search input::placeholder { color: var(--wise-mute); }
+
+.wise-message-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-primary);
+}
+
+.wise-message-strip button {
+  min-width: 0;
+  height: 78px;
+  padding: 9px 3px 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-right: 1px solid var(--wise-ink);
+  background: transparent;
+  font-size: 9px;
+}
+
+.wise-message-strip button:last-child { border-right: 0; }
+
+.wise-message-strip button .product-symbol {
+  filter: grayscale(1) contrast(1.4);
+}
+
+.wise-message-strip i {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--wise-negative);
+  color: #fff;
+  font-size: 8px;
+  font-style: normal;
+}
+
+.wise-friend-recommendations {
+  padding: 25px 16px 28px;
+  background: var(--wise-soft);
+}
+
+.wise-friend-recommendations h2,
+.wise-friend-directory h2 {
+  margin: 6px 0 0;
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-friend-recommendations > header > button {
+  min-height: 32px;
+  padding: 0 13px;
+  border: 1px solid var(--wise-ink);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-friend-recommendations > div {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--wise-ink);
+  background: var(--wise-canvas);
+}
+
+.wise-friend-recommendations article {
+  min-width: 0;
+  min-height: 184px;
+  padding: 14px;
+  position: relative;
+  border-right: 1px solid var(--wise-ink);
+}
+
+.wise-friend-recommendations article:last-child {
+  border-right: 0;
+  background: var(--wise-primary-pale);
+}
+
+.wise-recommend-avatar {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wise-ink);
+  color: var(--wise-primary);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.wise-recommend-avatar.alternate {
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+}
+
+.wise-friend-recommendations article > small {
+  display: block;
+  margin-top: 11px;
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-friend-recommendations article h3 {
+  margin: 4px 0 3px;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.wise-friend-recommendations article p {
+  margin: 0;
+  overflow: hidden;
+  color: var(--wise-body);
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wise-friend-recommendations article > button {
+  min-height: 30px;
+  margin-top: 12px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-friend-recommendations article > button.followed {
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-friend-directory {
+  padding: 27px 16px 24px;
+  background: var(--wise-canvas);
+}
+
+.wise-friend-directory > header > span {
+  color: var(--wise-mute);
+  font-size: 9px;
+}
+
+.wise-friend-directory > div {
+  margin-top: 14px;
+  border-top: 1px solid var(--wise-ink);
+}
+
+.wise-friend-directory article {
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: 22px 48px minmax(0, 1fr) 30px;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #d7dbd4;
+}
+
+.wise-friend-directory article > span {
+  align-self: start;
+  padding-top: 17px;
+  color: var(--wise-mute);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-friend-directory .reference-avatar {
+  width: 46px;
+  height: 46px;
+}
+
+.wise-friend-directory article > div:nth-child(3) {
+  min-width: 0;
+}
+
+.wise-friend-directory strong,
+.wise-friend-directory small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wise-friend-directory strong { font-size: 12px; }
+
+.wise-friend-directory small {
+  margin-top: 5px;
+  color: var(--wise-mute);
+  font-size: 9px;
+}
+
+.wise-friend-directory article > button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wise-ink);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.wise-friend-empty {
+  margin: 14px 0 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--wise-ink);
+  color: var(--wise-mute);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-friends-title,
+  .wise-friend-search,
+  .wise-message-strip {
+    animation: wise-friends-enter .45s both;
+  }
+
+  .wise-friend-search { animation-delay: .06s; }
+  .wise-message-strip { animation-delay: .12s; }
+}
+
+@keyframes wise-friends-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

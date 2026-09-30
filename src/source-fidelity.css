@@ -1,0 +1,261 @@
+/* 仅覆盖首页和校园觅食：尺寸按 750rpx 源样式折算到 390px 验收画布。 */
+@font-face {
+  font-family: "source-uniicons";
+  src: url("/assets/source-fidelity/uniicons.ttf") format("truetype");
+  font-display: block;
+}
+.home-real {
+  padding-top: 37px;
+}
+
+.home-real .home-brand {
+  height: 62px;
+  padding: 7px 20px;
+}
+
+.home-real .home-brand img {
+  width: 44px;
+  height: 44px;
+}
+
+.home-real .home-banner-carousel {
+  position: relative;
+  height: 105px;
+  overflow: hidden;
+  background: #edf5f6;
+}
+
+.home-real .home-banner-carousel > img {
+  position: absolute;
+  top: 4px;
+  display: block;
+  width: 70%;
+  height: 97px;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: .72;
+}
+
+.home-real .home-banner-carousel > img.active {
+  left: 15%;
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(25, 54, 62, .16);
+}
+
+.home-real .home-banner-carousel > img:nth-child(2) {
+  left: -60%;
+}
+
+.home-real .home-banner-carousel > img:nth-child(3) {
+  right: -60%;
+}
+
+.home-real .home-banner-dots {
+  position: absolute;
+  right: 14px;
+  bottom: 7px;
+  display: flex;
+  gap: 4px;
+}
+
+.home-real .home-banner-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .6);
+}
+
+.home-real .home-banner-dots i.active {
+  width: 13px;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.home-real .home-shortcuts {
+  display: block;
+  height: 164px;
+  padding: 4px 10px;
+}
+
+.home-real .home-shortcut-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 78px;
+}
+
+.home-real .home-shortcut-group button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #fff;
+  font-size: 12px;
+}
+
+.home-real .home-shortcut-group img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.home-real .ranking-card {
+  height: 100px;
+  padding: 12px 18px;
+}
+
+.home-real .ranking-card i:nth-child(1),
+.home-real .ranking-card i:nth-child(3) {
+  height: 28px;
+}
+
+.home-real .ranking-card i:nth-child(2) {
+  height: 43px;
+}
+
+.home-real .ranking-card footer {
+  padding-top: 7px;
+}
+
+.home-real .floating-gift {
+  top: 550px;
+  bottom: auto;
+}
+
+.food-screen {
+  padding-top: 50.5px;
+}
+
+.food-screen .pickup-header > p {
+  margin-bottom: 6px;
+}
+
+.food-screen .pickup-header .real-search {
+  height: 34px;
+}
+
+.food-screen .pickup-tabs {
+  height: 44px;
+  margin-top: 20px;
+}
+
+.food-screen .filter-panel {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.food-screen .filter-panel > div {
+  height: 37px;
+}
+
+.food-screen .sort-line {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.food-screen .venue-line {
+  height: auto;
+  min-height: 30px;
+  padding: 4px 14px;
+}
+
+.food-screen .venue-line > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.food-screen .venue-line small {
+  margin-top: 0;
+}
+
+.food-screen .category-line {
+  height: auto;
+  padding: 5px 14px;
+}
+
+.food-screen .canteen-filter {
+  height: auto;
+  padding: 7px 14px;
+}
+
+.food-screen .canteen-filter > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.food-screen .canteen-filter > div small {
+  margin-top: 0;
+}
+
+.food-screen .canteen-filter p {
+  margin-top: 7px;
+}
+
+.food-screen .weekdays {
+  height: 42px;
+  padding: 4px 10px;
+}
+
+.food-screen .weekdays span {
+  padding: 4px 0;
+}
+
+.food-screen .menu-heading {
+  height: 46px;
+  padding: 14px 14px 9px;
+}
+
+.food-screen .menu-source {
+  height: 39px;
+}
+
+.food-screen .plain-menu {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.food-screen .plain-menu p {
+  min-height: 50px;
+}
+
+.food-screen .floating-gift {
+  top: 488px;
+  bottom: auto;
+}
+
+.food-screen .dining-store-photo {
+  width: 69px;
+  height: 69px;
+  max-width: 69px;
+  object-fit: cover;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.home-real .floating-gift,
+.food-screen .floating-gift {
+  display: grid;
+  place-items: center;
+}
+
+.home-real .floating-gift .product-symbol,
+.food-screen .floating-gift .product-symbol {
+  display: none;
+}
+
+.home-real .floating-gift::before,
+.food-screen .floating-gift::before {
+  content: "\e6a4";
+  color: #fff;
+  font-family: "source-uniicons";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,240 @@
+.wise-review-sheet-page {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+  color: var(--wise-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.studio[data-scene="linhuzi-reviews"][data-design="wise"] .phone-content {
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.wise-review-sheet-page .wise-review-store {
+  height: 194px;
+  background: var(--wise-ink);
+}
+
+.wise-review-sheet-page .wise-review-store > img {
+  object-position: center 46%;
+  filter: saturate(.68) brightness(.7);
+}
+
+.wise-review-sheet-page .wise-review-store > button {
+  top: 53px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.wise-review-sheet-page .wise-review-store > div {
+  left: 20px;
+  right: 20px;
+  bottom: 28px;
+  white-space: nowrap;
+}
+
+.wise-review-sheet-page .wise-review-store small {
+  display: block;
+  overflow: hidden;
+  color: var(--wise-primary);
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-overflow: ellipsis;
+}
+
+.wise-review-sheet-page .wise-review-store h1 {
+  display: inline-block;
+  margin: 7px 8px 0 0;
+  font-size: 25px;
+  line-height: 1.1;
+  vertical-align: middle;
+}
+
+.wise-review-sheet-page .wise-review-store span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.wise-review-sheet-page .wise-review-sheet {
+  top: 180px;
+  bottom: 72px;
+  overflow-x: hidden;
+  padding: 18px 20px 28px;
+  border-radius: 34px 34px 0 0;
+  background: #fff;
+  overscroll-behavior: contain;
+}
+
+.wise-review-sheet-page .wise-sheet-handle {
+  width: 40px;
+  margin: -8px auto 15px;
+  background: #d2d6cf;
+}
+
+.wise-review-sheet-page .wise-review-sheet > header {
+  min-height: 52px;
+  gap: 16px;
+}
+
+.wise-review-sheet-page .wise-review-sheet > header small {
+  display: block;
+  color: var(--wise-mute);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.wise-review-sheet-page .wise-review-sheet h2 {
+  margin-top: 5px;
+  font-size: 27px;
+  line-height: 1.05;
+  letter-spacing: -.04em;
+}
+
+.wise-review-sheet-page .wise-review-sheet > header button {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  padding: 0;
+  border-color: #c7cbc4;
+  border-radius: 50%;
+  color: var(--wise-body);
+}
+
+.wise-review-sheet-page .wise-review-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--wise-ink);
+  border-bottom: 1px solid #d5d9d2;
+  border-radius: 0;
+  background: transparent;
+  color: var(--wise-ink);
+}
+
+.wise-review-score-main {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.wise-review-score-main > strong {
+  flex: none;
+  color: var(--wise-ink-deep);
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -.06em;
+}
+
+.wise-review-score-main > span b,
+.wise-review-score-main > span small { display: block; }
+.wise-review-score-main > span b { color: #2ead4b; font-size: 12px; letter-spacing: .08em; }
+.wise-review-score-main > span small { margin-top: 5px; color: var(--wise-mute); font-size: 10px; }
+.wise-review-sheet-page .wise-review-score dl { display: flex; flex: none; margin: 0; }
+.wise-review-sheet-page .wise-review-score dl > div { min-width: 54px; padding-left: 12px; border-left: 1px solid #d5d9d2; }
+.wise-review-sheet-page .wise-review-score dt { color: var(--wise-mute); font-size: 8px; }
+.wise-review-sheet-page .wise-review-score dd { margin: 4px 0 0; font-size: 11px; font-weight: 800; }
+
+.wise-review-sheet-page .wise-review-sort {
+  height: 48px;
+  gap: 24px;
+  margin: 0;
+  border-bottom: 1px solid #d5d9d2;
+}
+
+.wise-review-sheet-page .wise-review-sort button {
+  position: relative;
+  padding: 0 1px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--wise-mute);
+  font-size: 12px;
+}
+
+.wise-review-sheet-page .wise-review-sort button.active { background: transparent; color: var(--wise-ink); font-weight: 800; }
+.wise-review-sheet-page .wise-review-sort button.active::after { content: ''; position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--wise-primary); }
+.wise-review-list { min-height: 260px; }
+
+.wise-review-sheet-page .wise-review-item {
+  padding: 20px 0 18px;
+  border-bottom: 1px solid #d5d9d2;
+  border-radius: 0;
+  background: transparent;
+}
+
+.wise-review-sheet-page .wise-review-item header { grid-template-columns: 42px minmax(0, 1fr) 40px; }
+.wise-review-sheet-page .wise-review-avatar { color: var(--wise-ink-deep); }
+.wise-review-sheet-page .wise-review-item header span { min-width: 0; }
+.wise-review-sheet-page .wise-review-item header b,
+.wise-review-sheet-page .wise-review-item header small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wise-review-sheet-page .wise-review-item header b { font-size: 13px; }
+.wise-review-sheet-page .wise-review-item header small { font-size: 10px; }
+.wise-review-sheet-page .wise-review-item header > button { width: 40px; height: 40px; background: transparent; }
+.wise-review-rating { display: flex; align-items: center; gap: 9px; margin-top: 14px; }
+.wise-review-rating b { color: #2ead4b; font-size: 12px; letter-spacing: .08em; }
+.wise-review-rating span { color: var(--wise-body); font-size: 10px; }
+.wise-review-sheet-page .wise-review-item > p { margin: 12px 0 16px; font-size: 15px; line-height: 1.75; letter-spacing: .01em; overflow-wrap: anywhere; }
+.wise-review-sheet-page .wise-review-item footer button { height: 34px; padding: 0 12px; border: 1px solid #d5d9d2; background: #fff; color: var(--wise-body); font-size: 10px; }
+.wise-review-sheet-page .wise-review-item footer button:first-child { display: flex; align-items: center; gap: 5px; }
+.wise-review-sheet-page .wise-review-end { display: flex; align-items: center; gap: 10px; margin: 22px 0 0; }
+.wise-review-sheet-page .wise-review-end span { height: 1px; flex: 1; background: #e2e5df; }
+
+.wise-review-sheet-page .wise-review-composer {
+  height: 72px;
+  padding: 10px 14px;
+  grid-template-columns: minmax(0, 1fr) 47px 64px;
+  gap: 8px;
+  border-top: 1px solid #d5d9d2;
+  box-shadow: 0 -8px 22px rgba(22, 51, 0, .05);
+}
+
+.wise-review-sheet-page .wise-review-composer > input { width: 100%; height: 44px; padding: 0 13px; border-color: #8c9189; font-size: 12px; }
+.wise-review-sheet-page .wise-review-composer > input:focus { border-color: var(--wise-ink); box-shadow: 0 0 0 2px var(--wise-primary-pale); }
+.wise-review-sheet-page .wise-review-composer label { display: flex; align-items: center; justify-content: center; gap: 3px; color: var(--wise-body); white-space: nowrap; }
+.wise-review-sheet-page .wise-review-composer label input { width: 14px; height: 14px; margin: 0; }
+.wise-review-sheet-page .wise-review-composer > button { height: 44px; padding: 0; font-size: 12px; }
+
+@media (max-width: 760px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .studio[data-scene="linhuzi-reviews"] {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .studio[data-scene="linhuzi-reviews"] .stage,
+  .studio[data-scene="linhuzi-reviews"] .phone-wrap,
+  .studio[data-scene="linhuzi-reviews"] .phone {
+    width: 100%;
+    min-width: 0;
+    max-width: 390px;
+  }
+
+  .studio[data-scene="linhuzi-reviews"] .stage {
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .studio[data-scene="linhuzi-reviews"] .phone-wrap {
+    display: block;
+  }
+
+  .studio[data-scene="linhuzi-reviews"] .phone {
+    margin: 0 auto;
+    box-shadow: none;
+  }
+}

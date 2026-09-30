@@ -1,0 +1,310 @@
+.wise-theme .wise-favorites-page {
+  min-height: 100%;
+  padding: 46px 0 32px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-favorites-heading {
+  padding: 14px 17px 21px;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-favorites-topline {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wise-favorites-topline > button:first-child {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #555b53;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--wise-canvas);
+}
+
+.wise-favorites-heading .manage {
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.wise-favorites-heading > small,
+.wise-favorite-empty > small {
+  display: block;
+  margin-top: 13px;
+  color: var(--wise-primary);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-favorites-title {
+  margin-top: 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.wise-favorites-heading h1 {
+  margin: 0;
+  color: var(--wise-canvas);
+  font-size: 37px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-favorites-title > b {
+  color: var(--wise-primary);
+  font-size: 42px;
+  line-height: .85;
+}
+
+.wise-favorites-subline {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wise-favorites-subline > p {
+  margin: 0;
+  color: #afb5ac;
+  font-size: 9px;
+}
+
+.wise-favorite-tabs {
+  height: 48px;
+  position: sticky;
+  z-index: 14;
+  top: 46px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-canvas);
+}
+
+.wise-favorite-tabs button {
+  position: relative;
+  background: transparent;
+  color: var(--wise-mute);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.wise-favorite-tabs button.active {
+  color: var(--wise-ink);
+  font-weight: 800;
+}
+
+.wise-favorite-tabs button.active::after {
+  content: "";
+  position: absolute;
+  right: 33%;
+  bottom: 0;
+  left: 33%;
+  height: 4px;
+  background: var(--wise-primary);
+}
+
+.wise-favorite-context {
+  min-height: 50px;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d3d7d0;
+  background: var(--wise-soft);
+  color: var(--wise-body);
+  font-size: 9px;
+}
+
+.wise-favorite-context button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: var(--wise-ink-deep);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.wise-favorite-list {
+  padding: 0 16px 30px;
+  background: var(--wise-canvas);
+}
+
+.wise-favorite-list article {
+  min-height: 105px;
+  display: grid;
+  grid-template-columns: 24px 82px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #d1d5ce;
+  transition: background .18s ease;
+}
+
+.wise-favorite-list article:first-child { border-top: 1px solid var(--wise-ink); }
+
+.wise-favorite-index {
+  align-self: start;
+  padding-top: 17px;
+  color: var(--wise-mute);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-favorite-check {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wise-ink);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 11px;
+}
+
+.wise-favorite-check.selected {
+  border-color: var(--wise-primary);
+  background: var(--wise-primary);
+}
+
+.wise-favorite-list article > img {
+  width: 82px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.wise-favorite-list article > div { min-width: 0; }
+
+.wise-favorite-list article > div > small {
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-favorite-list h2 {
+  margin: 5px 0;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wise-favorite-list p {
+  margin: 0;
+  color: var(--wise-body);
+  font-size: 9px;
+}
+
+.wise-favorite-list footer {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.wise-favorite-list footer b {
+  color: var(--wise-positive-deep, #054d28);
+  font-size: 10px;
+}
+
+.wise-favorite-list footer span {
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-favorite-empty {
+  min-height: 600px;
+  padding: 82px 24px;
+  background: var(--wise-soft);
+  color: var(--wise-body);
+  text-align: center;
+}
+
+.wise-favorite-empty > small { color: var(--wise-ink-deep); }
+
+.wise-favorite-empty h2 {
+  margin: 8px 0 0;
+  color: var(--wise-ink);
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.wise-favorite-empty p {
+  max-width: 245px;
+  margin: 13px auto 0;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.wise-favorite-empty button {
+  margin-top: 18px;
+  padding: 10px 17px;
+  border-radius: 999px;
+  background: var(--wise-primary);
+  color: var(--wise-ink);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.wise-favorite-action {
+  position: absolute;
+  z-index: 25;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 68px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #343833;
+  background: #0e0f0cf5;
+  color: var(--wise-canvas);
+  font-size: 10px;
+}
+
+.wise-favorite-action button {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--wise-negative);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.wise-favorite-action button:disabled {
+  background: #4d514b;
+  color: #92978f;
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-favorites-heading > small,
+  .wise-favorites-title,
+  .wise-favorites-subline {
+    animation: wise-favorites-enter .45s both;
+  }
+
+  .wise-favorites-title { animation-delay: .05s; }
+  .wise-favorites-subline { animation-delay: .1s; }
+}
+
+@keyframes wise-favorites-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

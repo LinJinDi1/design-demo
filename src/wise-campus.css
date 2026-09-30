@@ -1,0 +1,253 @@
+.wise-theme .wise-campus-page {
+  min-height: 100%;
+  padding: 46px 0 82px;
+  background: var(--wise-canvas);
+  color: var(--wise-ink);
+}
+
+.wise-campus-heading {
+  min-height: 102px;
+  padding: 18px 17px 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background: var(--wise-soft);
+}
+
+.wise-campus-heading small,
+.wise-campus-directory header small,
+.wise-campus-links header small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-campus-heading h1 {
+  margin: 7px 0 0;
+  font-size: 39px;
+  line-height: .9;
+  font-weight: 900;
+}
+
+.wise-campus-heading > button {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wise-ink);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.wise-campus-hero {
+  height: 238px;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 174px 64px;
+  overflow: hidden;
+  background: var(--wise-ink);
+}
+
+.wise-campus-hero > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wise-campus-hero figcaption {
+  padding: 10px 18px;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-campus-hero figcaption small {
+  color: var(--wise-primary);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.wise-campus-hero figcaption h2 {
+  margin: 4px 0 0;
+  color: var(--wise-canvas);
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-campus-facts {
+  display: grid;
+  grid-template-columns: 1fr .7fr 1.3fr;
+  border-bottom: 1px solid var(--wise-ink);
+  background: var(--wise-primary);
+}
+
+.wise-campus-facts span {
+  height: 61px;
+  padding: 11px 13px;
+  border-right: 1px solid var(--wise-ink);
+}
+
+.wise-campus-facts span:last-child { border-right: 0; }
+
+.wise-campus-facts small,
+.wise-campus-facts b {
+  display: block;
+}
+
+.wise-campus-facts small {
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.wise-campus-facts b {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.wise-campus-directory {
+  padding: 27px 16px 25px;
+  background: var(--wise-canvas);
+}
+
+.wise-campus-directory > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.wise-campus-directory h2,
+.wise-campus-links h2 {
+  margin: 6px 0 0;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.wise-campus-directory > header > span {
+  color: var(--wise-mute);
+  font-size: 9px;
+}
+
+.wise-campus-directory > div {
+  margin-top: 15px;
+  border-top: 1px solid var(--wise-ink);
+}
+
+.wise-campus-directory > div > button {
+  width: 100%;
+  min-height: 93px;
+  padding: 11px 3px;
+  display: grid;
+  grid-template-columns: 22px 54px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #c9cec6;
+  background: transparent;
+  text-align: left;
+}
+
+.wise-campus-directory > div > button.primary {
+  background: linear-gradient(90deg, var(--wise-primary-pale) 0 54px, transparent 54px);
+}
+
+.wise-campus-directory button > i {
+  align-self: start;
+  padding-top: 7px;
+  color: var(--wise-mute);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.wise-campus-directory button > img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.wise-campus-directory button > span {
+  min-width: 0;
+}
+
+.wise-campus-directory button span small,
+.wise-campus-directory button span strong,
+.wise-campus-directory button span p {
+  display: block;
+}
+
+.wise-campus-directory button span small {
+  color: var(--wise-mute);
+  font-size: 8px;
+}
+
+.wise-campus-directory button span strong {
+  margin-top: 3px;
+  font-size: 17px;
+}
+
+.wise-campus-directory button span p {
+  margin: 5px 0 0;
+  color: var(--wise-body);
+  font-size: 9px;
+}
+
+.wise-campus-directory button > b {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: var(--wise-soft);
+  color: var(--wise-body);
+  font-size: 8px;
+}
+
+.wise-campus-directory button.disabled { opacity: .62; }
+
+.wise-campus-links {
+  padding: 25px 16px 30px;
+  background: var(--wise-ink);
+  color: var(--wise-canvas);
+}
+
+.wise-campus-links header small { color: var(--wise-primary); }
+
+.wise-campus-links h2 { color: var(--wise-canvas); }
+
+.wise-campus-links > div {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid #596057;
+  border-left: 1px solid #596057;
+}
+
+.wise-campus-links button {
+  min-width: 0;
+  height: 64px;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: 31px 1fr 18px;
+  gap: 7px;
+  align-items: center;
+  border-right: 1px solid #596057;
+  border-bottom: 1px solid #596057;
+  background: transparent;
+  color: var(--wise-canvas);
+  font-size: 10px;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wise-campus-heading,
+  .wise-campus-hero figcaption,
+  .wise-campus-facts {
+    animation: wise-campus-enter .45s both;
+  }
+
+  .wise-campus-hero figcaption { animation-delay: .06s; }
+  .wise-campus-facts { animation-delay: .12s; }
+}
+
+@keyframes wise-campus-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
