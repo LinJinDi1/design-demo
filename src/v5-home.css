@@ -1,0 +1,858 @@
+/* ==========================================================
+   庆快校园 · V5 新版首页（第三个设计版本）
+   来源：参考稿 庆快校园-V5新版.html  page-home
+   全部类名加 v5- 前缀，只作用于 .v5-home-page，
+   不会覆盖「原版」和「Wise 新版」的任何样式。
+   本轮范围：第一屏 = 顶栏 / 搜索 / 金刚区 / 今天吃什么·今天做什么双卡
+   ========================================================== */
+
+/* 侧边栏：设计版本由两档改成三档 */
+.design-switcher > div { grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.design-switcher button { font-size: 10px; padding: 0 2px; }
+
+/* ---------- 页面容器与底色 ---------- */
+.studio[data-scene="home"][data-design="v5"] .phone-content { background: #FAF7F0; }
+/* 状态栏是绝对定位（高 46px），内容要让出这段高度；状态栏自带的胶囊让位给顶栏胶囊 */
+.studio[data-scene="home"][data-design="v5"] .status-bar .wechat-capsule { display: none; }
+.studio[data-scene="home"][data-design="v5"] .bottom-nav {
+  background: #FAF7F0;
+  border-top: 1px solid #EDE8DE;
+}
+
+.v5-home-page {
+  min-height: 100%;
+  /* 上 52px：让开浮在上方的状态栏（46px）；下 96px：让开底部 tabbar，否则最后一屏被挡住 */
+  padding: 52px 16px 96px;
+  background: #FAF7F0;
+  color: #26292B;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+.v5-home-page *,
+.v5-home-page *::before,
+.v5-home-page *::after { box-sizing: border-box; }
+
+/* ---------- 顶栏：Logo + 胶囊 ---------- */
+.v5-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  gap: 10px;
+}
+.v5-brand { display: flex; align-items: center; gap: 8px; }
+.v5-brand img { width: 34px; height: 34px; display: block; }
+.v5-brand-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #3B8A73;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.v5-capsule {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background: #FFFDF8;
+  border: 1.5px solid #E8E4DA;
+  border-radius: 16px;
+  overflow: hidden;
+  flex: none;
+}
+.v5-capsule .v5-c-dots,
+.v5-capsule .v5-c-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 100%;
+}
+.v5-capsule .v5-c-div { width: 1.5px; height: 16px; background: #E8E4DA; }
+
+/* ---------- 搜索框 ---------- */
+.v5-searchbar {
+  flex: none;
+  height: 40px;
+  border-radius: 14px;
+  background: #F4F1E9;
+  border: 1px solid #F1EADB;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+.v5-searchbar:active { background: #EEEAE0; }
+.v5-searchbar > svg { flex: none; }
+.v5-searchbar span {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  color: #A09C90;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+/* ---------- 金刚区 ---------- */
+.v5-entries {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2px;
+}
+.v5-entry {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+.v5-entry .v5-iconbox {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v5-entry .v5-entry-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #4A5154;
+  white-space: nowrap;
+}
+.v5-entry:active { transform: scale(.94); }
+
+/* ---------- 双卡：今天吃什么 / 今天做什么 ---------- */
+.v5-duo { flex: none; display: flex; gap: 10px; }
+.v5-duo-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+  background: linear-gradient(135deg, #FFFDF8, #F5F1E6);
+  border: 1px solid #EFE9DA;
+  box-shadow: 0 4px 14px rgba(120, 105, 80, .06), inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+.v5-duo-card::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: -26px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(160, 196, 180, .38), rgba(160, 196, 180, 0) 70%);
+  pointer-events: none;
+}
+.v5-duo-card:active { transform: scale(.98); }
+.v5-duo-card .txt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+.v5-duo-card .big {
+  font-size: 18.5px;
+  font-weight: 800;
+  letter-spacing: -.6px;
+  line-height: 1.15;
+  color: #2E3532;
+  white-space: nowrap;
+}
+.v5-duo-card .big .q { color: #C4705F; }
+.v5-duo-card .hint { font-size: 11px; color: #94968C; white-space: nowrap; }
+
+.v5-duo-card.rank {
+  background: linear-gradient(135deg, #FFFDF6, #F8F1E1);
+  border-color: #F2E9D5;
+  flex: 1;
+  padding: 10px;
+}
+.v5-duo-card.rank::after {
+  background: radial-gradient(circle, rgba(232, 203, 146, .42), rgba(232, 203, 146, 0) 70%);
+}
+.v5-duo-card.rank .txt { gap: 3px; }
+.v5-duo-card .rank-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #6E5C33;
+  letter-spacing: -.3px;
+}
+.v5-duo-card .go-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 抽签卡：盲盒插画 + 微微浮动 */
+.v5-duo-card.eat { width: 174px; flex: none; padding: 11px 12px; }
+.v5-duo-art {
+  flex: none;
+  position: relative;
+  z-index: 1;
+  display: block;
+  overflow: visible;
+  animation: v5-bob 3.6s ease-in-out infinite;
+}
+@keyframes v5-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-2.5px) rotate(2deg); }
+}
+
+/* 实时营业数的绿色小胶囊 */
+.v5-duo-card .v5-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  align-self: flex-start;
+  margin-bottom: 1px;
+  height: 15px;
+  padding: 0 6px 0 5px;
+  border-radius: 999px;
+  background: #E4EEE9;
+  border: 1px solid #CFE0D7;
+  font-size: 9px;
+  font-weight: 600;
+  color: #4A6B5C;
+  white-space: nowrap;
+  letter-spacing: .02em;
+}
+.v5-duo-card .v5-live i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #3B8A73;
+  flex: none;
+  box-shadow: 0 0 0 2.5px rgba(59, 138, 115, .16);
+  animation: v5-livedot 2.4s ease-in-out infinite;
+}
+@keyframes v5-livedot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(.82); }
+}
+.v5-duo-card .v5-live b { font-size: 10px; font-weight: 800; color: #2F6E5C; margin: 0 1px; }
+.v5-duo-card.eat .hint { margin-top: 2px; }
+
+/* 盲盒开箱动画（点击「今天吃什么」时触发） */
+.v5-duo-art .lid {
+  transform-box: view-box;
+  transform-origin: 20px 12.6px;
+  transform: rotate(-9deg);
+  transition: transform .36s cubic-bezier(.32, 1.42, .58, 1);
+}
+.v5-duo-art .body-b {
+  transform-box: view-box;
+  transform-origin: 20px 34px;
+  transition: transform .36s cubic-bezier(.32, 1.42, .58, 1);
+}
+.v5-duo-art .bow {
+  transform-box: view-box;
+  transform-origin: 20px 12.6px;
+  transition: transform .3s ease, opacity .26s ease;
+}
+.v5-duo-art .spk {
+  transform-box: view-box;
+  transform-origin: 20px 18px;
+  transition: transform .34s cubic-bezier(.3, 1.5, .6, 1), opacity .34s ease;
+}
+.v5-duo-art .beam {
+  transform-box: view-box;
+  transform-origin: 20px 24px;
+  opacity: 0;
+  transition: transform .38s cubic-bezier(.3, 1.4, .6, 1), opacity .38s ease;
+}
+.v5-duo-card.opening .v5-duo-art .lid { transform: translate(-10px, -11px) rotate(-42deg); }
+.v5-duo-card.opening .v5-duo-art .body-b { transform: scale(1.05); }
+.v5-duo-card.opening .v5-duo-art .bow { transform: scale(.5); opacity: 0; }
+.v5-duo-card.opening .v5-duo-art .spk { transform: scale(1.7); opacity: 0; }
+.v5-duo-card.opening .v5-duo-art .beam { transform: scale(1); opacity: 1; }
+.v5-duo-card.opening::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(circle at 62% 50%, rgba(255, 255, 255, .92), rgba(255, 255, 255, 0) 62%);
+  animation: v5-flash .42s ease-out forwards;
+}
+@keyframes v5-flash {
+  0% { opacity: 0; }
+  22% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---------- 通知栏 ----------
+   白底圆角横条：红色喇叭 + 红色「通知」二字 + 竖线 + 右侧过长自动省略的文字 */
+.v5-home-page .v5-notice {
+  flex: none;
+  height: 30px;
+  border-radius: 10px;
+  background: #FFFDF8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #6B7377;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+}
+.v5-home-page .v5-notice svg { flex: none; }
+.v5-home-page .v5-notice b { flex: none; white-space: nowrap; font-size: 12px; font-weight: 700; color: #E23E3E; }
+.v5-home-page .v5-n-line { flex: none; width: 1px; height: 14px; background: #EDE8DE; }
+.v5-home-page .v5-n-text { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- 猜你喜欢：标题 + tabs + 卡片 ---------- */
+.v5-home-page .v5-section { flex: none; display: flex; flex-direction: column; gap: 10px; }
+.v5-home-page .v5-sec-head { display: flex; align-items: baseline; gap: 8px; }
+.v5-home-page .v5-sec-head h2 { font-size: 18px; font-weight: 800; color: #26292B; }
+
+/* tabs：选中项加粗变深色，下方一条绿色短横线 */
+.v5-home-page .v5-tabs { display: flex; gap: 20px; align-items: center; }
+.v5-home-page .v5-tabs button {
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: #9DA09A;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+.v5-home-page .v5-tabs button.on { font-weight: 600; color: #26292B; }
+.v5-home-page .v5-tabs button.on::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: #3B8A73;
+}
+
+/* 卡片网格：两列，gap 12px 由 calc(50% - 6px) 补偿 */
+.v5-home-page .v5-grid2 { display: flex; flex-wrap: wrap; gap: 12px; }
+.v5-home-page .v5-shop-card {
+  flex: 0 0 calc(50% - 6px);
+  background: #FFFDF8;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+  cursor: pointer;
+  min-width: 0;
+  border: 1px solid #F1EADB;
+}
+.v5-home-page .v5-shop-card:active { transform: scale(.97); transition: transform .16s ease; }
+.v5-home-page .v5-cover { position: relative; height: 96px; background: #EDE9E1; }
+.v5-home-page .v5-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v5-home-page .v5-flag {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  height: 19px;
+  border-radius: 6px;
+  background: rgba(255, 253, 248, .94);
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 10px;
+  color: #3B8A73;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(70, 60, 40, .08);
+}
+.v5-home-page .v5-card-body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 3px; }
+.v5-home-page .v5-card-body h3 { font-size: 14px; font-weight: 600; color: #26292B; }
+.v5-home-page .v5-loc { font-size: 11px; color: #9DA09A; }
+.v5-home-page .v5-card-row { display: flex; align-items: center; justify-content: space-between; padding-top: 2px; }
+.v5-home-page .v5-rate { font-size: 12px; font-weight: 600; color: #C4705F; }
+.v5-home-page .v5-cnt { font-size: 10px; color: #B0B6BB; }
+
+/* ---------- V5 底部导航：四栏（首页 / 交友 / 校园 / 我的）----------
+   覆盖 acceptance-fix.css 与 round2.css 里的 .bottom-nav 五栏样式 */
+.v5-tabbar {
+  height: 76px;
+  background: #FAF7F0;
+  border-top: 1px solid #EDE8DE;
+  display: flex;
+  align-items: flex-start;
+  padding: 8px 0 20px;
+}
+.v5-tabbar .v5-tab {
+  flex: 1;
+  border: none;
+  background: none;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #A3A9AE;
+  cursor: pointer;
+}
+/* 图标描边是 currentColor，跟着下面这行的文字颜色一起变绿 */
+.v5-tabbar .v5-tab.on { color: #14866E; }
+
+/* ---------- 通知弹窗 ----------
+   absolute + inset:0 会向上找到 position:relative 的 .phone，所以弹窗正好铺满整个手机屏，
+   盖住底部导航（导航 z-index 18，弹窗 56），且不受页面滚动影响 */
+.v5-nmodal {
+  position: absolute;
+  inset: 0;
+  z-index: 56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .28s ease, visibility 0s .28s;
+}
+.v5-nmodal.show { opacity: 1; visibility: visible; transition: opacity .28s ease; }
+.v5-nmask { position: absolute; inset: 0; background: rgba(24, 28, 26, .42); border: none; padding: 0; cursor: default; }
+.v5-ncard {
+  position: relative;
+  width: 100%;
+  max-width: 318px;
+  max-height: 560px;
+  overflow-y: auto;
+  background: #FFFDF8;
+  border-radius: 20px;
+  padding: 16px 16px 4px;
+  box-shadow: 0 20px 50px rgba(20, 30, 24, .24);
+}
+.v5-nh { display: flex; align-items: center; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid #F1EADB; }
+.v5-nh b { font-size: 14px; font-weight: 800; color: #26292B; }
+.v5-nx { margin-left: auto; width: 22px; height: 22px; border: none; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.v5-nitem { padding: 12px 0; border-bottom: 1px solid #F1EADB; }
+.v5-nitem h4 { font-size: 13px; font-weight: 700; color: #26292B; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.v5-nd { font-size: 10px; font-weight: 400; color: #B0B6BB; }
+.v5-nitem p { font-size: 12px; line-height: 1.6; color: #6B7377; padding-top: 6px; }
+
+/* ---------- V5 二级页通用骨架（进店逛 / 搜索 共用）----------
+   结构和首页一样：顶部留 52px 让开状态栏，底部留 96px 让开 tabbar */
+.v5-page {
+  min-height: 100%;
+  padding: 52px 16px 96px;
+  background: #FAF7F0;
+  color: #26292B;
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+.v5-page *, .v5-page *::before, .v5-page *::after { box-sizing: border-box; }
+
+.v5-sub-top {
+  flex: none;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+}
+.v5-sub-top h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.v5-d-back {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.v5-sub-body { flex: 1; display: flex; flex-direction: column; gap: 12px; padding-bottom: 8px; }
+.v5-sub-lead { font-size: 12px; color: #9DA09A; padding-left: 2px; }
+
+/* 品类筛选 chips */
+.v5-filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.v5-chip {
+  border: 1px solid #E4E0D6;
+  background: #FFFDF8;
+  font: inherit;
+  font-size: 12px;
+  color: #6B7377;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.v5-chip.on { background: #3B8A73; border-color: #3B8A73; color: #FFFDF8; font-weight: 600; }
+
+/* ============ 顶部推荐位 · 可左右滑 ============
+   原来是固定两张的 .v5-promo-row，现在改成横向滚动，放几家都不挤 */
+.v5-promo-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin: 2px 2px 7px;
+}
+.v5-promo-head strong { font-size: 13.5px; font-weight: 800; color: #26292B; }
+.v5-promo-head small { font-size: 10.5px; color: #A6A9A1; }
+.v5-promo-scroll {
+  display: flex; gap: 10px;
+  /* 负 margin 让卡片贴着屏幕边缘滑出去，看起来像沉浸式横滑 */
+  margin: 0 -14px; padding: 2px 14px 8px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.v5-promo-scroll::-webkit-scrollbar { display: none; }
+.v5-promo {
+  flex: none; width: 148px;
+  scroll-snap-align: start;
+  background: #FFFDF8;
+  border: 1px solid #F1EADB;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.v5-promo:active { transform: scale(.98); transition: transform .16s ease; }
+.v5-promo img { width: 100%; height: 62px; object-fit: cover; display: block; }
+.v5-p-tag {
+  align-self: flex-start;
+  margin: -10px 0 0 8px;
+  position: relative;
+  font-style: normal; font-size: 9.5px; font-weight: 700; letter-spacing: .04em;
+  color: #FFFDF8; background: #3B8A73; padding: 2px 6px; border-radius: 6px;
+}
+.v5-promo strong { font-size: 12.5px; font-weight: 800; color: #26292B; padding: 3px 8px 0; }
+.v5-promo small { font-size: 10px; color: #A6A9A1; padding: 1px 8px 0; line-height: 1.4; }
+.v5-p-foot {
+  margin-top: auto; padding: 6px 8px 8px;
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  font-size: 10px; color: #9DA09A;
+}
+.v5-p-foot b { font-size: 11.5px; color: #C4705F; font-weight: 800; }
+
+/* ============ 第二排：位置下拉 + 三个榜单 ============
+   参考稿里这排存在感太弱，这里把榜单做成实心薄荷胶囊 + 小图标 */
+/* 位置 + 三个榜单要挤在一行，所以按钮都收紧：padding 5px 9px、字号 11.5 */
+.v5-rank-bar { display: flex; align-items: center; gap: 5px; flex-wrap: nowrap; position: relative; z-index: 62; }
+.v5-spot {
+  display: flex; align-items: center; gap: 2px;
+  border: 1px solid #DCD6C7; background: #FFFDF8;
+  font: inherit; font-size: 11.5px; font-weight: 700; color: #5C605A;
+  padding: 6px 9px; border-radius: 11px; cursor: pointer; white-space: nowrap;
+}
+.v5-spot svg { flex: none; }
+.v5-spot.on { color: #2F7A63; border-color: #B6D5C7; background: #F1F7F4; }
+.v5-spot-arw { font-size: 10px; line-height: 1; transition: transform .18s ease; }
+.v5-spot-arw.up { transform: rotate(180deg); }
+/* 榜单按钮：选中 = 实心薄荷底 + 深绿字，比原来那层 #EEF4F0 明显得多 */
+.v5-rank {
+  display: flex; align-items: center; gap: 3px; white-space: nowrap;
+  border: 1px solid #E4E0D6; background: #FFFDF8;
+  font: inherit; font-size: 11.5px; font-weight: 700; color: #6B7377;
+  padding: 6px 9px; border-radius: 11px; cursor: pointer;
+}
+.v5-rank i { font-style: normal; font-size: 10.5px; }
+.v5-rank.on {
+  background: #CFE7DC; border-color: #CFE7DC; color: #245F4C; font-weight: 800;
+  box-shadow: 0 3px 8px rgba(59, 138, 115, .16);
+}
+/* ============ 「全部位置」下拉：贴着筛选行往下掉，不是弹窗 ============ */
+.v5-spot-catch { position: absolute; inset: 0; z-index: 58; background: transparent; }
+.v5-spot-drop {
+  position: absolute; left: 0; top: calc(100% + 6px); width: 232px; z-index: 62;
+  background: #FFFDF8; border-radius: 18px;
+  border: 1px solid #F1EADB;
+  box-shadow: 0 14px 32px rgba(120, 104, 78, .20);
+  padding: 6px 0 8px;
+  max-height: 262px; overflow-y: auto;
+  animation: v5dropIn .18s ease;
+}
+@keyframes v5dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.v5-sp-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px 10px; border-bottom: 1px solid #F4F0E7;
+}
+.v5-sp-top h4 { font-size: 13.5px; font-weight: 800; color: #26292B; }
+.v5-sp-top button {
+  border: none; background: transparent; cursor: pointer; font: inherit;
+  font-size: 11.5px; font-weight: 700; color: #A6A9A1;
+}
+.v5-sp-row {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; cursor: pointer; background: transparent;
+  border: none; font: inherit; font-size: 13px; color: #3A3F42; text-align: left;
+}
+.v5-sp-row:active { background: #FBF8F1; }
+.v5-sp-name { flex: 1; min-width: 0; }
+.v5-sp-num { font-size: 11.5px; color: #B0B6BB; font-weight: 700; min-width: 14px; text-align: right; }
+.v5-sp-radio {
+  width: 17px; height: 17px; border-radius: 9px; flex: none;
+  border: 1.6px solid #DCD6C7; background: #FFFDF8; position: relative;
+}
+.v5-sp-radio.on { border-color: #3B8A73; background: #3B8A73; }
+.v5-sp-radio.on::after {
+  content: ''; position: absolute; left: 4.6px; top: 2.4px;
+  width: 4.5px; height: 8px; border: solid #FFFDF8;
+  border-width: 0 1.8px 1.8px 0; transform: rotate(42deg);
+}
+
+/* ============ 商家列表（升级：序号 / 人均 / 位置时间 / 收藏数） ============ */
+.v5-shop-list { display: flex; flex-direction: column; gap: 12px; }
+.v5-row-card {
+  background: #FFFDF8;
+  border: 1px solid #F1EADB;
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+  cursor: pointer;
+}
+.v5-row-card:active { transform: scale(.98); transition: transform .16s ease; }
+.v5-thumb { position: relative; width: 88px; height: 88px; border-radius: 12px; overflow: hidden; flex: none; background: #EDE9E1; }
+.v5-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* 图左上角品类、右上角名次 */
+.v5-t-cat {
+  position: absolute; left: 6px; top: 6px;
+  font-style: normal; font-size: 9.5px; font-weight: 700; letter-spacing: .02em;
+  color: #FFFDF8; background: rgba(38, 41, 43, .48);
+  padding: 2px 6px; border-radius: 6px;
+}
+.v5-t-no {
+  position: absolute; right: 0; top: 0;
+  font-size: 9.5px; font-weight: 800; color: #5C605A;
+  background: #F5E2A4; padding: 2px 6px; border-radius: 0 0 0 8px;
+}
+.v5-rc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+.v5-rc-head { display: flex; align-items: center; gap: 8px; }
+.v5-rc-head h3 { font-size: 14.5px; font-weight: 800; color: #26292B; flex: 1; min-width: 0; }
+.v5-rc-like { font-size: 11px; font-weight: 700; color: #C9AFC4; flex: none; }
+.v5-rc-row { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+.v5-rc-rate { font-size: 13px; font-weight: 800; color: #C4705F; }
+.v5-rc-cnt { font-size: 10px; color: #B0B6BB; }
+.v5-rc-dot { font-size: 10px; color: #DCD6C7; }
+.v5-rc-price { font-size: 11px; font-weight: 700; color: #6B7377; }
+.v5-rc-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.v5-rc-tags em {
+  font-style: normal; font-size: 9.5px; font-weight: 700; color: #7C8078;
+  background: #F6F2E8; padding: 2px 7px; border-radius: 7px;
+}
+.v5-rc-pos { font-size: 10.5px; color: #A6A9A1; }
+
+/* ============ 饭堂一楼 · 食谱列表 ============ */
+.v5-menu-card {
+  display: flex; align-items: center; gap: 10px;
+  background: #FFFDF8; border: 1px solid #F1EADB; border-radius: 14px;
+  padding: 11px 12px; box-shadow: 0 4px 12px rgba(120, 104, 78, .05);
+}
+.v5-mc-ico {
+  width: 40px; height: 40px; border-radius: 13px; flex: none;
+  background: #F6F1E7; display: flex; align-items: center; justify-content: center;
+}
+.v5-mc-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.v5-mc-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.v5-mc-top strong { font-size: 13.5px; font-weight: 800; color: #26292B; }
+.v5-mc-star {
+  font-style: normal; font-size: 9.5px; font-weight: 700; color: #8A7748;
+  background: #F4E8C6; padding: 2px 6px; border-radius: 6px;
+}
+.v5-mc-no { font-size: 9.5px; font-weight: 700; color: #B0B6BB; }
+.v5-mc-sub { font-size: 11px; color: #9DA09A; }
+.v5-mc-rec { font-size: 10px; color: #A8C0A8; font-weight: 700; }
+.v5-mc-price { flex: none; font-size: 15px; font-weight: 800; color: #3B8A73; }
+
+/* 搜索页 */
+.v5-s-inp {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #FFFDF8;
+  border: 1px solid #EDE8DE;
+}
+.v5-s-inp input { flex: 1; min-width: 0; border: none; background: none; font: inherit; font-size: 13px; color: #26292B; outline: none; }
+.v5-s-clear { width: 18px; height: 18px; border: none; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.v5-s-cancel { border: none; background: none; font: inherit; font-size: 13px; color: #9DA09A; cursor: pointer; padding-left: 8px; }
+.v5-s-sec { display: flex; align-items: center; justify-content: space-between; }
+.v5-s-sec h3 { font-size: 13px; font-weight: 700; color: #26292B; }
+.v5-s-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.v5-s-chips button {
+  border: 1px solid #E4E0D6;
+  background: #FFFDF8;
+  font: inherit;
+  font-size: 12px;
+  color: #6B7377;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* ---------- 盲盒机（今天吃什么）---------- */
+.v5-gacha-body { align-items: center; gap: 14px; padding-top: 18px; }
+.v5-gacha-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 170px;
+  border-radius: 28px;
+  background: #FFFDF8;
+  border: 1px solid #F1EADB;
+  box-shadow: 0 10px 30px rgba(120, 104, 78, .1);
+}
+.v5-gacha-box svg { width: 120px; height: 120px; }
+.v5-gacha-box.rolling svg { animation: v5-shake .48s ease-in-out infinite; }
+@keyframes v5-shake {
+  0%, 100% { transform: rotate(-6deg) translateY(0); }
+  50% { transform: rotate(6deg) translateY(-6px); }
+}
+.v5-gacha-tip { font-size: 12px; color: #9DA09A; }
+.v5-gacha-tip b { color: #3B8A73; font-weight: 700; }
+.v5-gacha-draw {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 999px;
+  background: #3B8A73;
+  color: #FFFDF8;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(59, 138, 115, .24);
+}
+.v5-gacha-draw:disabled { opacity: .6; cursor: default; }
+.v5-gacha-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #FFFDF8;
+  border: 1px solid #F1EADB;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+  cursor: pointer;
+}
+.v5-gacha-result img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex: none; }
+.v5-gacha-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.v5-gacha-info h3 { font-size: 14px; font-weight: 700; color: #26292B; }
+.v5-gacha-info span { font-size: 11px; color: #9DA09A; }
+.v5-gacha-info b { font-size: 12px; color: #C4705F; }
+.v5-gacha-result small { font-size: 11px; color: #3B8A73; flex: none; }
+
+/* ---------- 灵感小盒（今天做什么）---------- */
+.v5-idea-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(160deg, #EEF4F0, #FFFDF8);
+  border: 1px solid #D9E7DF;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(120, 104, 78, .07);
+}
+.v5-idea-cat { align-self: flex-start; font-size: 10px; font-weight: 700; color: #3B8A73; background: #FFFDF8; border-radius: 999px; padding: 3px 10px; }
+.v5-idea-txt { font-size: 18px; font-weight: 800; color: #26292B; line-height: 1.4; }
+.v5-idea-sub { font-size: 12px; color: #9DA09A; }
+.v5-idea-acts { display: flex; gap: 8px; padding-top: 4px; }
+.v5-iact {
+  flex: 1;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: #3B8A73;
+  color: #FFFDF8;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.v5-iact.ghost { background: #FFFDF8; color: #6B7377; border: 1px solid #E4E0D6; }
+.v5-iact:disabled { opacity: .5; cursor: default; }
+.v5-idea-draw {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border: 1px dashed #C9D8D0;
+  border-radius: 14px;
+  background: #FFFDF8;
+  color: #4E7F6E;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.v5-idea-draw:disabled { opacity: .5; cursor: default; }
+.v5-idea-luck { display: flex; align-items: center; justify-content: center; gap: 6px; border: none; background: none; font: inherit; font-size: 12px; color: #9BA59A; cursor: pointer; }
+.v5-idea-hist { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+.v5-idea-hist b { font-size: 12px; color: #6B7377; }
+.v5-idea-hist-item { font-size: 12px; color: #9DA09A; padding: 6px 10px; background: #FFFDF8; border: 1px solid #F1EADB; border-radius: 10px; }
+
+/* ---------- MBTI食堂 ---------- */
+.v5-mb-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px;
+  background: linear-gradient(160deg, #FBF3E2, #FFFDF8);
+  border: 1px solid #E8D9B4;
+  border-radius: 18px;
+}
+.v5-mb-hero b { font-size: 26px; font-weight: 800; color: #26292B; letter-spacing: .04em; }
+.v5-mb-hero span { font-size: 12px; color: #8A6D1F; }
+.v5-mb-hero p { font-size: 12px; color: #6B7377; padding-top: 4px; }
+.v5-mb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.v5-mb-chip {
+  border: 1px solid #E4E0D6;
+  background: #FFFDF8;
+  font: inherit;
+  font-size: 11px;
+  color: #6B7377;
+  padding: 7px 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.v5-mb-chip.on { background: #FBF3E2; border-color: #E8D9B4; color: #8A6D1F; font-weight: 700; }
+
+/* ============ 列表上方那行小提示（共 N 家 / 点商家进详情） ============
+   之前这行完全没有 CSS，所以直接吃默认字号、又黑又大，抢了商家列表的注意力。
+   现在压到 11px 浅灰，左「共几家」右「怎么操作」，视觉上退到背景里。 */
+.v5-list-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; padding: 0 2px 6px;
+  font-size: 11px; font-weight: 500; color: #B0B2A6;
+  letter-spacing: .01em;
+}
+.v5-list-meta span { white-space: nowrap; }

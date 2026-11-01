@@ -1,3 +1,7 @@
+<!--
+  店铺卡片组件。
+  注意：目前 App.vue 里没有引用它（页面上的店铺卡片都是就地写的），属于历史遗留文件，可直接忽略。
+-->
 <script setup>
 import IconSymbol from './IconSymbol.vue';
 defineProps({ shop: { type: Object, required: true }, cyan: Boolean });
