@@ -1,0 +1,1504 @@
+/* ==========================================================
+   V5 新版 · 底部四个 tab 页 + 校园三个板块
+   覆盖：校园 / 交友 / 我的 / 失物招领 / 闲置小铺 / 搭把手（含各自的详情页）
+
+   使用约定：
+   1. tab 页（校园/交友/我的）用 .v5-tab-page，跟首页 .v5-home-page 同一套
+      米色底 + 大圆角：padding 上 52px（让开状态栏）下 96px（让开底栏）
+   2. 校园三个板块是二级页，沿用 .v5p.subpage 骨架（自带返回键），
+      这里只加它们自己的列表 / 详情 / 发布弹窗样式，类名统一 v5l- / v5d- / bs-
+   3. 颜色全部写死在这里，不依赖别的样式表；想换配色改下面这一段变量即可
+   ========================================================== */
+
+/* ==========================================================
+   一、tab 页通用骨架（校园 / 交友 / 我的）
+   ========================================================== */
+.v5-tab-page{
+  min-height:100%;
+  padding:52px 16px 96px;
+  background:#FAF7F0;
+  color:#26292B;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+}
+.v5-tab-page *,
+.v5-tab-page *::before,
+.v5-tab-page *::after{box-sizing:border-box}
+
+/* 底栏：tab 页露出底栏，所以底色要跟页面一致 */
+.studio[data-scene="campus"][data-design="v5"] .bottom-nav,
+.studio[data-scene="friends"][data-design="v5"] .bottom-nav,
+.studio[data-scene="profile"][data-design="v5"] .bottom-nav{
+  background:#FAF7F0;border-top:1px solid #EDE8DE;
+}
+.studio[data-scene="campus"][data-design="v5"] .phone-content,
+.studio[data-scene="friends"][data-design="v5"] .phone-content,
+.studio[data-scene="profile"][data-design="v5"] .phone-content{background:#FAF7F0}
+
+/* 页头：标题 + 一句温柔的话 */
+.tab-head{padding:6px 2px 2px}
+.tab-head h1{font-size:24px;font-weight:800;letter-spacing:.02em;margin:0}
+.tab-head p{margin:6px 0 0;font-size:12px;color:#9DA09A;letter-spacing:.3px}
+.tab-head.row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.tab-head.row p{margin-top:6px}
+.tab-add{
+  flex:none;height:34px;padding:0 15px;border:none;border-radius:17px;cursor:pointer;
+  font-family:inherit;font-size:12.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+  display:flex;align-items:center;gap:5px;
+  box-shadow:0 6px 14px rgba(59,138,115,.24);
+}
+.tab-add:active{transform:scale(.96)}
+/* 小标题（我的工具 / 校园服务） */
+.tab-sub{
+  font-size:13px;font-weight:800;color:#26292B;margin:2px 2px -2px;letter-spacing:.02em;
+}
+
+/* ==========================================================
+   二、校园页
+   ========================================================== */
+/* 顶部小贴士卡：小巧思，每天换一句话 */
+.tip-card{
+  padding:14px 16px;border-radius:18px;
+  background:linear-gradient(135deg,#E1EDD2,#CFE0B9);
+  border:1px solid #E3EDD8;
+  display:flex;flex-direction:column;gap:4px;
+}
+.tip-card .tip-date{font-size:10.5px;font-weight:700;color:#6E8F68;letter-spacing:.16em}
+.tip-card strong{font-size:14px;font-weight:800;color:#3E5A38}
+.tip-card small{font-size:11px;color:#6E8F68}
+
+/* 三个板块入口 */
+.board-list{display:flex;flex-direction:column;gap:11px}
+.board-card{
+  width:100%;display:flex;align-items:center;gap:13px;text-align:left;cursor:pointer;
+  padding:14px;border-radius:18px;border:1px solid #F1EADB;
+  background:#FFFDF8;box-shadow:0 6px 16px rgba(120,104,78,.06);
+}
+.board-card:active{transform:scale(.985)}
+.board-card .bico{
+  width:48px;height:48px;border-radius:15px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.board-card .bmain{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.board-card .bmain strong{font-size:15px;font-weight:800;color:#26292B}
+.board-card .bmain small{font-size:11.5px;color:#9DA09A;line-height:1.5}
+.board-card .bside{flex:none;display:flex;align-items:center;gap:8px}
+.board-card .bside em{
+  font-style:normal;font-size:10px;color:#8E9187;
+  background:#F4F1E8;border-radius:8px;padding:4px 8px;white-space:nowrap;
+}
+.board-card .bside i{font-style:normal;font-size:19px;color:#C9C5B8;line-height:1}
+
+/* 校园服务九宫格（这里只放两个） */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.svc-cell{
+  position:relative;padding:15px 12px;border-radius:18px;cursor:pointer;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 6px 16px rgba(120,104,78,.06);
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  font-family:inherit;font-size:12.5px;font-weight:700;color:#3A3F42;
+}
+.svc-cell:active{transform:scale(.98)}
+.svc-cell .sico{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-cell.disabled{color:#B0ACA2}
+.svc-cell.disabled b{
+  font-size:9px;font-weight:600;color:#A9A59B;
+  background:#F2EFE6;border-radius:7px;padding:2px 7px;
+}
+
+/* ==========================================================
+   三、校园三个板块 · 二级页
+   ========================================================== */
+/* 顶部「发布」按钮 */
+.v5p .sub-add{
+  height:30px;padding:0 13px;border:none;border-radius:15px;cursor:pointer;
+  background:rgba(255,255,255,.9);box-shadow:0 4px 12px rgba(0,0,0,.12);
+  font-family:inherit;font-size:12px;font-weight:700;color:#20242B;
+  display:flex;align-items:center;gap:4px;
+}
+.v5p .sub-add:active{transform:scale(.94)}
+.v5p .sub-note{font-size:11.5px;color:#9DA09A}
+
+/* ==========================================================
+   校区筛选（大学城 / 桂花岗 / 黄埔）
+   列表页顶部一排，发布弹窗里也复用同一套 .cp 按钮
+   ========================================================== */
+/* 四个校区要在一行放完，所以用短名 + 等分宽度，别让「黄埔校区」被挤出屏幕 */
+.v5p .v5l-campus{flex:none;display:flex;gap:6px;padding-bottom:2px}
+.v5p .v5l-campus .cp{
+  flex:1;min-width:0;justify-content:center;cursor:pointer;font-family:inherit;
+  height:31px;padding:0 6px;border-radius:15px;
+  border:1px solid #EDE8DE;background:#FFFDF8;
+  font-size:12px;font-weight:700;color:#6B7377;
+  display:flex;align-items:center;gap:4px;white-space:nowrap;
+}
+.v5p .v5l-campus .cp i{
+  font-style:normal;font-size:10px;font-weight:700;color:#B0B6BB;
+}
+.v5p .v5l-campus .cp.on{
+  background:#3B8A73;border-color:#3B8A73;color:#FFFDF8;
+  box-shadow:0 4px 10px rgba(59,138,115,.18);
+}
+.v5p .v5l-campus .cp.on i{color:#C9E2D6}
+
+/* tab 切换（找东西/捡到了、求助中/可提供帮助） */
+.v5p .v5l-tabs{
+  flex:none;display:flex;gap:8px;padding:4px;border-radius:14px;
+  background:#F1EDE2;margin-bottom:2px;
+}
+.v5p .v5l-tabs .vt{
+  flex:1;height:34px;border:none;border-radius:11px;cursor:pointer;
+  background:transparent;font-family:inherit;font-size:13px;font-weight:700;color:#8E9187;
+}
+.v5p .v5l-tabs .vt.on{
+  background:#FFFDF8;color:#3B8A73;
+  box-shadow:0 3px 8px rgba(120,104,78,.10);
+}
+/* 分类小胶囊（闲置小铺） */
+.v5p .v5l-chips{flex:none;display:flex;gap:7px;overflow-x:auto;padding-bottom:2px}
+.v5p .v5l-chips::-webkit-scrollbar{display:none}
+.v5p .v5l-chips .vt{
+  flex:none;height:30px;padding:0 14px;border:1px solid #EDE8DE;border-radius:15px;
+  background:#FFFDF8;cursor:pointer;font-family:inherit;font-size:12px;color:#7C8079;
+}
+.v5p .v5l-chips .vt.on{background:#3B8A73;border-color:#3B8A73;color:#fff;font-weight:700}
+.v5p .v5l-lead{flex:none;font-size:11.5px;color:#9DA09A;margin:2px 0 4px;padding-left:2px}
+
+/* 列表卡片：三个板块共用 */
+.v5p .v5l-card{
+  flex:none;width:100%;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;
+  padding:12px;border-radius:16px;border:1px solid #F1EADB;background:#FFFDF8;
+  box-shadow:0 5px 14px rgba(120,104,78,.05);
+}
+.v5p .v5l-card:active{transform:scale(.99)}
+.v5p .v5l-card .lc-pic{
+  width:52px;height:52px;border-radius:14px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.v5p .v5l-card .lc-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.v5p .v5l-card .lc-main strong{
+  font-size:13.5px;font-weight:700;color:#26292B;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.v5p .v5l-card .lc-main small{font-size:10.5px;color:#A6A9A1}
+.v5p .v5l-card .lc-meta{display:flex;align-items:center;gap:7px;margin-top:1px}
+.v5p .v5l-card .lc-meta em{
+  font-style:normal;font-size:9.5px;color:#7C8C74;
+  background:#EEF4F0;border-radius:7px;padding:2px 7px;
+}
+.v5p .v5l-card .lc-meta span{font-size:10px;color:#9DA09A}
+.v5p .v5l-card .lc-meta span.old{text-decoration:line-through;opacity:.7}
+.v5p .v5l-card .lc-st{
+  flex:none;font-size:10px;font-weight:700;color:#8A6E5F;
+  background:#F6EEE7;border-radius:8px;padding:4px 8px;white-space:nowrap;
+}
+.v5p .v5l-card .lc-st.done{color:#5E7350;background:#EEF4F0}
+.v5p .v5l-card .lc-price{flex:none;font-size:16px;font-weight:800;color:#C4705F;white-space:nowrap}
+.v5p .v5l-card .lc-fee{flex:none;font-size:14px;font-weight:800;color:#3B8A73;white-space:nowrap}
+
+/* ---------- 详情页 ---------- */
+.v5p .v5d-hero{
+  flex:none;height:150px;border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 -18px 30px rgba(0,0,0,.05);
+}
+.v5p .v5d-card{
+  flex:none;padding:16px;border-radius:18px;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 6px 16px rgba(120,104,78,.06);
+}
+.v5p .v5d-card h2{font-size:17px;font-weight:800;margin:0;color:#26292B;line-height:1.45}
+.v5p .v5d-tags{display:flex;gap:7px;margin-top:10px}
+.v5p .v5d-tags em{
+  font-style:normal;font-size:10px;font-weight:700;color:#7C8C74;
+  background:#EEF4F0;border-radius:8px;padding:4px 9px;
+}
+.v5p .v5d-price{display:flex;align-items:baseline;gap:9px;margin-top:10px}
+.v5p .v5d-price b{font-size:22px;font-weight:800;color:#C4705F}
+.v5p .v5d-price s{font-size:11.5px;color:#B6B2A6}
+.v5p .v5d-price em{
+  font-style:normal;font-size:10px;font-weight:700;color:#7C8C74;
+  background:#EEF4F0;border-radius:8px;padding:3px 8px;
+}
+.v5p .v5d-desc{margin:12px 0 0;font-size:13px;line-height:1.75;color:#4A5154}
+.v5p .v5d-rows{margin:14px 0 0;padding:12px 0 0;border-top:1px solid #F1EADB;display:flex;flex-direction:column;gap:9px}
+.v5p .v5d-rows>div{display:flex;align-items:flex-start;gap:12px}
+.v5p .v5d-rows dt{flex:none;width:52px;font-size:11.5px;color:#A6A9A1}
+.v5p .v5d-rows dd{margin:0;flex:1;min-width:0;font-size:12.5px;color:#3A3F42;line-height:1.55}
+.v5p .v5d-cmts{
+  flex:none;padding:14px 16px 4px;border-radius:18px;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 6px 16px rgba(120,104,78,.06);
+}
+.v5p .v5d-cmts h3{font-size:12.5px;font-weight:800;color:#26292B;margin:0 0 4px}
+/* 底部操作条 */
+.v5p .act-bar{
+  flex:none;display:flex;gap:10px;padding:11px 16px 22px;
+  background:linear-gradient(180deg,rgba(250,247,240,0),#FAF7F0 42%);
+}
+.v5p .act-bar button{
+  height:44px;border-radius:22px;cursor:pointer;font-family:inherit;
+  font-size:13.5px;font-weight:700;
+}
+.v5p .act-bar .ab-ghost{
+  flex:none;width:104px;background:#FFFDF8;color:#5E7350;border:1px solid #DFE8E1;
+}
+.v5p .act-bar .ab-main{
+  flex:1;border:none;color:#fff;background:linear-gradient(180deg,#4E9A82,#3B8A73);
+  box-shadow:0 8px 18px rgba(59,138,115,.24);
+}
+.v5p .act-bar button:active{transform:scale(.97)}
+/* 左边两个竖排小按钮：留言 / 收藏（图标在上，字在下） */
+.v5p .act-bar .ab-ico{
+  position:relative;flex:none;width:48px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:#FFFDF8;border:1px solid #DFE8E1;color:#5E7350;
+}
+.v5p .act-bar .ab-ico span{font-size:9.5px;font-weight:700;line-height:1;white-space:nowrap}
+.v5p .act-bar .ab-ico.on{background:#FBEFEC;border-color:#EFCFC8;color:#C4665B}
+/* 留言按钮右上角那条留言数 */
+.v5p .act-bar .ab-n{
+  position:absolute;top:-5px;right:1px;min-width:17px;height:17px;padding:0 4px;
+  border-radius:9px;background:#E4756B;color:#fff;font-style:normal;
+  font-size:9.5px;font-weight:700;line-height:17px;text-align:center;
+  box-shadow:0 0 0 2px #FAF7F0;
+}
+.v5p .act-bar .ab-chat{
+  flex:none;width:76px;background:#F5F0E3;border-color:#EBE4D3;color:#8A7748;
+}
+/* 取消按钮：点开输入条后想收起来用 */
+.v5p .say-box .say-x{
+  flex:none;height:42px;padding:0 13px;border:1px solid #E6E0D2;border-radius:13px;
+  background:#FFFDF8;cursor:pointer;font-family:inherit;font-size:12.5px;
+  font-weight:700;color:#8E9187;
+}
+.v5p .say-box .say-x:active{transform:scale(.97)}
+/* 点「留言」才出现的输入条，就贴在四个按钮上面 */
+.v5p .say-box{
+  flex:none;display:flex;gap:8px;padding:0 16px 9px;background:#FAF7F0;
+}
+.v5p .say-box .say-in{
+  flex:1;min-width:0;height:42px;padding:0 13px;
+  border:1px solid #E6E0D2;border-radius:13px;background:#FFFDF8;
+  font-family:inherit;font-size:13px;color:#26292B;outline:none;
+}
+.v5p .say-box .say-in::placeholder{color:#B6B2A6}
+.v5p .say-box .say-send{
+  flex:none;height:42px;padding:0 16px;border:none;border-radius:13px;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+}
+.v5p .say-box .say-send:active{transform:scale(.97)}
+
+/* ---------- 三个板块共用的发布弹窗 ---------- */
+.board-mask{
+  position:absolute;inset:0;z-index:80;
+  background:rgba(38,35,28,.42);backdrop-filter:blur(3px);
+  display:flex;align-items:flex-end;
+  animation:v5bmIn .22s ease;
+}
+@keyframes v5bmIn{from{opacity:0}to{opacity:1}}
+.board-sheet{
+  width:100%;max-height:84%;overflow-y:auto;
+  padding:16px 16px 20px;border-radius:22px 22px 0 0;
+  background:#FFFDF8;box-shadow:0 -10px 30px rgba(60,52,38,.18);
+  animation:v5bsIn .3s cubic-bezier(.3,.9,.35,1.05);
+}
+@keyframes v5bsIn{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.bs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.bs-top h3{font-size:16px;font-weight:800;color:#26292B;margin:0}
+.bs-x{
+  width:26px;height:26px;border:none;border-radius:13px;background:#F2EFE6;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+/* 类型二选一 */
+.bs-kind{display:flex;gap:8px;padding:4px;border-radius:13px;background:#F1EDE2;margin-bottom:12px}
+.bs-kind button{
+  flex:1;height:34px;border:none;border-radius:10px;cursor:pointer;background:transparent;
+  font-family:inherit;font-size:12.5px;font-weight:700;color:#8E9187;
+}
+.bs-kind button.on{background:#FFFDF8;color:#3B8A73;box-shadow:0 3px 8px rgba(120,104,78,.10)}
+/* 输入框 */
+.bs-in{
+  width:100%;height:42px;margin-bottom:9px;padding:0 13px;
+  border:1px solid #F1EADB;border-radius:13px;background:#FBF8F1;
+  font-family:inherit;font-size:13px;color:#26292B;outline:none;
+}
+.bs-in::placeholder{color:#B6B2A6}
+.bs-two{display:flex;gap:9px}
+.bs-two .bs-in{flex:1;min-width:0}
+.bs-ta{
+  width:100%;margin-bottom:4px;padding:12px 13px;resize:none;
+  border:1px solid #F1EADB;border-radius:14px;background:#FBF8F1;
+  font-family:inherit;font-size:13px;line-height:1.6;color:#26292B;outline:none;
+}
+.bs-ta::placeholder{color:#B6B2A6}
+/* 分类小胶囊 */
+.bs-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}
+.bs-chips .bc{
+  border:1px solid #F1EADB;border-radius:999px;background:#FBF8F1;cursor:pointer;
+  padding:7px 12px;font-family:inherit;font-size:11.5px;color:#7C8079;
+}
+.bs-chips .bc.on{background:#EEF4F0;border-color:#D9E7DF;color:#3B8A73;font-weight:700}
+/* 发布弹窗里的「校区」一行 */
+.bs-lb{
+  font-size:11.5px;font-weight:700;color:#8E9187;margin:0 0 7px 2px;letter-spacing:.02em;
+}
+.bs-campus{display:flex;gap:7px;margin-bottom:11px}
+.bs-campus .cp{
+  flex:1;min-width:0;height:32px;padding:0 4px;cursor:pointer;font-family:inherit;
+  border:1px solid #EDE8DE;border-radius:11px;background:#FFFDF8;
+  font-size:11.5px;font-weight:700;color:#6B7377;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.bs-campus .cp.on{
+  background:#3B8A73;border-color:#3B8A73;color:#FFFDF8;
+  box-shadow:0 4px 10px rgba(59,138,115,.18);
+}
+/* 发布按钮 */
+.bs-pub{
+  width:100%;height:46px;margin-top:6px;border:none;border-radius:23px;cursor:pointer;
+  font-family:inherit;font-size:14.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+  box-shadow:0 8px 18px rgba(59,138,115,.26);
+}
+.bs-pub:active{transform:scale(.98)}
+
+/* ==========================================================
+   四、交友页 · 好友动态
+   ========================================================== */
+.fd-list{display:flex;flex-direction:column;gap:12px}
+.fd-card{
+  padding:14px;border-radius:18px;border:1px solid #F1EADB;background:#FFFDF8;
+  box-shadow:0 6px 16px rgba(120,104,78,.06);cursor:pointer;
+}
+/* 动态详情的页头：返回键 + 标题，跟校园二级页一个味道 */
+.tab-head.detail{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 2px 2px;
+}
+.tab-head.detail h1{font-size:19px;font-weight:800;margin:0;flex:1;min-width:0;text-align:center}
+.tab-head.detail span{width:18px;flex:none}
+.tab-head.detail .tb-back{
+  flex:none;width:30px;height:30px;border:none;border-radius:15px;background:#FFFDF8;
+  border:1px solid #EDE8DE;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.fdc-head{display:flex;align-items:center;gap:10px}
+.fdc-head .fd-ava{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;color:#5E7350;
+}
+.fdc-who{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.fdc-who strong{font-size:13.5px;font-weight:800;color:#26292B}
+.fdc-who small{font-size:10.5px;color:#A6A9A1}
+.fdc-type{
+  flex:none;font-style:normal;font-size:10px;font-weight:700;
+  border-radius:8px;padding:4px 9px;letter-spacing:.04em;
+}
+.fdc-title{margin:12px 0 0;font-size:14.5px;font-weight:800;color:#26292B;line-height:1.5}
+.fdc-body{margin:6px 0 0;font-size:12.5px;line-height:1.7;color:#4A5154}
+/* MBTI 动态多出的人格卡 */
+.fdc-mbti{
+  display:flex;align-items:center;gap:11px;margin-top:12px;padding:12px;
+  border-radius:14px;background:linear-gradient(135deg,#EDE8F5,#E2DCEF);
+}
+.fdc-mbti b{flex:none;font-size:19px;font-weight:800;color:#77688E;letter-spacing:.04em}
+.fdc-mbti>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.fdc-mbti strong{font-size:13px;font-weight:800;color:#4A4458}
+.fdc-mbti small{font-size:10.5px;color:#8B84A0;line-height:1.5}
+.fdc-mbti button{
+  flex:none;height:28px;padding:0 11px;border:none;border-radius:14px;cursor:pointer;
+  background:#FFFDF8;font-family:inherit;font-size:11px;font-weight:700;color:#77688E;
+}
+/* 点赞 / 评论 / 分享 */
+.fdc-acts{display:flex;align-items:center;gap:18px;margin-top:12px;padding-top:11px;border-top:1px solid #F4F0E7}
+.fdc-acts .fa{
+  display:inline-flex;align-items:center;gap:5px;padding:0;
+  border:none;background:none;cursor:pointer;font-family:inherit;
+  font-size:12px;color:#A6A9A1;
+}
+.fdc-acts .fa.on{color:#C4705F}
+.fdc-acts .fa.shr{margin-left:auto}
+/* 展开的评论区 */
+.fdc-cmts{margin-top:12px;padding-top:6px;border-top:1px dashed #EFEADF}
+.fdc-input{display:flex;align-items:center;gap:8px;margin-top:10px}
+.fdc-input input{
+  flex:1;min-width:0;height:36px;padding:0 13px;border:none;border-radius:18px;
+  background:#F6F2E8;font-family:inherit;font-size:12px;color:#26292B;outline:none;
+}
+.fdc-input input::placeholder{color:#B6B2A6}
+.fdc-input button{
+  flex:none;height:36px;padding:0 14px;border:none;border-radius:18px;cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+}
+
+/* ==========================================================
+   五、我的页
+   ========================================================== */
+.my-user{display:flex;align-items:flex-start;gap:13px;padding:8px 2px 2px}
+.my-user .my-ava{
+  width:62px;height:62px;border-radius:50%;flex:none;background:#EDE9DF;
+  display:flex;align-items:center;justify-content:center;
+}
+.my-who{flex:1;min-width:0}
+.my-who h1{font-size:20px;font-weight:800;margin:0;color:#26292B}
+.my-who .my-edit{
+  margin-top:6px;padding:0;border:none;background:none;cursor:pointer;
+  font-family:inherit;font-size:11.5px;font-weight:700;color:#7C6BA8;
+}
+.my-who .my-id{display:flex;align-items:center;gap:7px;margin-top:7px;min-width:0}
+.my-who .my-id span{
+  font-size:10px;color:#A6A9A1;letter-spacing:.02em;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.my-who .my-id button{
+  border:1px solid #E4DFD2;border-radius:8px;background:#FFFDF8;cursor:pointer;
+  font-family:inherit;font-size:9.5px;color:#8E9187;padding:2px 7px;
+}
+.my-age{flex:none;font-size:10px;color:#A6A9A1;padding-top:4px}
+
+.my-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  padding:14px 0;border-radius:18px;background:#FFFDF8;
+  border:1px solid #F1EADB;box-shadow:0 6px 16px rgba(120,104,78,.05);
+}
+.my-stats>button{
+  position:relative;border:none;background:transparent;cursor:pointer;padding:0;
+  font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.my-stats>button:active{transform:scale(.95)}
+.my-stats b{font-size:18px;font-weight:800;color:#26292B}
+.my-stats span{font-size:10.5px;color:#A6A9A1}
+/* 「粉丝」右上角那个带数字的红圆点（新关注了几个人） */
+.st-dot{
+  position:absolute;top:-3px;right:12px;min-width:16px;height:16px;padding:0 4px;
+  border-radius:8px;background:#E4756B;color:#fff;font-style:normal;
+  font-size:9.5px;font-weight:700;line-height:16px;text-align:center;
+  box-shadow:0 0 0 2px #FFFDF8;
+}
+
+.my-fav{
+  width:100%;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;
+  padding:14px;border-radius:18px;border:1px solid #F1EADB;background:#FFFDF8;
+  box-shadow:0 6px 16px rgba(120,104,78,.05);
+}
+.my-fav:active{transform:scale(.99)}
+.my-fav .mf-ico{
+  width:44px;height:44px;border-radius:14px;flex:none;background:#F0ECDD;
+  display:flex;align-items:center;justify-content:center;
+}
+.my-fav .mf-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.my-fav .mf-txt strong{font-size:14px;font-weight:800;color:#26292B}
+.my-fav .mf-txt small{font-size:11px;color:#A6A9A1}
+.my-fav i{font-style:normal;font-size:19px;color:#C9C5B8}
+
+/* ---------- 两个消息入口：新增关注 / 我的通知 ----------
+   一个白卡片里放两行，比原来的三个工具卡片省地方，也不那么空 */
+.my-inbox{
+  border-radius:18px;background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 6px 16px rgba(120,104,78,.05);overflow:hidden;
+}
+.mi-row{
+  width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;
+  cursor:pointer;background:transparent;border:none;text-align:left;font-family:inherit;
+}
+.mi-row+.mi-row{border-top:1px solid #F5F1E7}
+.mi-row:active{background:#FBF8F1}
+.mi-ico{
+  width:46px;height:46px;border-radius:15px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.mi-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.mi-txt strong{font-size:14.5px;font-weight:800;color:#26292B}
+.mi-txt small{font-size:11px;color:#A6A9A1}
+/* 右侧的红色数字胶囊 */
+.mi-dot{
+  flex:none;min-width:21px;height:21px;padding:0 6px;border-radius:11px;
+  background:#E4756B;color:#fff;font-style:normal;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.mi-go{font-size:19px;color:#CFCBBE;font-weight:400}
+/* 「我的发布」右边那条灰色的数量（未读数才用红色，这个是条数） */
+.mi-num{
+  flex:none;min-width:24px;height:21px;padding:0 7px;border-radius:11px;
+  background:#F2EEE3;color:#8E9187;font-style:normal;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ---------- 校园服务 ----------
+   原来外面套了一个大白卡片，六个格子挤在里面，留白很多。
+   现在改成 3 列宫格、图标竖排，格子本身没有背景，
+   让彩色图标块直接落在米色页面上，干净也紧凑 */
+.my-svc{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px 4px;background:transparent;border:none;box-shadow:none;overflow:visible;
+}
+.my-svc button{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:0;cursor:pointer;background:transparent;border:none;
+  font-family:inherit;font-size:12px;font-weight:700;color:#3A3F42;
+}
+.my-svc button:active{transform:scale(.96)}
+.my-svc button:nth-child(odd),
+.my-svc button:nth-last-child(-n+2){border:none}
+.my-svc .ms-ico{
+  width:48px;height:48px;border-radius:17px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(120,104,78,.07);
+}
+/* 通知格子右上角的红点 */
+.ms-dot{
+  position:absolute;top:-2px;right:14px;min-width:18px;height:18px;padding:0 5px;
+  border-radius:9px;background:#E4756B;color:#fff;font-style:normal;
+  font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 2px #FAF7F0;
+}
+
+/* ==========================================================
+   六、轻提示（发不出去的静态稿用它给个反馈）
+   故意不加 .v5p 前缀：tab 页也要能用，所以用 fixed 定位
+   ========================================================== */
+.v5p-toast{
+  position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:300;
+  max-width:280px;padding:11px 18px;border-radius:22px;
+  background:rgba(38,41,43,.9);color:#fff;
+  font-size:12.5px;letter-spacing:.02em;white-space:nowrap;
+  box-shadow:0 10px 24px rgba(30,28,22,.26);
+  animation:v5toastIn .26s cubic-bezier(.3,.9,.35,1.05);
+}
+@keyframes v5toastIn{
+  from{opacity:0;transform:translate(-50%,10px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+
+/* ---------- 评论行（全站通用）----------
+   这套评论结构（.cm-row > .ca 头像 + .cb 内容 + .cl 赞）到处都在用：
+   灵感小盒、失物/闲置/搭把手三个详情、交友动态详情……
+   以前写成 `.v5p .cm-row` / `.fd-card .cm-row`，结果动态详情页（容器是
+   .fdt-body）压根没命中：昵称和时间粘成一坨、赞掉到下一行。
+   现在统一写成不带前缀的全局规则，任何页面只要用这套结构就有正确排版。 */
+.cm-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0}
+.cm-row .ca{
+  width:26px;height:26px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;color:#6C7A62;
+  border:none;cursor:pointer;font-family:inherit;
+}
+.cm-row .cb{flex:1;min-width:0}
+.cm-row .ch{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.cm-row .ch strong{font-size:11.5px;font-weight:700;color:#4A5154;cursor:pointer}
+.cm-row .ch small{font-size:10px;color:#B0B6BB;flex:none}
+.cm-row p{margin:3px 0 0;font-size:12.5px;line-height:1.55;color:#26292B;word-break:break-word}
+.cm-row .cl{
+  flex:none;display:inline-flex;align-items:center;gap:3px;padding-top:3px;
+  border:none;background:none;font-family:inherit;font-size:11px;color:#A6A9A1;cursor:pointer;
+}
+.cm-row .cl.on{color:#C4705F}
+
+/* ==========================================================
+   七、图书馆页「换皮」
+   它的模板是原版那套，不动结构，只在 V5 皮肤下把配色和圆角盖掉，
+   这样从新的校园页点进去不会突然跳回原来的灰白紫风格
+   ========================================================== */
+.studio[data-scene="library"][data-design="v5"] .phone-content{background:#FAF7F0}
+.studio[data-scene="library"][data-design="v5"] .library-real{
+  padding:52px 14px 96px;color:#26292B;
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .native-head{background:transparent}
+.studio[data-scene="library"][data-design="v5"] .library-real .native-head h1{color:#26292B;font-weight:800}
+.studio[data-scene="library"][data-design="v5"] .library-real .native-head button{color:#8E9187;font-size:26px}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero{
+  background:#FFFDF8;border:1px solid #F1EADB;border-radius:20px;
+  padding:16px 16px 0;box-shadow:0 6px 16px rgba(120,104,78,.06);
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero>small{color:#A8AE9E;letter-spacing:.18em}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero h1{color:#26292B;font-weight:800}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero p{color:#9DA09A}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero nav button{
+  color:#A6A9A1;font-weight:700;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-hero nav button.active{
+  color:#3B8A73;border-bottom-color:#3B8A73;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .lib-body{padding:12px 0 0}
+.studio[data-scene="library"][data-design="v5"] .library-real .library-filter-card{
+  background:#FFFDF8;border:1px solid #F1EADB;border-radius:18px;padding:14px;
+  box-shadow:0 6px 16px rgba(120,104,78,.05);
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .selects span,
+.studio[data-scene="library"][data-design="v5"] .library-real .capacity span{
+  background:#F6F2E8;border:1px solid #EFE9DC;border-radius:11px;color:#5C605A;font-weight:700;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .capacity span.active{
+  background:#EEF4F0;border-color:#D9E7DF;color:#3B8A73;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .real-search{
+  background:#F6F2E8;border:1px solid #EFE9DC;color:#A6A9A1;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .menu-heading{color:#26292B}
+.studio[data-scene="library"][data-design="v5"] .library-real .menu-heading span{color:#A6A9A1}
+.studio[data-scene="library"][data-design="v5"] .library-real .library-note{color:#A6A9A1;line-height:1.7}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card{
+  border-radius:18px;overflow:hidden;border:1px solid #F1EADB;
+  box-shadow:0 6px 16px rgba(120,104,78,.06);background:#FFFDF8;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card>.photo-placeholder{
+  background:#EFEBE0;color:#B6B2A6;
+}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card h3{color:#26292B;font-weight:800}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section b{color:#3B8A73}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section p,
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section small,
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section footer,
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section header b{color:#9DA09A}
+.studio[data-scene="library"][data-design="v5"] .library-real .space-card section footer b{color:#3B8A73}
+.studio[data-scene="library"][data-design="v5"] .bottom-nav{
+  background:#FAF7F0;border-top:1px solid #EDE8DE;
+}
+
+/* ==========================================================
+   八、我的 · 两个新页面
+   新增关注（谁关注了我）｜ 通知中心（回复/赞/接单/私信）
+   都挂在 .v5p.subpage 骨架下面，所以类名统一 fn- / nt-
+   ========================================================== */
+
+/* ---------- 新增关注 ---------- */
+.v5p .fn-tabs{
+  flex:none;display:flex;gap:18px;padding:0 2px 2px;margin-bottom:2px;
+}
+.v5p .fn-tab{
+  position:relative;border:none;background:transparent;cursor:pointer;padding:4px 0;
+  font-family:inherit;font-size:14px;font-weight:700;color:#A6A9A1;
+}
+.v5p .fn-tab.on{color:#26292B}
+.v5p .fn-tab.on::after{
+  content:'';position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);
+  width:18px;height:3px;border-radius:2px;background:#3B8A73;
+}
+.v5p .fn-tab i{
+  position:absolute;top:-4px;right:-16px;min-width:16px;height:16px;padding:0 4px;
+  border-radius:8px;background:#E4756B;color:#fff;font-style:normal;
+  font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+}
+.v5p .fn-row{
+  flex:none;display:flex;align-items:center;gap:11px;padding:12px;
+  border-radius:16px;background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 4px 12px rgba(120,104,78,.045);
+}
+.v5p .fn-ava{
+  width:44px;height:44px;border-radius:15px;flex:none;color:#5C605A;
+  font-size:16px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.v5p .fn-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.v5p .fn-top{display:flex;align-items:center;gap:6px}
+.v5p .fn-top strong{font-size:13.5px;font-weight:800;color:#26292B}
+.v5p .fn-top em{
+  font-style:normal;font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;
+}
+.v5p .fn-new{background:#FBE9E7;color:#C2665C}
+.v5p .fn-off{background:#EEF4F0;color:#3B8A73}
+.v5p .fn-top small{margin-left:auto;font-size:10px;color:#B0ACA2;flex:none}
+.v5p .fn-bio{
+  font-size:11.5px;color:#8E9187;line-height:1.5;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.v5p .fn-mut{font-size:10.5px;color:#B0ACA2}
+.v5p .fn-btn{
+  flex:none;padding:7px 13px;border-radius:11px;cursor:pointer;font-family:inherit;
+  font-size:11.5px;font-weight:700;border:1px solid #3B8A73;
+  background:#3B8A73;color:#fff;
+}
+.v5p .fn-btn.on{background:#F4F1E8;border-color:#E8E3D6;color:#A6A9A1}
+.v5p .fn-btn:active{transform:scale(.95)}
+
+/* ---------- 通知中心 ---------- */
+.v5p .nt-tabs{
+  flex:none;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;
+}
+.v5p .nt-tabs::-webkit-scrollbar{display:none}
+.v5p .nt-tab{
+  flex:none;padding:6px 13px;border-radius:12px;cursor:pointer;font-family:inherit;
+  font-size:12px;font-weight:700;border:1px solid #EFE9DC;
+  background:#FFFDF8;color:#8E9187;
+}
+.v5p .nt-tab.on{background:#3B8A73;border-color:#3B8A73;color:#fff}
+/* tab 名字后面的小条数，选中时反白；四个 tab 加起来正好一行，别再加字 */
+.v5p .nt-tab i{
+  font-style:normal;margin-left:5px;font-size:10.5px;font-weight:700;
+  padding:1px 5px;border-radius:7px;background:#F2EEE3;color:#8E9187;
+}
+.v5p .nt-tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.v5p .nt-row{
+  flex:none;display:flex;gap:11px;padding:13px 12px;border-radius:16px;cursor:pointer;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 4px 12px rgba(120,104,78,.045);
+}
+.v5p .nt-row.unread{background:#FFFCF2;border-color:#F0E7CE}
+.v5p .nt-row:active{transform:scale(.995)}
+.v5p .nt-ava{
+  position:relative;width:42px;height:42px;border-radius:14px;flex:none;
+  color:#5C605A;font-size:15px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+/* 头像右下角贴一个「这是哪类通知」的小图标 */
+.v5p .nt-kind{
+  position:absolute;right:-4px;bottom:-4px;width:19px;height:19px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 2px #FFFDF8;
+}
+.v5p .nt-main{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.v5p .nt-top{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.v5p .nt-top strong{font-size:13px;font-weight:800;color:#26292B}
+.v5p .nt-act{font-size:12px;color:#6E7269}
+.v5p .nt-top small{margin-left:auto;font-size:10px;color:#B0ACA2;flex:none}
+/* 被引用的那句（对方的评论 / 我的那条内容） */
+.v5p .nt-quote{
+  margin:0;padding:8px 10px;border-radius:11px;background:#F6F2E8;
+  font-size:11.5px;color:#7C8078;line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.v5p .nt-mine{font-size:10.5px;color:#B0ACA2;padding-left:2px}
+/* 未读小圆点，点过之后就没了 */
+.v5p .nt-dot{
+  position:absolute;top:6px;right:0;width:7px;height:7px;border-radius:4px;background:#E4756B;
+}
+
+/* 我的页底部的一行小字：把最后那块空白填上，也让页面有个收尾 */
+.my-foot{
+  margin:auto auto 0;padding:18px 0 4px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-size:11px;color:#C3BFB2;letter-spacing:.04em;
+}
+.my-foot em{
+  font-style:normal;font-size:9.5px;color:#D2CEC2;letter-spacing:.06em;
+}
+
+/* 我的页底部的一行小字：把最后那块空白填上，也让页面有个收尾 */
+.my-foot{
+  margin:auto auto 0;padding:18px 0 4px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-size:11px;color:#C3BFB2;letter-spacing:.04em;
+}
+.my-foot em{
+  font-style:normal;font-size:9.5px;color:#D2CEC2;letter-spacing:.06em;
+}
+
+/* ==========================================================
+   十一、私信聊天页 & 用户主页
+   （点聊一聊 / 接单 / 头像 都能进来，所以两个页面放一起写）
+   ========================================================== */
+.chat-page{background:#F4F1E9}
+.v5p .chat-top h1{position:static;transform:none}
+.v5p .ch-who{
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;
+}
+.v5p .ch-who strong{font-size:15px;font-weight:800;color:#26292B}
+.v5p .ch-who small{font-size:10.5px;color:#9DA09A}
+.v5p .ch-more{
+  border:none;background:transparent;cursor:pointer;font-family:inherit;
+  font-size:19px;font-weight:800;color:#8E9187;letter-spacing:.06em;
+}
+/* 消息区：flex:1 让它可以滚，输入条永远在最下面 */
+.v5p .chat-body{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+  padding:6px 14px 12px;display:flex;flex-direction:column;gap:11px;
+}
+.v5p .chat-body::-webkit-scrollbar{display:none}
+.v5p .ch-tip{
+  align-self:center;margin:2px 0 4px;padding:5px 11px;border-radius:10px;
+  background:#EAE5D8;font-size:10px;color:#8E9187;text-align:center;
+}
+.v5p .ch-empty{
+  margin:26px 6px;padding:20px 14px;border-radius:16px;text-align:center;
+  border:1px dashed #DED8CA;background:#FBFAF4;
+  font-size:11.5px;color:#A6A9A1;line-height:1.8;
+}
+.v5p .ch-row{display:flex;align-items:flex-end;gap:8px;max-width:100%}
+.v5p .ch-row.me{flex-direction:row-reverse}
+.v5p .ch-ava{
+  width:32px;height:32px;border-radius:11px;flex:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#5E7350;
+}
+.v5p .ch-bub{
+  max-width:76%;padding:9px 12px;border-radius:14px;
+  background:#FFFDF8;border:1px solid #EAE4D7;
+  font-size:13px;line-height:1.6;color:#3A3F42;
+  box-shadow:0 4px 10px rgba(120,104,78,.05);
+  border-bottom-left-radius:5px;
+}
+.v5p .ch-row.me .ch-bub{
+  background:linear-gradient(180deg,#EAF3EE,#E2EEE7);
+  border-color:#D9E7DF;border-bottom-left-radius:14px;border-bottom-right-radius:5px;
+}
+.v5p .ch-bub small{display:block;margin-top:4px;font-size:9.5px;color:#B0ACA2;text-align:right}
+/* 对方正在输入的三点动画 */
+.v5p .ch-bub.typing{display:flex;gap:4px;padding:13px 12px}
+.v5p .ch-bub.typing i{
+  width:5px;height:5px;border-radius:3px;background:#C6C1B4;
+  animation:v5Typing 1.1s infinite ease-in-out;
+}
+.v5p .ch-bub.typing i:nth-child(2){animation-delay:.16s}
+.v5p .ch-bub.typing i:nth-child(3){animation-delay:.32s}
+@keyframes v5Typing{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+/* 输入区：上面一排快捷短语，下面输入框 + 发送 */
+.v5p .chat-foot{
+  flex:none;padding:8px 12px 18px;background:#FFFDF8;
+  border-top:1px solid #EDE8DC;box-shadow:0 -6px 18px rgba(120,104,78,.05);
+}
+/* 快捷短语排不下就换行，别让它被右边切掉一半看着像坏了 */
+.v5p .ch-quick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.v5p .ch-quick button{
+  flex:none;padding:6px 11px;border-radius:12px;cursor:pointer;font-family:inherit;
+  font-size:11px;font-weight:700;color:#5E7350;background:#F1F4EF;border:1px solid #E2E8E1;
+  white-space:nowrap;
+}
+.v5p .ch-quick button:active{background:#E6EDE6}
+.v5p .ch-in{display:flex;gap:8px;align-items:center}
+.v5p .ch-in input{
+  flex:1;min-width:0;height:40px;padding:0 13px;
+  border:1px solid #E6E0D2;border-radius:13px;background:#FBF8F1;
+  font-family:inherit;font-size:13px;color:#26292B;outline:none;
+}
+.v5p .ch-in input::placeholder{color:#B6B2A6}
+.v5p .ch-send{
+  flex:none;height:40px;padding:0 17px;border:none;border-radius:13px;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+}
+.v5p .ch-send:active{transform:scale(.97)}
+
+/* ---------- 用户主页 ---------- */
+.v5p .up-card{
+  flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;
+  padding:18px 16px 16px;border-radius:20px;
+  background:linear-gradient(180deg,#F6F2E6,#FFFDF8);
+  border:1px solid #F1EADB;box-shadow:0 6px 16px rgba(120,104,78,.05);
+}
+.v5p .up-ava{
+  width:66px;height:66px;border-radius:24px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;font-weight:800;color:#5E7350;
+  box-shadow:0 6px 16px rgba(120,104,78,.10);
+}
+.v5p .up-card strong{font-size:17px;font-weight:800;color:#26292B}
+.v5p .up-card>small{font-size:11px;color:#A6A9A1}
+.v5p .up-bio{margin:2px 0 0;font-size:12px;line-height:1.7;color:#5C605A;text-align:center}
+.v5p .up-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:2px}
+.v5p .up-tags em{
+  font-style:normal;font-size:10.5px;font-weight:700;color:#7C6BA8;
+  padding:3px 9px;border-radius:9px;background:#F0EDF8;
+}
+.v5p .up-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:100%;margin-top:8px;
+  padding-top:12px;border-top:1px solid #EFEADF;
+}
+.v5p .up-stats span{display:flex;flex-direction:column;align-items:center;gap:3px}
+.v5p .up-stats b{font-size:16px;font-weight:800;color:#26292B}
+.v5p .up-stats i{font-style:normal;font-size:10.5px;color:#A6A9A1}
+.v5p .up-act{flex:none;display:flex;gap:10px}
+.v5p .up-act button{
+  height:44px;border-radius:22px;cursor:pointer;font-family:inherit;
+  font-size:13.5px;font-weight:700;
+}
+.v5p .up-chat{
+  flex:1;border:none;color:#fff;background:linear-gradient(180deg,#4E9A82,#3B8A73);
+  box-shadow:0 8px 18px rgba(59,138,115,.24);
+}
+.v5p .up-follow{flex:none;width:104px;background:#FFFDF8;color:#5E7350;border:1px solid #DFE8E1}
+.v5p .up-follow.on{background:#F3EDE2;color:#9A8C6A;border-color:#E7DFCE}
+.v5p .up-sub{
+  display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#26292B;
+  margin:6px 0 0;padding-left:2px;
+}
+.v5p .up-sub i{
+  font-style:normal;font-size:10.5px;font-weight:700;color:#8E9187;
+  padding:2px 7px;border-radius:8px;background:#F2EEE3;
+}
+
+/* ---------- 发布弹窗里的「加照片」 ---------- */
+.bs-photos{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.bp-add{
+  width:74px;height:74px;border-radius:14px;cursor:pointer;font-family:inherit;
+  border:1px dashed #DED8CA;background:#FBF8F1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+}
+.bp-add span{font-size:10.5px;font-weight:700;color:#8E9187}
+.bp-pic{
+  position:relative;width:74px;height:74px;border-radius:14px;
+  background-size:cover;background-position:center;
+  border:1px solid #EFEADF;box-shadow:0 4px 10px rgba(120,104,78,.06);
+}
+.bp-x{
+  position:absolute;top:-5px;right:-5px;width:20px;height:20px;border-radius:10px;
+  border:none;cursor:pointer;background:#3A3F42;color:#fff;
+  font-size:13px;line-height:20px;text-align:center;
+}
+/* 隐藏但还能点：发布弹窗用的选择文件框 */
+.v5-file-hide{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+/* 照片放大浮层：盖住整个设计台也不影响手机里看 @click 关闭 */
+.v5-photo-mask{
+  position:fixed;inset:0;z-index:200;background:rgba(28,26,22,.86);
+  display:flex;align-items:center;justify-content:center;cursor:zoom-out;
+}
+.v5-photo-mask img{max-width:78%;max-height:78%;border-radius:14px;box-shadow:0 20px 50px #00000059}
+
+/* ---------- 详情页里的照片 / 留言回复 ---------- */
+.v5p .v5d-album{
+  flex:none;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;
+}
+.v5p .v5d-album::-webkit-scrollbar{display:none}
+.v5p .v5d-album img{
+  flex:none;width:132px;height:104px;border-radius:14px;object-fit:cover;cursor:zoom-in;
+  border:1px solid #EFEADF;box-shadow:0 4px 10px rgba(120,104,78,.06);
+}
+/* 列表卡左上角的「2图」小标 */
+.v5p .lc-picn{
+  position:absolute;right:3px;bottom:3px;padding:1px 5px;border-radius:7px;
+  background:rgba(38,36,30,.55);color:#fff;font-size:9px;font-weight:700;
+}
+.cm-rep{
+  margin:5px 0 0;padding:6px 9px;border-radius:9px;background:#F6F2E8;
+  font-size:11.5px;line-height:1.6;color:#5C605A;
+}
+.cm-rep b{font-weight:700;color:#7C6BA8;cursor:pointer}
+.cm-re{
+  margin-top:5px;padding:0;border:none;background:none;cursor:pointer;
+  font-family:inherit;font-size:11px;font-weight:700;color:#A6A9A1;
+}
+.cm-re:active{color:#3B8A73}
+.v5p .cm-none{
+  margin:8px 0 4px;font-size:11.5px;color:#B0ACA2;text-align:center;line-height:1.7;
+}
+/* 详情页里「发布人 ›」这种可点文字 */
+.v5p .v5d-link{
+  padding:0;border:none;background:none;cursor:pointer;
+  font-family:inherit;font-size:12.5px;font-weight:700;color:#3B8A73;
+}
+/* 头像变成按钮了，补一下按钮的默认样式重置 */
+.v5p .ca,.v5p .fd-ava,.v5p .fn-ava,.v5p .nt-ava{
+  border:none;padding:0;font-family:inherit;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+/* 我的消息每条右边的「聊一聊」 */
+.v5p .nt-chat{
+  flex:none;align-self:center;padding:6px 11px;border-radius:11px;cursor:pointer;
+  font-family:inherit;font-size:11px;font-weight:700;color:#5E7350;
+  background:#F1F4EF;border:1px solid #E2E8E1;
+}
+.v5p .nt-chat:active{background:#E6EDE6}
+
+/* ==========================================================
+   十、我的 · 我的发布（自己发的东西，进展一眼看明白）
+   ========================================================== */
+.v5p .mp-row{
+  flex:none;display:flex;align-items:center;gap:11px;padding:13px 12px;
+  border-radius:16px;cursor:pointer;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 4px 12px rgba(120,104,78,.045);
+}
+.v5p .mp-row:active{transform:scale(.995)}
+/* 「全部 / 搭把手 / 失物招领 / 闲置小铺」四个 tab 要一行塞下，
+   这里的 padding 和字号是量着 390 宽排的，改回去很容易挤出屏幕 */
+/* 加了「交友」之后有五个分类，缩一点间距保证一行放得下 */
+.v5p .mp-tabs{display:flex;gap:5px;flex:none}
+.v5p .mp-tabs .nt-tab{padding:6px 8px;font-size:11.5px}
+.v5p .mp-tabs .nt-tab i{margin-left:4px;padding:0 4px;font-size:10px}
+.v5p .mp-ico{
+  width:46px;height:46px;border-radius:15px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.v5p .mp-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.v5p .mp-top{display:flex;align-items:center;gap:6px;min-width:0}
+.v5p .mp-top strong{
+  flex:1;min-width:0;font-size:13.5px;font-weight:800;color:#26292B;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+/* 状态小标签：浅米=等人/在售，绿=进行中，金=已预定，灰=已结束 */
+.v5p .mp-st{
+  flex:none;font-size:9.5px;font-weight:800;padding:3px 7px;border-radius:8px;
+}
+.v5p .mp-st.wait{background:#F2EEE3;color:#8E9187}
+.v5p .mp-st.ing{background:#DCEBE3;color:#3B8A73}
+.v5p .mp-st.hold{background:#F6E7C9;color:#9A7B3C}
+.v5p .mp-st.done{background:#E7E5E0;color:#9B978F}
+.v5p .mp-where{
+  font-size:11px;color:#A6A9A1;line-height:1.4;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.v5p .mp-foot{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:10.5px;color:#A6A9A1;
+}
+.v5p .mp-foot em{
+  font-style:normal;font-weight:700;color:#7C6BA8;
+  padding:2px 7px;border-radius:8px;background:#F0EDF8;
+}
+.v5p .mp-foot b{font-weight:800;color:#C98A62}
+.v5p .mp-go{flex:none;font-size:18px;color:#CFCBBE}
+/* 这一类一条都没发时的空状态 */
+.v5p .mp-empty{
+  flex:none;padding:26px 16px;border-radius:16px;text-align:center;
+  border:1px dashed #E4DFD2;background:#FBFAF4;
+  font-size:12px;color:#A6A9A1;line-height:1.7;
+}
+.v5p .mp-empty button{
+  margin-left:4px;padding:0;border:none;background:none;cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:800;color:#3B8A73;
+}
+
+/* ==========================================================
+   九、校园服务 · 通知（开发项目组发给全体同学）
+   列表 an- / 详情 ad-，都挂在 .v5p.subpage 骨架下
+   ========================================================== */
+
+/* ---------- 通知列表 ---------- */
+.v5p .an-row{
+  flex:none;display:flex;gap:12px;padding:14px 12px;border-radius:16px;cursor:pointer;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 4px 12px rgba(120,104,78,.045);
+}
+.v5p .an-row:active{transform:scale(.995)}
+.v5p .an-ico{
+  width:46px;height:46px;border-radius:15px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.v5p .an-main{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.v5p .an-top{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.v5p .an-top em{
+  flex:none;margin-top:1px;font-style:normal;font-size:9px;font-weight:700;color:#fff;
+  padding:2px 6px;border-radius:6px;letter-spacing:.02em;
+}
+.v5p .an-top strong{
+  flex:1;min-width:0;font-size:13.5px;font-weight:800;color:#26292B;line-height:1.45;
+}
+.v5p .an-brief{
+  font-size:11.5px;color:#8E9187;line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.v5p .an-foot{display:flex;align-items:center;gap:8px;font-size:10px;color:#B0ACA2}
+.v5p .an-foot span+span::before{content:'·';margin-right:8px}
+/* 未读小圆点 */
+.v5p .an-dot{
+  position:absolute;top:2px;right:0;width:7px;height:7px;border-radius:4px;background:#E4756B;
+}
+
+/* ---------- 通知详情 ---------- */
+.v5p .ad-hero{
+  flex:none;height:118px;border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+}
+.v5p .ad-kind{
+  align-self:flex-start;margin-top:2px;
+  font-style:normal;font-size:10px;font-weight:700;color:#fff;
+  padding:3px 8px;border-radius:7px;letter-spacing:.04em;
+}
+.v5p .ad-title{font-size:19px;font-weight:800;color:#26292B;line-height:1.45;letter-spacing:.01em}
+.v5p .ad-meta{
+  display:flex;align-items:center;gap:8px;font-size:11px;color:#B0ACA2;
+  padding-bottom:10px;border-bottom:1px solid #F1EADB;
+}
+.v5p .ad-meta span+span::before{content:'·';margin-right:8px}
+.v5p .ad-body p{
+  font-size:13px;color:#5C605A;line-height:1.95;white-space:pre-wrap;
+}
+.v5p .ad-tags{display:flex;flex-wrap:wrap;gap:7px}
+.v5p .ad-tags i{
+  font-style:normal;font-size:11px;font-weight:700;color:#7C8078;
+  padding:5px 11px;border-radius:11px;background:#F6F2E8;
+}
+/* 右下角落款，像一封真的公告信 */
+.v5p .ad-sign{
+  margin-top:6px;padding:14px 16px;border-radius:16px;
+  background:#F6F2E8;display:flex;flex-direction:column;gap:3px;
+}
+.v5p .ad-sign p{font-size:12.5px;font-weight:800;color:#5C605A}
+.v5p .ad-sign small{font-size:10.5px;color:#A6A9A1}
+
+
+/* ==========================================================
+   十一、详情页照片封面 + 交友动态详情（2026-10-30 补）
+   ========================================================== */
+
+/* 详情页顶部：传了照片就直接用照片当封面，
+   不放原来那块彩色占位盒子（占位盒子只在没照片时才出现） */
+.v5p .v5d-cover{
+  flex:none;position:relative;height:160px;border-radius:20px;overflow:hidden;
+  box-shadow:0 8px 20px rgba(120,104,78,.10);cursor:zoom-in;
+}
+.v5p .v5d-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.v5p .v5d-cover em{
+  position:absolute;right:10px;bottom:10px;font-style:normal;
+  font-size:10.5px;font-weight:700;color:#FFFDF8;
+  background:rgba(38,41,43,.42);padding:4px 9px;border-radius:9px;
+  backdrop-filter:blur(3px);
+}
+
+/* ---------- 交友 · 动态详情页 v5-feed-detail ---------- */
+.studio[data-scene="v5-feed-detail"][data-design="v5"] .bottom-nav{
+  background:#FAF7F0;border-top:1px solid #EDE8DE;
+}
+.studio[data-scene="v5-feed-detail"][data-design="v5"] .phone-content{background:#FAF7F0}
+
+.fdt-body{
+  padding:16px;border-radius:20px;background:#FFFDF8;
+  border:1px solid #F1EADB;box-shadow:0 6px 16px rgba(120,104,78,.06);
+  display:flex;flex-direction:column;gap:12px;
+}
+.fdt-head{display:flex;align-items:center;gap:10px}
+.fdt-body .fdc-who{flex:1;min-width:0}
+.fdt-title{font-size:18px;font-weight:800;color:#26292B;margin:2px 0 0;line-height:1.4}
+.fdt-text{font-size:13.5px;line-height:1.75;color:#4A4F52;margin:0}
+.fdt-acts{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding-top:10px;border-top:1px dashed #EDE7DA;
+}
+.fdt-acts .fa{
+  display:flex;align-items:center;gap:4px;
+  border:1px solid #EDE7DA;background:#FBF8F1;cursor:pointer;
+  font:inherit;font-size:12px;font-weight:700;color:#7C8079;
+  padding:6px 11px;border-radius:11px;
+}
+.fdt-acts .fa.on{color:#3B8A73;border-color:#CFE7DC;background:#EEF4F0}
+.fdt-acts .fa.msg{
+  margin-left:auto;color:#FFFDF8;background:#3B8A73;border-color:#3B8A73;
+}
+.fdt-cmts{border-top:1px solid #F4F0E7;padding-top:12px}
+.fdt-cmts h3{font-size:13px;font-weight:800;color:#26292B;margin:0 0 10px}
+/* 评论输入条：钉在屏幕底部、紧贴底栏上方
+   底栏 .bottom-nav 是这个页面的兄弟节点、正常排版跟在后面（不是盖在内容上），
+   所以只要页面长满高度 + 输入条 margin-top:auto，它就被推到最下面、紧挨底栏。
+   这里不能再用 sticky：sticky 会被限制在外层 padding 盒里往上缩回到内容中间。
+   另外 tab 页原本预留 96px 底部空间给底栏，这个页面底部要给输入条让位，
+   再留 96 就会空出一大块，所以单独收窄到 16px（就是输入条和底栏之间的呼吸） */
+.fdt-foot{
+  flex:none;margin-top:auto;z-index:40;
+  display:flex;gap:8px;align-items:center;
+  padding:10px 12px;border-radius:16px;
+  background:#FFFDF8;border:1px solid #F1EADB;
+  box-shadow:0 -6px 18px rgba(120,104,78,.10);
+}
+.studio[data-scene="v5-feed-detail"] .screen.v5-tab-page{padding-bottom:16px}
+.fdt-foot input{
+  flex:1;min-width:0;height:38px;padding:0 13px;border-radius:19px;
+  border:1px solid #EDE7DA;background:#FBF8F1;outline:none;
+  font:inherit;font-size:12.5px;color:#26292B;
+}
+.fdt-foot input::placeholder{color:#B6B2A6}
+.fdt-foot button{
+  flex:none;height:38px;padding:0 16px;border:none;border-radius:19px;cursor:pointer;
+  font:inherit;font-size:12.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#4E9A82,#3B8A73);
+}
+
+/* ---------- 我的收藏 · 「其他」里的校园板块收藏 ---------- */
+.seg.fav-seg{display:flex;gap:6px}
+.seg.fav-seg button{
+  flex:1;min-width:0;padding:6px 4px;font-size:11.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.fav-other .fv-row{align-items:center}
+.fav-other .fo-ico{
+  width:46px;height:46px;border-radius:13px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ================= 订单（第 13 轮新增） =================
+   没有私信之后，双方靠复制联系方式联系，平台只记订单。
+   这里全是新类名（or- / rt- / ot- / cp- / oa-），不跟原有样式打架。 */
+
+/* 详情页：联系方式那一行，点一下就复制 */
+.v5d-copy{
+  display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  padding:0;border:none;background:none;cursor:pointer;
+  font:inherit;font-size:12.5px;color:#3A3F42;text-align:left;
+}
+.v5d-copy em{
+  flex:none;padding:1px 6px;border-radius:8px;
+  background:#EAF3EC;color:#3B8A73;font-size:10.5px;font-style:normal;font-weight:700;
+}
+.v5d-copy:active em{background:#3B8A73;color:#fff}
+
+/* 详情页顶部常驻的订单入口 */
+.v5d-order{
+  display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:9px 11px;
+  border-radius:12px;background:#F4F1E6;cursor:pointer;
+}
+.v5d-order .vo-st{
+  flex:none;padding:2px 7px;border-radius:7px;
+  background:#3B8A73;color:#fff;font-size:10.5px;font-weight:700;
+}
+.v5d-order .vo-st.done{background:#C98A3C}
+.v5d-order .vo-st.finished{background:#4E7FA8}
+.v5d-order .vo-st.rated{background:#A6A9A1}
+.v5d-order .vo-txt{
+  flex:1;min-width:0;font-size:11.5px;color:#5F6357;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.v5d-order b{flex:none;font-size:11.5px;color:#3B8A73}
+
+/* 底部主按钮的禁用态：已经被别人接走了 */
+.act-bar .ab-main.off{background:#DCD8CB;color:#fff;cursor:default}
+.act-bar .ab-main.off:active{transform:none}
+
+/* ---------- 我的订单 · 列表 ---------- */
+.or-row{
+  display:flex;align-items:center;gap:10px;padding:12px 13px;margin-bottom:9px;
+  background:#fff;border:1px solid #F1EADB;border-radius:14px;cursor:pointer;
+}
+.or-row:active{transform:scale(.995)}
+.or-row .or-main{flex:1;min-width:0}
+.or-row .or-top{display:flex;align-items:center;gap:7px}
+.or-row .or-top strong{
+  flex:1;min-width:0;font-size:13.5px;color:#26292B;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.or-st{
+  flex:none;padding:2px 7px;border-radius:7px;
+  background:#3B8A73;color:#fff;font-size:10.5px;font-weight:700;
+}
+.or-st.done{background:#C98A3C}
+.or-st.finished{background:#4E7FA8}
+.or-st.rated{background:#A6A9A1}
+.or-who{margin:6px 0 0;font-size:11.5px;color:#7C8074}
+.or-foot{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#A6A9A1}
+.or-foot em{font-style:normal;color:#B0B2A6}
+.or-foot b{margin-left:auto;font-weight:700;color:#C4665B}
+.or-go{flex:none;font-size:17px;color:#C9C5B8}
+
+/* ---------- 订单详情 ---------- */
+.or-head{
+  display:flex;align-items:center;gap:10px;padding:13px;
+  background:#fff;border:1px solid #F1EADB;border-radius:14px;
+}
+.or-head .oh-st{
+  flex:none;padding:4px 9px;border-radius:8px;
+  background:#3B8A73;color:#fff;font-size:12px;font-weight:700;
+}
+.or-head .oh-st.done{background:#C98A3C}
+.or-head .oh-st.finished{background:#4E7FA8}
+.or-head .oh-st.rated{background:#A6A9A1}
+.or-head .oh-txt{flex:1;min-width:0}
+.or-head .oh-txt strong{display:block;font-size:14px;color:#26292B}
+.or-head .oh-txt small{display:block;margin-top:3px;font-size:11px;color:#A6A9A1}
+
+/* 四步进度条 */
+.or-step{display:flex;align-items:center;gap:4px;margin:12px 0}
+.or-step .os{
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;
+  font-size:10.5px;color:#B0B2A6;text-align:center;
+}
+.or-step .os i{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#EFEBE0;color:#B0B2A6;font-size:11px;font-style:normal;font-weight:700;
+}
+.or-step .os.on{color:#3B8A73}
+.or-step .os.on i{background:#3B8A73;color:#fff}
+
+/* 双方信息卡 */
+.or-two{display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+.ot-one{
+  display:flex;align-items:center;gap:10px;padding:11px 12px;
+  background:#fff;border:1px solid #F1EADB;border-radius:13px;
+}
+.ot-ava{
+  width:36px;height:36px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:14px;font-weight:700;
+}
+.ot-info{flex:1;min-width:0}
+.ot-info strong{display:block;font-size:13px;color:#26292B}
+.ot-info small{display:block;margin-top:2px;font-size:11px;color:#A6A9A1}
+/* 订单里直接把联系方式写出来，省得非得点一下复制才知道有没有 */
+.ot-info .ot-ct{
+  display:block;margin-top:3px;font-size:11px;font-style:normal;color:#3B8A73;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.ot-copy{
+  flex:none;height:28px;padding:0 12px;border:1px solid #DDE0D5;border-radius:14px;
+  background:#fff;cursor:pointer;font:inherit;font-size:11.5px;color:#3B8A73;
+}
+.ot-copy:active{background:#EAF3EC}
+
+/* 任务信息卡 */
+.or-task{
+  padding:12px 13px;background:#fff;border:1px solid #F1EADB;border-radius:14px;cursor:pointer;
+}
+.ot-line{display:flex;align-items:center;gap:12px;padding:5px 0;font-size:12.5px}
+.ot-line span{flex:none;width:44px;color:#A6A9A1;font-size:11.5px}
+.ot-line strong{flex:1;min-width:0;color:#3A3F42;font-weight:400}
+.ot-line strong.fee{color:#C4665B;font-weight:700}
+.ot-go{display:block;margin-top:8px;font-size:11.5px;color:#3B8A73}
+
+/* 进度流水 */
+.or-time{margin-top:14px}
+.or-time h3,.or-rate h3,.or-cp h3{
+  margin:0 0 9px;font-size:12.5px;color:#26292B;font-weight:700;
+}
+.or-time p{display:flex;gap:9px;margin:0 0 7px;font-size:12px;color:#5F6357}
+.or-time em{flex:none;font-style:normal;color:#B0B2A6;font-size:11px}
+
+/* 互评 */
+.or-rate{margin-top:14px}
+.rt-box{
+  padding:12px 13px;margin-bottom:9px;
+  background:#fff;border:1px solid #F1EADB;border-radius:14px;
+}
+.rt-to{margin:0 0 9px;font-size:12px;color:#5F6357}
+.rt-stars{display:flex;gap:6px;margin-bottom:9px}
+.rt-stars button{
+  width:30px;height:30px;border:none;border-radius:9px;cursor:pointer;
+  background:#F1EADB;color:#C9C5B8;font-size:16px;line-height:1;
+}
+.rt-stars button.on{background:#FBEFEC;color:#E0A03C}
+.rt-done b{display:block;margin-bottom:5px;color:#E0A03C;font-size:15px;letter-spacing:1px}
+.rt-done p{margin:0;font-size:12.5px;color:#3A3F42;line-height:1.6}
+.rt-done small{display:block;margin-top:5px;font-size:11px;color:#B0B2A6}
+.rt-send{
+  width:100%;height:38px;margin-top:4px;border:none;border-radius:19px;cursor:pointer;
+  font:inherit;font-size:12.5px;font-weight:700;color:#fff;background:#3B8A73;
+}
+.rt-send:active{transform:scale(.98)}
+.rt-wait{display:block;margin-top:7px;font-size:11px;color:#B0B2A6}
+
+/* 投诉记录 */
+.or-cp{margin-top:14px}
+.or-cp p{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px;font-size:12px;color:#C4665B}
+.or-cp em{flex:none;font-style:normal;color:#B0B2A6;font-size:11px}
+
+/* 订单页底部两颗按钮 */
+.or-acts{display:flex;gap:10px;margin:16px 0 4px}
+.or-acts .oa-main{
+  flex:1;height:44px;border:none;border-radius:22px;cursor:pointer;
+  font:inherit;font-size:13.5px;font-weight:700;color:#fff;background:#3B8A73;
+}
+.or-acts .oa-main.off{background:#DCD8CB;cursor:default}
+.or-acts .oa-ghost{
+  flex:none;height:44px;padding:0 18px;border:1px solid #E3DFD2;border-radius:22px;
+  background:#fff;cursor:pointer;font:inherit;font-size:13px;color:#C4665B;
+}
+
+/* 投诉弹层里的原因列表 */
+.cp-reasons{display:flex;flex-direction:column;gap:8px;margin:6px 0 12px}
+.cp-reasons button{
+  padding:10px 12px;border:1px solid #EDE8DA;border-radius:11px;
+  background:#fff;cursor:pointer;font:inherit;font-size:12.5px;color:#3A3F42;text-align:left;
+}
+.cp-reasons button.on{border-color:#3B8A73;background:#EAF3EC;color:#3B8A73}
+.cp-tip{margin:6px 0 12px;font-size:12.5px;color:#5F6357;line-height:1.65}
+.cp-tip b{color:#C4665B}
+.bs-pub.del{background:#C4665B}
+/* 接单时留联系方式那个弹层里的一行小勾选项 */
+.ct-keep{margin:2px 0 12px}
+.ct-keep label{
+  display:flex;align-items:center;gap:7px;
+  font-size:12.5px;color:#8E9187;cursor:pointer;
+}
+.ct-keep input{width:15px;height:15px;accent-color:#3B8A73}
+
+/* 通用投诉弹层：挂在 PhoneShell 里面（.phone 是它的定位基准），
+   所以宽高自动跟着手机走，不用自己算宽度。
+   z-index 给到 120：要盖住底栏(18)和页面上别的弹层(80)。 */
+.rp-mask{z-index:120}
+.rp-mask .board-sheet{max-height:80%;box-shadow:0 -12px 34px rgba(60,52,38,.2)}
+
+/* ---------- 个人主页：大家给他的评价 ---------- */
+.v5p .up-rate{
+  flex:none;margin-top:12px;padding:14px 15px;border-radius:18px;
+  border:1px solid #F1EADB;background:#FFFDF8;box-shadow:0 6px 16px rgba(120,104,78,.05);
+}
+.v5p .up-rate h3{display:flex;align-items:center;gap:6px;margin:0 0 10px;font-size:13px;font-weight:800;color:#26292B}
+.v5p .up-rate h3 i{
+  font-style:normal;font-size:10.5px;font-weight:700;color:#9A7B3C;
+  padding:1px 7px;border-radius:8px;background:#F6E7C9;
+}
+.v5p .ur-head{display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid #F1EADB}
+.v5p .ur-head b{font-size:22px;font-weight:800;color:#26292B;line-height:1}
+.v5p .ur-head span{font-size:13px;color:#D9A63C;letter-spacing:.06em}
+.v5p .ur-head em{font-style:normal;font-size:11px;color:#A6A9A1;margin-left:auto}
+.v5p .ur-row{padding:9px 0;border-bottom:1px dashed #F1EADB}
+.v5p .ur-row:last-child{border-bottom:none;padding-bottom:0}
+.v5p .ur-top{display:flex;align-items:center;gap:7px}
+.v5p .ur-top strong{font-size:12px;font-weight:700;color:#3A3F42;cursor:pointer}
+.v5p .ur-top span{font-size:11px;color:#D9A63C;letter-spacing:.05em}
+.v5p .ur-top small{margin-left:auto;font-size:10.5px;color:#B6B2A6}
+.v5p .ur-row p{margin:3px 0 0;font-size:12px;line-height:1.6;color:#5C605A}
+
+/* 订单行上那一小块「闲置 / 搭把手」标签 */
+.or-bd{
+  font-style:normal;font-size:10px;font-weight:700;color:#5A7B96;
+  padding:1px 6px;border-radius:6px;background:#E6EEF5;margin-right:4px;
+}
+.or-bd.mk{color:#9A7B3C;background:#F6E7C9}
+
+/* 列表卡上的「已接单」小标签：看到就说明这单被人接走了 */
+.lc-taken{
+  flex:none;padding:1px 6px;border-radius:6px;
+  background:#3B8A73;color:#fff;font-size:10px;font-weight:700;
+}
+/* 闲置卡上的「已抢光」：卖掉了就用灰的，跟「已预定」的绿区分开 */
+.lc-taken.out{background:#9B978F}
+
+/* ---------- 我的发布：编辑 / 删除 / 看订单 ---------- */
+.mp-ops{display:flex;gap:7px;margin-top:9px}
+.mp-ops button{
+  height:28px;padding:0 11px;border:1px solid #E3DFD2;border-radius:14px;
+  background:#fff;cursor:pointer;font:inherit;font-size:11.5px;color:#5F6357;
+}
+.mp-ops button.del{color:#C4665B}
+.mp-ops button.ord{color:#3B8A73;border-color:#CFE2D6}
+.mp-ops button:active{background:#F5F2E8}
+
+/* ---------- 第 14 轮：订单列表排版 / 投诉入口 / 交友帖 ---------- */
+
+/* 订单卡：正文包在 or-main 里，箭头单独占右边一格，
+   不然标题、单号、报酬会被挤成一列竖着排 */
+.or-row .or-main{flex:1;min-width:0}
+.or-row .or-top strong{
+  flex:1;min-width:0;font-size:13.5px;color:#26292B;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.or-who{
+  margin:5px 0 0;font-size:11.5px;color:#7C8074;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.or-foot{
+  display:flex;align-items:center;flex-wrap:nowrap;gap:8px;margin-top:6px;
+  font-size:11px;color:#A6A9A1;
+}
+.or-foot em{flex:none;font-style:normal;color:#B0B2A6;white-space:nowrap}
+.or-foot span{
+  flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.or-foot b{flex:none;margin-left:auto;font-weight:700;color:#C4665B;white-space:nowrap}
+.or-go{flex:none;font-size:17px;color:#C9C5B8}
+
+/* 闲置详情：去掉「我想要」之后，复制联系自己撑开 */
+.v5p .act-bar .ab-ghost.ab-copy.wide{flex:1;width:auto}
+
+/* 顶部右上角的文字按钮（投诉 / 已投诉），之前完全没样式 */
+.sub-act{
+  flex:none;height:28px;padding:0 12px;border:1px solid #E3DFD2;border-radius:14px;
+  background:#fff;cursor:pointer;font-family:inherit;font-size:11.5px;color:#C4665B;
+}
+.sub-act:active{background:#F7F3E9}
+.tab-head.detail .sub-act{height:26px;font-size:11px;color:#8E9187}
+
+/* 交友动态卡底部的「投诉」 */
+.fdc-acts .fa.rep{font-size:11.5px}
+.fdc-acts .fa.rep.on{color:#C4665B}
+
+/* 我的发布里「已发布」这种状态（交友帖） */
+.v5p .mp-st.ok{background:#E6EEF5;color:#4E7FA8}

@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # This project uses npm and package-lock.json.
 pnpm-lock.yaml
+
+# 本地验证截图，不提交
+_shots/
+

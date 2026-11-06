@@ -1,3 +1,4 @@
+<!-- 顶部状态栏：时间 + 安卓信号图标 + 微信胶囊。它是 absolute 定位并盖在内容上（z-index 15）。 -->
 <template>
   <div class="status-bar">
     <strong>14:11</strong>
