@@ -1,5 +1,9 @@
+/* 第一行必须是运行时替身：现版（live）会直接 import 小程序源码里的组件，
+   这些组件依赖全局 uni / getApp，必须在它们被求值之前挂好 */
+import './uni-env.js';
 import { createApp } from 'vue';
 import App from './App.vue';
+import { installUniComponents } from './uni-components.js';
 
 /*
  * 样式总入口，也是唯一的入口：新写样式文件必须在这里 import 才会生效。
@@ -31,10 +35,14 @@ import './public-profile-refine.css';  // ④ 用户公开主页精修
 import './v5-home.css';              // ⑤ V5 新版：首页 + 进店逛/搜索页 + 通知弹窗 + 四栏底栏
 import './v5-pages.css';             // ⑥ V5 五个子页：今天吃什么(盲盒机)/今天做什么(灵感小盒)/MBTI食堂/店铺详情/我的收藏
 import './v5-tabs.css';              // ⑦ V5 四个 tab 页(校园/交友/我的) + 校园三个板块(失物招领/闲置小铺/搭把手)及其详情页
+import './live/live.css';            // ⑧ 现版：照小程序源码复刻（750rpx → 0.52px，玻璃底栏），只在 design=live 生效
+import './mp-base.css';              // ⑨ 小程序组件替身的基础行为（img[mode] 裁切、scroll-view 溢出）
 
 /* 兜底：某一屏渲染出错时不要把整个设计台打白，
    把错误打到控制台方便排查，其余页面照常能点 */
 const app = createApp(App);
+/* 注册 <view>/<text>/<image>/<scroll-view>/<uni-icons> 等小程序内置组件的替身 */
+installUniComponents(app);
 app.config.errorHandler = (err, vm, info) => {
   console.log('VUEERR:' + info + ' :: ' + (err && err.stack ? err.stack : err));
 };

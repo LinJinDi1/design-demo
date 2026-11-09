@@ -1,0 +1,39 @@
+/*
+ * 小程序组件 → HTML 之后需要补的一点基础行为。
+ * 只对从 quick-pick-main 改写过来的标签生效（属性还在，所以能用属性选择器）。
+ */
+
+/* <image mode="aspectFill"> → <img> 要按小程序语义裁切（只认带 mode 的那批，避免影响别的皮肤） */
+img[mode] {
+  object-fit: cover;
+}
+
+img[mode='aspectFit'] {
+  object-fit: contain;
+}
+
+/* <scroll-view scroll-x> / scroll-y */
+[scroll-x] {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+[scroll-y] {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+[scroll-x],
+[scroll-y] {
+  scrollbar-width: none;
+}
+
+[scroll-x]::-webkit-scrollbar,
+[scroll-y]::-webkit-scrollbar {
+  display: none;
+}
+
+/* 小程序的 hover-class 在 web 上没用了，留一个手感的替代 */
+[hover-class]:active {
+  opacity: 0.9;
+}

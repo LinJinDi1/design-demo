@@ -29,3 +29,7 @@ pnpm-lock.yaml
 # 本地验证截图，不提交
 _shots/
 
+# 现版（live）复刻：本地截图产物与无头 Chrome 用户目录
+.shots/
+.chrome-profile*/
+

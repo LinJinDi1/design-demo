@@ -1,0 +1,239 @@
+/*
+ * 现版（live）分支的样式底座。
+ *
+ * 来源：quick-pick-main 的 uni.scss / styles/colors.scss / styles/tab-header.scss
+ *       + App.vue 全局样式 + custom-tab-bar/index.wxss。
+ *
+ * 单位换算：小程序 750rpx = 390px 画布 → 1rpx = 0.52px。
+ * 为了和源码逐行比对，这里定义 --u: 0.52px，样式一律写 calc(var(--u) * N)，
+ * N 直接抄小程序里的 rpx 数字，不重新换算。
+ *
+ * 加载顺序：main.js 里排在最后（第 ⑧ 层），只对 [data-design="live"] 生效，
+ * 不影响原版 / Wise / V5 三套皮肤。
+ */
+
+/* ---------- 设计变量：直接对齐 styles/colors.scss ---------- */
+.studio[data-design='live'] {
+  --u: 0.52px;
+
+  /* 品牌紫 */
+  --live-primary: #6a5acd;
+  --live-primary-deep: #7153bf;
+  --live-primary-soft: #8f75d4;
+  --live-primary-bg: #f0f0ff;
+
+  /* 文字 */
+  --live-ink: #302e33;
+  --live-ink-2: #322b3e;
+  --live-ink-3: #363041;
+  --live-ink-4: #4a4354;
+  --live-ink-5: #5d5667;
+  --live-muted: #aaa4b2;
+  --live-muted-2: #9b95a3;
+  --live-muted-3: #a39bad;
+
+  /* 背景与描边 */
+  --live-bg: #f7f7f8;
+  --live-card: #ffffff;
+  --live-fill: #f8f7fa;
+  --live-line: #f0f0f0;
+  --live-line-soft: #eeebf3;
+
+  /* 强调色 */
+  --live-accent: #f92e05;
+  --live-accent-soft: #f27d65;
+  --live-badge: #ed6b76;
+  --live-warm: #d77345;
+}
+
+/* 现版页面的状态栏是白底，内容从 46px 之下开始（见 .live-page 的 padding-top） */
+.studio[data-design='live'] .status-bar {
+  z-index: 30;
+  background: #fff;
+}
+
+/* 「我的」页顶部是灰底（pages/logs/logs.vue 里 .profile-header 是 #f2f2f4），
+   状态栏那条也要跟着变，否则会露出一条白边 */
+.studio[data-design='live'] .phone:has(.live-profile) .status-bar {
+  background: #f2f2f4;
+}
+
+/* ---------- 页面基座 ---------- */
+.live-page {
+  --u: 0.52px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  /* 46px = 状态栏高度；底部留白给悬浮玻璃底栏（116rpx + 12rpx ≈ 66px） */
+  padding: 46px 0 calc(var(--u) * 190);
+  background: var(--live-bg);
+  color: var(--live-ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.live-page h1,
+.live-page h2,
+.live-page h3,
+.live-page p {
+  margin: 0;
+}
+
+.live-page button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.live-page img {
+  display: block;
+}
+
+/* ---------- tab 页共用头部（对应 styles/tab-header.scss） ---------- */
+.live-page .tab-section-header {
+  box-sizing: border-box;
+  padding: 0 calc(var(--u) * 28) calc(var(--u) * 24);
+  background: #fff;
+}
+
+.live-page .tab-section-title {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--live-ink-3);
+  font-size: calc(var(--u) * 40);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: calc(var(--u) * 2);
+}
+
+.live-page .tab-section-subtitle {
+  margin-top: calc(var(--u) * 8);
+  color: #aaa2b5;
+  font-size: calc(var(--u) * 22);
+  line-height: 1.4;
+}
+
+.live-page .tab-search-entry {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 16);
+  box-sizing: border-box;
+  height: calc(var(--u) * 72);
+  padding: 0 calc(var(--u) * 24);
+  border-radius: calc(var(--u) * 40);
+  background: #f6f5f9;
+  color: var(--live-muted-3);
+  font-size: calc(var(--u) * 25);
+}
+
+/* 现版的 tab 页头部是吸顶的，正好卡在状态栏下方 */
+.live-page .live-sticky-head {
+  position: sticky;
+  top: 46px;
+  z-index: 12;
+  background: #fff;
+}
+
+/* ---------- 底部导航：玻璃胶囊（对应 custom-tab-bar/index.wxss） ---------- */
+.live-tabbar {
+  position: absolute;
+  right: calc(var(--u) * 24);
+  bottom: calc(var(--u) * 12);
+  left: calc(var(--u) * 24);
+  z-index: 19;
+  height: calc(var(--u) * 116);
+}
+
+.live-tabbar-surface {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: calc(var(--u) * 68);
+  background: rgba(255, 255, 255, 0.36);
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(240, 237, 250, 0.06));
+  box-shadow:
+    0 calc(var(--u) * 8) calc(var(--u) * 28) rgba(50, 37, 88, 0.09),
+    inset 0 1px 1px rgba(255, 255, 255, 0.65),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.live-tabbar-items {
+  position: relative;
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  padding: calc(var(--u) * 8);
+}
+
+.live-tab {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: calc(var(--u) * 54);
+  background: transparent;
+  color: #625e6d;
+  cursor: pointer;
+}
+
+.live-tab-highlight {
+  position: absolute;
+  top: 0;
+  right: calc(var(--u) * 2);
+  bottom: 0;
+  left: calc(var(--u) * 2);
+  border-radius: calc(var(--u) * 54);
+  background: linear-gradient(155deg, #fff 5%, rgba(249, 247, 255, 0.97) 66%, rgba(229, 221, 255, 0.8));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.96),
+    0 calc(var(--u) * 4) calc(var(--u) * 18) rgba(106, 90, 205, 0.13);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-out;
+}
+
+.live-tab img {
+  position: relative;
+  width: calc(var(--u) * 50);
+  height: calc(var(--u) * 50);
+  object-fit: contain;
+}
+
+.live-tab span {
+  position: relative;
+  margin-top: calc(var(--u) * 4);
+  font-size: calc(var(--u) * 22);
+  line-height: calc(var(--u) * 30);
+}
+
+.live-tab.on {
+  color: var(--live-primary);
+}
+
+.live-tab.on .live-tab-highlight {
+  opacity: 1;
+}
+
+.live-tab.on span {
+  font-weight: 600;
+}
+
+/* ---------- 一些跨页小件 ---------- */
+.live-press {
+  opacity: 0.62;
+}
+
+.live-star {
+  color: var(--live-warm);
+  font-weight: 600;
+}

@@ -12,6 +12,15 @@ const props = defineProps({
 defineEmits(['navigate']);
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 const isV5 = computed(() => props.design === 'v5');
+/* 现版底栏：照 custom-tab-bar/index.wxss 的玻璃胶囊重做，图标直接用小程序那份位图 */
+const isLive = computed(() => props.design === 'live');
+const liveItems = [
+  { id: 'home', label: '首页', icon: '/assets/live/tab/home.png', selectedIcon: '/assets/live/tab/home-active.png' },
+  { id: 'discover', label: '自提', icon: '/assets/live/tab/pickup.png', selectedIcon: '/assets/live/tab/pickup-active.png' },
+  { id: 'campus', label: '校园', icon: '/assets/live/tab/campus.png', selectedIcon: '/assets/live/tab/campus-active.png' },
+  { id: 'friends', label: '好友', icon: '/assets/live/tab/friends.png', selectedIcon: '/assets/live/tab/friends-active.png' },
+  { id: 'profile', label: '我的', icon: '/assets/live/tab/profile.png', selectedIcon: '/assets/live/tab/profile-active.png' },
+];
 
 // 原版 / Wise 五栏：自提那一栏 id 是 discover，App.vue 里会换成 stalls
 const classicItems = [
@@ -31,7 +40,17 @@ const v5Items = [
 ];
 </script>
 <template>
-  <nav :class="['bottom-nav', { 'v5-tabbar': isV5 }]">
+  <nav v-if="isLive" class="live-tabbar">
+    <div class="live-tabbar-surface"></div>
+    <div class="live-tabbar-items">
+      <button v-for="item in liveItems" :key="item.id" :class="['live-tab', { on: active === item.id }]" @click="$emit('navigate', item.id)">
+        <i class="live-tab-highlight"></i>
+        <img :src="asset(active === item.id ? item.selectedIcon : item.icon)" alt="" aria-hidden="true" />
+        <span>{{ item.label }}</span>
+      </button>
+    </div>
+  </nav>
+  <nav v-else :class="['bottom-nav', { 'v5-tabbar': isV5 }]">
     <template v-if="isV5">
       <button v-for="item in v5Items" :key="item.id" :class="['v5-tab', { on: active === item.id }]" @click="$emit('navigate', item.id)">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" v-html="item.svg"></svg>
