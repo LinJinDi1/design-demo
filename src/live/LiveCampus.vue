@@ -1,3 +1,7 @@
+<script>
+export const meta = { id: 'campus', label: '校园', note: '轮播 + 服务卡', group: '校园', tab: 'campus', order: 1 };
+</script>
+
 <!--
   现版 · 校园 tab（对应 quick-pick-main/pages/campus/campus.vue）
   结构：校园标题 + 副标题 → 轮播第一屏（引言 / 作者 / 底部指示点见下方说明）

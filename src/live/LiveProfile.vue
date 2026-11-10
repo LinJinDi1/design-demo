@@ -1,3 +1,7 @@
+<script>
+export const meta = { id: 'profile', label: '我的', note: '资料 + 工具 + 服务', group: '个人', tab: 'profile', order: 1 };
+</script>
+
 <!--
   现版 · 我的（对应 quick-pick-main/pages/logs/logs.vue）
   结构：身份区（头像 / 昵称 / 编辑资料）→ QuickID + 复制 + 用龄 → 简介 → 四个统计

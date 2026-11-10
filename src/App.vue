@@ -42,46 +42,41 @@ import {
 import { v5Icon } from './v5-icons';
 import PhoneShell from './components/PhoneShell.vue';
 import IconSymbol from './components/IconSymbol.vue';
-/* 现版（live）分支：照 quick-pick-main 源码 1:1 复刻的五个 tab 页面 */
-import LiveHome from './live/LiveHome.vue';
-import LiveList from './live/LiveList.vue';
-import LiveCampus from './live/LiveCampus.vue';
-import LiveFriends from './live/LiveFriends.vue';
-import LiveProfile from './live/LiveProfile.vue';
+/* 现版（live）分支：照 quick-pick-main 源码 1:1 复刻。
+   src/live 下每个 LiveXxx.vue 导出 meta，registry 自动收集——新增页面不用改这里 */
+import { livePages, livePageMap } from './live/registry.js';
 
 const params = new URLSearchParams(location.search);
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const current = ref(scenes.some((scene) => scene.id === params.get('scene')) ? params.get('scene') : 'home');
+const current = ref(scenes.some((scene) => scene.id === params.get('scene')) || livePageMap[params.get('scene')] ? params.get('scene') : 'home');
 const designParam = params.get('design');
 const design = ref(['wise', 'v5', 'live'].includes(designParam) ? designParam : 'v5');
 const homeDark = ref(params.get('theme') !== 'light');
-/* 现版分支目前只还原 5 个 tab 页，切到「现版」时左侧索引只留这 5 个，
-   免得点到没有现版实现的场景时掉回原版页面 */
-const LIVE_SCENES = ['home', 'stalls', 'campus', 'friends', 'profile'];
-/* 现版页面和原版不是同一套命名，左侧索引单独给一套标签/备注 */
-const LIVE_SCENE_LABELS = {
-  home: { label: '首页', note: '去哪吃 + 猜你喜欢' },
-  stalls: { label: '自提 · 校园觅食', note: '小摊列表' },
-  campus: { label: '校园', note: '轮播 + 服务卡' },
-  friends: { label: '好友', note: '消息 + 好友列表' },
-  profile: { label: '我的', note: '资料 + 工具 + 服务' },
-};
+/* 现版可用的场景 id 来自 registry；切到现版时左侧索引只列这些，避免掉回原版页面 */
+const livePage = computed(() => livePageMap[current.value]);
+const isLive = computed(() => design.value === 'live');
 function sceneLabel(scene) {
-  const live = design.value === 'live' ? LIVE_SCENE_LABELS[scene.id] : null;
+  if (!scene) return '';
+  const live = design.value === 'live' ? livePageMap[scene.id] : null;
   return live ? live.label : scene.label;
 }
 function sceneNote(scene) {
-  const live = design.value === 'live' ? LIVE_SCENE_LABELS[scene.id] : null;
+  if (!scene) return '';
+  const live = design.value === 'live' ? livePageMap[scene.id] : null;
   return live ? live.note : scene.note;
 }
-const visibleScenes = computed(() =>
-  design.value === 'live' ? scenes.filter((scene) => LIVE_SCENES.includes(scene.id)) : scenes,
-);
+const visibleScenes = computed(() => (isLive.value ? livePages : scenes));
 const visibleGroups = computed(() => [...new Set(visibleScenes.value.map((scene) => scene.group))]);
-const activeScene = computed(() => scenes.find((scene) => scene.id === current.value));
+const activeScene = computed(() => scenes.find((scene) => scene.id === current.value) || livePage.value);
+const activeTitle = computed(() => sceneLabel(activeScene.value));
 const isDetail = computed(() => current.value.includes('doudou') || current.value.includes('tongguan') || ['public-profile', 'linhuzi-reviews'].includes(current.value));
 const secondary = computed(() => ['library', 'favorites', 'golden-board', 'random-store'].includes(current.value));
 const navActive = computed(() => ['stalls', 'mall', 'canteen'].includes(current.value) ? 'discover' : current.value);
+/* 现版：页面自己声明属于哪个 tab（详情页声明 tab: '' → 不显示底栏） */
+const liveTab = computed(() => (isLive.value ? livePage.value?.tab || '' : ''));
+const shellDetail = computed(() => (isLive.value ? !livePage.value?.tab : isDetail.value));
+const shellActive = computed(() => (isLive.value ? liveTab.value : navActive.value));
+const shellSecondary = computed(() => (isLive.value ? false : secondary.value));
 const isTongguan = computed(() => current.value.includes('tongguan'));
 const shopName = computed(() => isTongguan.value ? '老潼关肉夹馍' : '徐豆豆');
 const shop = computed(() => isTongguan.value
@@ -1714,8 +1709,9 @@ function selectDesign(nextDesign) {
   else if (nextDesign === 'live') url.searchParams.set('design', 'live');
   else url.searchParams.delete('design');
   history.replaceState({}, '', url);
-  /* 现版只做了 5 个 tab 页，从别的场景切过来先落到首页 */
-  if (nextDesign === 'live' && !LIVE_SCENES.includes(current.value)) selectScene('home');
+  /* 现版只有 src/live 里做过的页；从别的皮肤切过来先落到首页，同理切走时也回首页 */
+  if (nextDesign === 'live' && !livePageMap[current.value]) selectScene('home');
+  if (nextDesign !== 'live' && !scenes.some((scene) => scene.id === current.value)) selectScene('home');
   restoreSceneScroll(current.value);
 }
 function nextDesignMode() {
@@ -1739,7 +1735,7 @@ function toggleHomeTheme() {
 }
 onMounted(() => {
   /* 带 ?design=live&scene=其它 进来时，落到现版首页，避免渲染原版兜底页 */
-  if (design.value === 'live' && !LIVE_SCENES.includes(current.value)) selectScene('home');
+  if (design.value === 'live' && !livePageMap[current.value]) selectScene('home');
   restoreSceneScroll(current.value);
 });
 onBeforeUnmount(() => { stopRandomStore(); window.clearTimeout(v5BoxTimeoutId); });
@@ -1751,7 +1747,7 @@ onBeforeUnmount(() => { stopRandomStore(); window.clearTimeout(v5BoxTimeoutId); 
     <!-- 左侧场景索引：按钮列表由 fixtures.js 的 scenes 数组按 group 分组渲染 -->
     <aside class="sidebar">
       <div class="brand"><img src="/assets/qingkuai.ico"><div><strong>庆快校园</strong><small>STATIC DESIGN DESK</small></div></div>
-      <div class="sidebar-intro"><span class="eyebrow">SCREEN INDEX</span><h1>线上页面静态复刻</h1><p>17 个截图状态，390 × 888 手机画布。</p></div>
+      <div class="sidebar-intro"><span class="eyebrow">SCREEN INDEX</span><h1>线上页面静态复刻</h1><p>原版 17 个截图状态 + 现版 23 个页面，390 × 888 手机画布。</p></div>
       <!-- 设计版本四选一：原版 / Wise / V5 / 现版，切换只改 design，不改动其它场景数据 -->
       <div class="design-switcher" aria-label="设计版本">
         <span class="group-label">设计版本</span>
@@ -1764,15 +1760,11 @@ onBeforeUnmount(() => { stopRandomStore(); window.clearTimeout(v5BoxTimeoutId); 
 
     <!-- 右侧舞台：标题栏 + 手机画布 -->
     <section class="stage">
-      <header class="stage-header"><div><span class="eyebrow">{{ design === 'wise' ? 'WISE REDESIGN' : design === 'v5' ? 'V5 REDESIGN' : design === 'live' ? 'LIVE BUILD' : 'CURRENT SCENE' }}</span><h2>{{ sceneLabel(activeScene) }}</h2></div><div class="stage-meta"><button class="mobile-design-toggle" @click="selectDesign(nextDesignMode())">{{ designLabel }}</button><div class="viewport-chip"><span></span>390 × 888</div></div></header>
+      <header class="stage-header"><div><span class="eyebrow">{{ design === 'wise' ? 'WISE REDESIGN' : design === 'v5' ? 'V5 REDESIGN' : design === 'live' ? 'LIVE BUILD' : 'CURRENT SCENE' }}</span><h2>{{ activeTitle }}</h2></div><div class="stage-meta"><button class="mobile-design-toggle" @click="selectDesign(nextDesignMode())">{{ designLabel }}</button><div class="viewport-chip"><span></span>390 × 888</div></div></header>
       <!-- 手机壳：状态栏(绝对定位) + 可滚动内容区 + 底部导航。下面这一长串 v-if/v-else-if 就是全部场景页面 -->
-      <div class="phone-wrap"><PhoneShell :active="navActive" :detail="isDetail" :secondary="secondary" :design="design" @navigate="selectScene">
-        <!-- ============ 【现版】quick-pick-main 线上代码的五个 tab 页（页面级组件在 src/live/） ============ -->
-        <LiveHome v-if="current === 'home' && design === 'live'" />
-        <LiveList v-else-if="current === 'stalls' && design === 'live'" />
-        <LiveCampus v-else-if="current === 'campus' && design === 'live'" />
-        <LiveFriends v-else-if="current === 'friends' && design === 'live'" />
-        <LiveProfile v-else-if="current === 'profile' && design === 'live'" />
+      <div class="phone-wrap"><PhoneShell :active="shellActive" :detail="shellDetail" :secondary="shellSecondary" :plain="isLive && !liveTab" :design="design" @navigate="selectScene">
+        <!-- ============ 【现版】quick-pick-main 线上代码的复刻页（src/live/，由 registry 自动注册） ============ -->
+        <component :is="livePage?.component" v-if="isLive" />
 
         <!-- ============ 【店铺详情 · 林胡子评价抽屉｜Wise 新版】 ============ -->
         <section v-else-if="current === 'linhuzi-reviews' && design === 'wise'" class="screen wise-review-sheet-page">

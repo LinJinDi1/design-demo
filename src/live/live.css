@@ -58,6 +58,19 @@
   background: #f2f2f4;
 }
 
+/* 现版的详情页没有玻璃底栏，外壳不用给底栏留那 78px（见 PhoneShell 的 plain） */
+.studio[data-design='live'] .phone-content--plain {
+  padding-bottom: 0;
+}
+
+/* 旧皮肤 round3.css 里有一条裸的 `.live-status`（原版店铺详情用的），
+   会漏进小程序原生的 StallLiveStatus 组件，把卡片凭空撑高 48px。现版里归零。 */
+.studio[data-design='live'] .live-status {
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+}
+
 /* ---------- 页面基座 ---------- */
 .live-page {
   --u: 0.52px;

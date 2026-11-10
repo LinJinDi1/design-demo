@@ -103,16 +103,20 @@ design 变量（original | wise | v5 | live）
 
 | 文件 | 作用 |
 |---|---|
-| `src/live/live.css` | 现版底座：`--u` 单位桥、`--live-*` 颜色、`.live-page`、tab 页共用头部（抄 `tab-header.scss`）、玻璃胶囊底栏 |
-| `src/live/LiveHome.vue` | 首页（`pages/homepage/homepage.vue` + **原生 `hot.vue`** + `DiscoveryFeed`） |
-| `src/live/LiveList.vue` | 自提 / 校园觅食（`pages/list/list.vue` + `StallList` 结构 + **原生 `StallCard`**） |
+| `src/live/registry.js` | **页面注册表**：`import.meta.glob` 自动收集 `Live*.vue` 的 `meta`，新增页面不用改 App.vue |
+| `src/live/README.md` | 现版复刻约定（meta 字段、1rpx=0.52px、类名前缀、自检命令、禁止改动的文件） |
+| `src/live/live.css` | 现版底座：`--u` 单位桥、`--live-*` 颜色、`.live-page`、tab 页共用头部、玻璃胶囊底栏、旧皮肤泄漏修正 |
+| `src/live/LiveHome.vue` | 首页（`pages/homepage/homepage.vue` + **原生 `hot.vue`**） |
+| `src/live/LiveList.vue` | 自提 / 校园觅食（`pages/list/list.vue` + **原生 `StallCard`**） |
 | `src/live/LiveCampus.vue` | 校园（`pages/campus/campus.vue`） |
 | `src/live/LiveFriends.vue` | 好友（`pagesFriend/index/index.vue`） |
 | `src/live/LiveProfile.vue` | 我的（`pages/logs/logs.vue`） |
+| 其余 18 个 `Live*.vue` | 二级页，一张表见 §4.4 |
 | `src/live/asset.js` | 图片路径助手（走 Vite `BASE_URL`） |
 | `src/uni-env.js` | 运行时替身：全局 `uni` / `getApp` / `wx`（不发请求、不报错） |
 | `src/uni-components.js` | `uni-icons` → 同形状内联 SVG（与源码 `type` / `size` / `color` 对齐） |
 | `src/mp-base.css` | 小程序标签改写成 HTML 后的基础行为（`img[mode]` 裁切、`[scroll-x]` 溢出） |
+| `src/app-stub/` | 没有 `quick-pick-main` 时的原生组件占位（保住 dev/build 不挂） |
 | `scripts/link-sass.cjs` | 把 `quick-pick-main/node_modules/sass` 软链进来（`npm run dev` 前自动执行） |
 | `public/assets/live/` | 从主仓库复制的图标：`static/home/*.svg`、`custom-tab-bar/icons/*.png`、`static/tushuguan.png`、`static/星星.png` |
 
@@ -120,7 +124,8 @@ design 变量（original | wise | v5 | live）
 
 | 文件 | 改动 |
 |---|---|
-| `src/App.vue` | `design` 接受 `live`；皮肤切换器第 4 个按钮「现版」；切到现版时左侧场景只留 5 个 tab 页；if 链最前面插 5 个 `v-if/v-else-if`（原首个分支降级为 `v-else-if`） |
+| `src/App.vue` | `design` 接受 `live`；切换器第 4 个按钮「现版」；左侧索引改由 registry 驱动；if 链最前面插一个 `<component :is>` 分发点（原首个分支降级为 `v-else-if`） |
+| `src/components/PhoneShell.vue` | 新增 `plain`：详情页（`meta.tab` 为空）不预留底栏的 78px |
 | `src/components/BottomNav.vue` | 新增 `live-tabbar` 分支：玻璃胶囊 + 5 栏 + 位图图标 |
 | `src/main.js` | 第一行 `import './uni-env.js'`；创建 app 后 `installUniComponents`；末尾追加 `live/live.css`（第 ⑧ 层）和 `mp-base.css`（第 ⑨ 层） |
 | `vite.config.js` | 新增三条能力：`@/` → quick-pick-main 的别名、`rpx → calc(var(--u) * N)` 的 PostCSS 转换、小程序标签改写插件；并放开 `server.fs.allow` |
@@ -148,7 +153,31 @@ http://localhost:5173/qingkuai/?scene=profile&design=live  # 我的
 | 好友 | `LiveFriends.vue` | `pagesFriend/index/index.vue` + `components/friendCard` | 吸顶头 + 搜索、消息 4 宫格（未读角标）、我的好友列表、认识新同学 |
 | 我的 | `LiveProfile.vue` | `pages/logs/logs.vue` | 灰底身份区（头像 / QuickID / 简介 / 四统计）、我的收藏卡、工具 3 列、服务 2×3 宫格 |
 
+二级页（`meta.tab` 留空 → 没有底部胶囊，自带 44px 返回栏）：
+
+| 页面 | 文件 / 场景 id | 主仓库来源 |
+|---|---|---|
+| 店铺详情 | `LiveDetailStore.vue` / `detailstore` | `pagesLog/detailstore/detailstore.vue` |
+| 摊位详情 | `LiveStallDetail.vue` / `stalldetail` | `pagesLog/stalldetail/stalldetail.vue` |
+| 商业中心 | `LiveBusinessCenter.vue` / `businesscenter` | `pages/list/list.vue` 的 `DiningBrowser kind="business"`（`pagesLog/businesscenter` 已无入口） |
+| 饭堂 | `LiveSearchDining.vue` / `searchdining` | `pages/list/list.vue` 的 `DiningBrowser kind="canteen"` |
+| 图书馆 | `LiveLibrary.vue` / `ic` | `pagesLog/ic/ic.vue` |
+| 大学体验课 | `LiveDaike.vue` / `daike` | `pagesLog/daike/daike.vue` + 原生 `DaikeItem` |
+| 体验课详情 | `LiveDaikeDetail.vue` / `daikedetail` | `pagesLog/daikedetail/daikedetail.vue` |
+| 发布体验课 | `LiveDaikePublish.vue` / `daikepublish` | `pagesLog/daikepublish/daikepublish.vue` |
+| 庆快金榜 | `LiveGoldenBoard.vue` / `goldenboard` | `pagesLog/goldenboard` + `components/GoldenBoard` |
+| 校园饭点签 | `LiveRandomStore.vue` / `randomstore` | `pagesLog/randomstore/randomstore.vue` |
+| 搜索 | `LiveSearchStore.vue` / `searchstore` | `pagesLog/searchstore/searchstore.vue` |
+| 我的收藏 | `LiveCollect.vue` / `collectstore` | `pagesLog/collectstore` + 原生 `FavoriteCard` |
+| 设置 | `LiveSetting.vue` / `setting` | `pagesLog/setting/setting.vue` |
+| 签到 | `LiveCheckin.vue` / `dialywork` | `pagesLog/dialywork/dialywork.vue` |
+| 反馈 | `LiveFeedback.vue` / `myfeed` | `pagesLog/Myfeed/Myfeed.vue` |
+| 通知 | `LiveNotice.vue` / `notice` | `pagesLog/notice/notice.vue` |
+| 消息中心 | `LiveMessage.vue` / `message` | `pageuser/message/message.vue` |
+| 用户主页 | `LiveMateDetail.vue` / `mate-detail` | `pageuser/MateDetail/MateDetail.vue` |
+
 每页都只做「已加载完成」的终态：没有骨架屏、空态、分页、下拉刷新、弹层和按压动效。
+`商业中心` / `饭堂` 是 `自提` tab 里的两个分栏状态，所以保留了底部胶囊（`meta.tab: 'discover'`）。
 
 ### 4.5 截图自检
 
@@ -210,7 +239,7 @@ node .shoot.cjs home live full   # 整页（撑开手机壳）→ .shots/live-ho
 ## 六、风险与维护成本
 
 1. **快照会过期**：现版分支是「按某个提交复刻」的，源码再改版就不同步。建议在文件头写清对应提交/日期，并把「同步现版」当成一次明确任务，而不是日常动作。
-2. **旧皮肤的全局类会漏进来（实测最大的坑）**：`styles.css / round2.css / round3.css / acceptance-fix.css / source-fidelity.css / wise.css` 里留着大量**和源码同名**的规则——`.pickup-header`、`.pickup-tabs`、`.pickup-tab`、`.home-shortcut(s)`、`.friend-row`、`.friend-avatar`、`.message-grid`、`.section`、`.service-card`、`.profile-avatar`、`.profile-stat(s)`。现版页面只要沿用源码类名，就会被这些旧规则悄悄改尺寸（实测：小摊页标题多推 14px、tab 被撑到 49px；好友行被撑到 76px）。两个办法：给现版组件加根类前缀提高特异性（`.live-friends .friend-row`），或者干脆换类名（`list-header / list-tabs`）。
+2. **旧皮肤的全局类会漏进来（实测最大的坑）**：`styles.css / round2.css / round3.css / acceptance-fix.css / source-fidelity.css / wise.css` 里留着大量**和源码同名**的规则——`.pickup-header`、`.pickup-tabs`、`.pickup-tab`、`.home-shortcut(s)`、`.friend-row`、`.friend-avatar`、`.message-grid`、`.section`、`.service-card`、`.profile-avatar`、`.profile-stat(s)`，还有最坑的一条：`round3.css` 的裸 `.live-status` 会漏进小程序原生 `StallLiveStatus`，让每张卡片凭空高 48px（已在 `live.css` 里对现版归零）。现版页面只要沿用源码类名，就会被这些旧规则悄悄改尺寸（实测：小摊页标题多推 14px、tab 被撑到 49px；好友行被撑到 76px）。两个办法：给现版组件加根类前缀提高特异性（`.live-friends .friend-row`），或者干脆换类名（`list-header / list-tabs`）。
 3. **双份样式**：`live.css` 和 `tab-header.scss` 是同一套规则的两份拷贝，改一边忘一边就会分叉。
 4. **硬编码颜色继续扩散**：现版分支照抄 hex 是对的（为了像），但它也会继承「615 种颜色」的问题，不宜作为新设计的起点。
 5. **底栏尺寸靠常量**：`116rpx` 高、`12rpx` 底距是抄原生组件的，若主仓库改底栏，这边要手动跟。

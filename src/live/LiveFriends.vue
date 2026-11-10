@@ -1,3 +1,7 @@
+<script>
+export const meta = { id: 'friends', label: '好友', note: '消息 + 好友列表', group: '社交', tab: 'friends', order: 1 };
+</script>
+
 <!--
   现版 · 好友（对应 quick-pick-main/pagesFriend/index/index.vue）
   结构：吸顶「好友 / 朋友、消息和新的认识」→ 搜索入口「寻找认识的人」

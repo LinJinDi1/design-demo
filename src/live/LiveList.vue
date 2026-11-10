@@ -1,3 +1,7 @@
+<script>
+export const meta = { id: 'stalls', label: '自提 · 校园觅食', note: '小摊列表', group: '校园觅食', tab: 'discover', order: 1 };
+</script>
+
 <!--
   现版 · 自提（校园觅食 / 小摊列表）
   对应 quick-pick-main/pages/list/list.vue + components/StallList/StallList.vue

@@ -7,11 +7,27 @@
  */
 const { spawn } = require('child_process');
 const fs = require('fs');
+const net = require('net');
 const path = require('path');
 
 const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-/* 端口 / 用户目录按进程号取，多个页面并行截图不会互相抢 */
-const PORT = Number(process.env.SHOOT_PORT || 9400 + (process.pid % 400));
+/* 端口随机取空闲的、用户目录按进程号取：并行截多张图不会互相抢 */
+let PORT = 0;
+function isFree(port) {
+  return new Promise((resolve) => {
+    const server = net.createServer();
+    server.once('error', () => resolve(false));
+    server.once('listening', () => server.close(() => resolve(true)));
+    server.listen(port, '127.0.0.1');
+  });
+}
+async function pickPort() {
+  for (let attempt = 0; attempt < 60; attempt += 1) {
+    const port = 9300 + Math.floor(Math.random() * 600);
+    if (await isFree(port)) return port;
+  }
+  return 9999;
+}
 const OUT = path.join(__dirname, '.shots');
 const PROFILE = path.join(__dirname, `.chrome-profile-${process.pid}`);
 fs.mkdirSync(OUT, { recursive: true });
@@ -22,6 +38,7 @@ async function main() {
   const scene = process.argv[2] || 'home';
   const design = process.argv[3] || 'live';
   const full = process.argv[4] === 'full';
+  PORT = Number(process.env.SHOOT_PORT) || (await pickPort());
 
   const chrome = spawn(
     CHROME,
@@ -81,11 +98,18 @@ async function main() {
     const url = `http://localhost:5173/qingkuai/?scene=${scene}&design=${design}`;
     await send('Page.navigate', { url });
     await waitApp(evaluate);
-    /* 等所有图片解码完，否则底栏图标会截成空白 */
-    for (let attempt = 0; attempt < 40; attempt += 1) {
-      const pending = await evaluate(`[...document.images].filter((img) => !img.complete || img.naturalWidth === 0).length`).catch(() => 0);
-      if (!pending) break;
-      await sleep(150);
+    /* 等所有图片解码完；偶发加载失败就整页重载一次，避免截出破图 */
+    for (let round = 0; round < 3; round += 1) {
+      let failed = 0;
+      for (let attempt = 0; attempt < 40; attempt += 1) {
+        failed = await evaluate(`[...document.images].filter((img) => !img.complete || img.naturalWidth === 0).length`).catch(() => 0);
+        if (!failed) break;
+        await sleep(150);
+      }
+      if (!failed) break;
+      if (round === 2) break;
+      await send('Page.reload', { ignoreCache: true });
+      await waitApp(evaluate);
     }
 
     /* 关掉动画，方便量稳定尺寸 */

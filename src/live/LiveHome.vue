@@ -1,3 +1,7 @@
+<script>
+export const meta = { id: 'home', label: '首页', note: '去哪吃 + 猜你喜欢', group: '首页', tab: 'home', order: 1 };
+</script>
+
 <!--
   现版 · 首页（对应 quick-pick-main/pages/homepage/homepage.vue）
   结构：品牌顶栏 → 去哪吃（3 项）→ 快捷入口（3 项）→ 庆快金榜 + 新店报到 → 猜你喜欢双列瀑布。
