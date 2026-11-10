@@ -1747,7 +1747,7 @@ onBeforeUnmount(() => { stopRandomStore(); window.clearTimeout(v5BoxTimeoutId); 
     <!-- 左侧场景索引：按钮列表由 fixtures.js 的 scenes 数组按 group 分组渲染 -->
     <aside class="sidebar">
       <div class="brand"><img src="/assets/qingkuai.ico"><div><strong>庆快校园</strong><small>STATIC DESIGN DESK</small></div></div>
-      <div class="sidebar-intro"><span class="eyebrow">SCREEN INDEX</span><h1>线上页面静态复刻</h1><p>原版 17 个截图状态 + 现版 23 个页面，390 × 888 手机画布。</p></div>
+      <div class="sidebar-intro"><span class="eyebrow">SCREEN INDEX</span><h1>线上页面静态复刻</h1><p>原版 17 个截图状态 + 现版 35 个页面，390 × 888 手机画布。</p></div>
       <!-- 设计版本四选一：原版 / Wise / V5 / 现版，切换只改 design，不改动其它场景数据 -->
       <div class="design-switcher" aria-label="设计版本">
         <span class="group-label">设计版本</span>

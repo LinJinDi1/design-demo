@@ -7,7 +7,7 @@
 **纯静态视觉稿**：Vite + Vue 3，把 38 个场景索引项（原版 17 + V5 21）塞进一个 390×888 的画布里。左边点场景、右边看效果，还能在「原版 / Wise / V5 / 现版」四套皮肤之间切换（默认 V5）。
 没有后端、没有登录、没有接口请求 —— 页面上看到的所有文字、图片、评分，全部写死在 `src/fixtures.js`（现版是写在各自组件里的常量）。
 
-「现版」是第 4 套皮肤：照 `quick-pick-main`（线上小程序）源码 1:1 复刻的 23 个页面（5 个 tab 页 + 18 个二级页），详情看 `LIVE-BRANCH.md`。
+「现版」是第 4 套皮肤：照 `quick-pick-main`（线上小程序）源码 1:1 复刻的 35 个页面（5 个 tab 页 + 2 个自提分栏 + 28 个二级页），详情看 `LIVE-BRANCH.md`。
 
 它不是真正的微信小程序，也不能提交任何数据，只用来看设计和评审。
 
@@ -37,7 +37,7 @@ design-demo/
 │  ├─ tokens.js        颜色变量。⚠️ 当前没有任何文件引用它，历史遗留
 │  ├─ v5-icons.js      V5 用的 SVG 图标（订单、投诉、板块…），按需从 App.vue 引入
 │  ├─ components/     5 个小组件（见下）
-│  ├─ live/           ★ 现版分支：registry.js + live.css + 23 个 Live*.vue + asset.js（约定见 live/README.md）
+│  ├─ live/           ★ 现版分支：registry.js + live.css + 35 个 Live*.vue + asset.js（约定见 live/README.md）
 │  └─ *.css           25 个样式文件（见下）
 └─ public/assets/       图片素材，按用途分目录（live/ 是从小程序复制过来的图标）
 ```
@@ -67,7 +67,7 @@ design-demo/
 
 地址栏示例：`http://localhost:5173/qingkuai/?scene=home&design=v5`
 
-现版共 23 个页面：5 个 tab 页（`home / stalls / campus / friends / profile`）+ 2 个自提分栏（`businesscenter / searchdining`）+ 18 个二级页。切到现版时左侧索引只列这些页面（由 `src/live/registry.js` 自动收集）。新增现版页面只需在 `src/live/` 下加一个带 `meta` 的 `Live*.vue`，`App.vue` 不用动。
+现版共 35 个页面：5 个 tab 页（`home / stalls / campus / friends / profile`）+ 2 个自提分栏（`businesscenter / searchdining`）+ 28 个二级页（店铺/摊位/体验课/金榜/饭点签/搜索/收藏/设置/签到/反馈/通知/消息/好友/关注/粉丝/积分/头像商城/空间/座位/现场记录…）。切到现版时左侧索引只列这些页面（由 `src/live/registry.js` 自动收集）。新增现版页面只需在 `src/live/` 下加一个带 `meta` 的 `Live*.vue`，`App.vue` 不用动。
 
 加一个新场景要动 **三个地方**：`fixtures.js` 的 `scenes` 数组 → `App.vue` 加一个 `v-else-if` 分支 → 写对应 CSS。
 现版不写 `fixtures.js`，而是新建一个 `src/live/LiveXxx.vue`，数据写在组件里。

@@ -175,6 +175,18 @@ http://localhost:5173/qingkuai/?scene=profile&design=live  # 我的
 | 通知 | `LiveNotice.vue` / `notice` | `pagesLog/notice/notice.vue` |
 | 消息中心 | `LiveMessage.vue` / `message` | `pageuser/message/message.vue` |
 | 用户主页 | `LiveMateDetail.vue` / `mate-detail` | `pageuser/MateDetail/MateDetail.vue` |
+| 好友发现 | `LiveFriendFavor.vue` / `friend-favor` | `pageuser/FriendFavor/FriendFavor.vue` + 原生 `FavoriteCard` |
+| 好友详情 | `LiveFriendDetail.vue` / `friend-detail` | `pageuser/FriendDetail/FriendDetail.vue` |
+| 寻找认识的人 | `LiveFriendSearch.vue` / `friend-search` | `pagesLog/friendsearch/friendsearch.vue` |
+| 关注 | `LiveFollowList.vue` / `follows` | `pageuser/followlist/followlist.vue` |
+| 粉丝 | `LiveFanList.vue` / `fans` | `pageuser/fanlist/fanlist.vue` |
+| 我的积分 | `LiveMyPoint.vue` / `my-point` | `pageuser/Mypoint/Mypoint.vue` |
+| 抢购积分包 | `LivePointPack.vue` / `point-pack` | `pageuser/PointPack/PointPack.vue` |
+| 头像商城 | `LiveAvatarStore.vue` / `avatar-store` | `pagesLog/avastore/avastore.vue` |
+| 空间详情 | `LiveIcRoom.vue` / `ic-room` | `pagesLog/icroom/icroom.vue` |
+| 座位 | `LiveIcSeat.vue` / `ic-seat` | `pagesLog/seat/seat.vue` |
+| 现场记录 | `LiveStallTimeline.vue` / `stall-timeline` | `pagesLog/stallreporttimeline/stallreporttimeline.vue` |
+| 反馈详情 | `LiveFeedbackDetail.vue` / `feedback-detail` | `pagesLog/feeddetail/feeddetail.vue` |
 
 每页都只做「已加载完成」的终态：没有骨架屏、空态、分页、下拉刷新、弹层和按压动效。
 `商业中心` / `饭堂` 是 `自提` tab 里的两个分栏状态，所以保留了底部胶囊（`meta.tab: 'discover'`）。
